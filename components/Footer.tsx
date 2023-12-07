@@ -29,6 +29,7 @@ export default function Footer() {
                         alt="Logo"
                         width={193}
                         height={60}
+                        priority
                         className="mx-auto h-auto"
                     />
 

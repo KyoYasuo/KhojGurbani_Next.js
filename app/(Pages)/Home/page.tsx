@@ -1,4 +1,4 @@
-export default function Page() {
+export default async function Page() {
     return (
         <h1>GubaniSearch</h1>
     )

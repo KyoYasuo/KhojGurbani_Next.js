@@ -41,13 +41,16 @@ export default function NavBar() {
                 <div className="h-16 flex flex-1 items-center justify-between">
 
                     <div className="flex flex-shrink-0 items-center">
-                        <Image
-                            src="/Images/logo2.png"
-                            alt="Logo"
-                            width={136}
-                            height={32.5}
-                            priority
-                        />
+                        <Link href="/Home">
+                            <Image
+                                src="/Images/logo.png"
+                                alt="Logo"
+                                width={136}
+                                height={39}
+                                priority
+                                className='h-auto'
+                            />
+                        </Link>
                     </div>
 
                     <div className="hidden sm:flex">
@@ -71,6 +74,6 @@ export default function NavBar() {
 
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 }

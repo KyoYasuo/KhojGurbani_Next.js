@@ -28,8 +28,8 @@ export default function Footer() {
                         src="/Images/logo2.png"
                         alt="Logo"
                         width={193}
-                        height={0}
-                        className="mx-auto"
+                        height={60}
+                        className="mx-auto h-auto"
                     />
 
                     <div className="flex justify-center gap-8">

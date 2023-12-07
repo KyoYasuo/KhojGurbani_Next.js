@@ -5,15 +5,15 @@ export default function FeaturedTheme(props: { imgURL: string; title: string; de
     return (
         <div className="shadow-common cursor-pointer h-full">
 
-            <div className="w-full overflow-hidden">
+            <div className="w-full">
 
-                <Image
+                {/* <Image
                     src={props.imgURL}
                     alt="Featuredsample"
                     width={545}
                     height={300}
-                    className="max-h-[300] w-auto"
-                />
+                    className="w-full max-h-[300px]"
+                /> */}
 
             </div>
 

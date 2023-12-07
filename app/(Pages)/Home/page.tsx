@@ -1,4 +1,4 @@
-import { getCatResult } from "@/Lib/data"
+import { getArchives, getCatResults } from "@/Lib/data"
 import FeaturedTheme from "@/components/FeaturedTheme";
 import HomeBanner from "@/components/HomeBanner";
 import HomeWelcome from "@/components/HomeWelcome";
@@ -7,7 +7,8 @@ import Link from "next/link";
 import { Key } from "react";
 
 export default async function Page() {
-    const cat_result = await getCatResult();
+    const cat_results = await getCatResults();
+    const archives = await getArchives();
     return (
         <div className="">
             <HomeBanner />
@@ -27,7 +28,7 @@ export default async function Page() {
                     </form>
                 </div>
                 <div className="grid grid-cols-2 gap-8">
-                    {cat_result.map((item: { id: number; category_image: string; title: string; description: string; }) => (
+                    {cat_results.map((item: { id: number; category_image: string; title: string; description: string; }) => (
                         <Link key={item.id} href={""}>
                             <FeaturedTheme
                                 imgURL={item.category_image}

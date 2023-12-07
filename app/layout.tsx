@@ -26,7 +26,7 @@ export default function RootLayout({
         <header>
           <NavBar />
         </header>
-        <main className="grow py-3">
+        <main className="grow pt-16">
           {children}
         </main>
         <footer>

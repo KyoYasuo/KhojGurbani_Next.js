@@ -1,4 +1,4 @@
-import { getArchives, getCatResults } from "@/Lib/data"
+import { getArchives, getCatResults, getFeaturedMedia } from "@/Lib/data"
 import FeaturedTheme from "@/components/FeaturedTheme";
 import HomeBanner from "@/components/HomeBanner";
 import HomeWelcome from "@/components/HomeWelcome";
@@ -9,6 +9,8 @@ import { Key } from "react";
 export default async function Page() {
     const cat_results = await getCatResults();
     const archives = await getArchives();
+    const featuredMedia = await getFeaturedMedia();
+
     return (
         <div className="">
             <HomeBanner />
@@ -58,7 +60,7 @@ export default async function Page() {
                         View all Podcasts
                     </a>
                 </div>
-                <SlideShow showCount={4} archive={archive} data={undefined} />
+                <SlideShow showCount={4} archive={archives} data={undefined} />
             </div>
             <div className="w-full bg-right-top bg-cover bg-[url('/Images/Home/homesub.jpg')]">
                 <div className="mx-auto max-w-6xl p-4">

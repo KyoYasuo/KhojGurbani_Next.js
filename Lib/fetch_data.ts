@@ -9,3 +9,13 @@ async function getArchive() {
 
     return res.json()
 }
+
+async function getPodcasts() {
+    const res = await fetch(`${endpoint}featured-api/podcast-listing`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch data');
+    }
+
+    return res.json()
+}

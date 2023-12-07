@@ -1,4 +1,3 @@
-import { getArchives } from '@/Lib/archives';
 import { redirect } from 'next/navigation';
 
 export default async function Page() {

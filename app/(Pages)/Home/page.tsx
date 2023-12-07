@@ -9,7 +9,7 @@ import { Key } from "react";
 export default async function Page() {
     const cat_results = await getCatResults();
     const archives = await getArchives();
-    const featuredMedia = await getFeaturedMedia();
+    const featuredMedias = await getFeaturedMedia();
 
     return (
         <div className="">
@@ -41,15 +41,12 @@ export default async function Page() {
                     ))}
                 </div>
             </div>
-            {/* <div className="w-full p-[60px] bg-right-top bg-cover bg-[url('/Images/Home/homebottom.png')]">
+            <div className="w-full p-[60px] bg-right-top bg-cover bg-[url('/Images/Home/homebottom.png')]">
                 <div className="mx-auto max-w-6xl p-4">
                     <h2 className="text-3xl py-4 font-bold text-white">
                         Featured Podcasts
                     </h2>
-                    <SlideShow
-                        showCount={3}
-                        data={data?.media_result}
-                        archive={undefined}
+                    <SlideShow showCount={3} featuredMedias={featuredMedias} archives={undefined}
                     />
                 </div>
             </div>
@@ -60,7 +57,7 @@ export default async function Page() {
                         View all Podcasts
                     </a>
                 </div>
-                <SlideShow showCount={4} archive={archives} data={undefined} />
+                <SlideShow showCount={4} archives={archives} featuredMedias={undefined} />
             </div>
             <div className="w-full bg-right-top bg-cover bg-[url('/Images/Home/homesub.jpg')]">
                 <div className="mx-auto max-w-6xl p-4">
@@ -82,7 +79,7 @@ export default async function Page() {
                         </span>
                     </form>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }

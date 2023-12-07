@@ -1,10 +1,8 @@
-'use client'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import Image from "next/image";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, PromiseLikeOfReactNode } from "react";
 
 function dateTransform(value: string): string {
     const dd: string = value.substr(8, 2);
@@ -28,17 +26,10 @@ function dateTransform(value: string): string {
     return date;
   }
 
-export default function SlideShow(props: { data: any; archive: any; showCount: any; }) {
+export default function SlideShow(props: { featuredMedias: any; archives: any; showCount: any; }) {
 
-    const data = props.data;
-    const archive = props.archive;
-    const featuredData = [];
-
-    if (Array.isArray(data)) {
-        for (let i of data) {
-            if (i.featured > 0) featuredData.push(i);
-        }
-    }
+    const featuredMedias = props.featuredMedias;
+    const archives = props.archives;
 
     const settings = {
         infinite: true,
@@ -52,7 +43,7 @@ export default function SlideShow(props: { data: any; archive: any; showCount: a
 
     return (
         <Slider {...settings}>
-            {featuredData.map((item) => (
+            {featuredMedias.map((item: { id: number; title: string; thumbnail: string; }) => (
                 <div key={item.id}>
                     <Link
                         href={""}
@@ -70,7 +61,7 @@ export default function SlideShow(props: { data: any; archive: any; showCount: a
                     </Link>
                 </div>
             ))}
-            {archive?.map((item: { id: Key | null | undefined; thumbnail: string; title: string; created_at: string; }) => (
+            {archives.map((item: { id: number; thumbnail: string; title: string; created_at: string; }) => (
                 <div key={item.id}>
                     <Link
                         href={""}

@@ -14,16 +14,18 @@ export default function HomeBanner() {
                     <Image
                         src="/Images/Home/google_podcast.png"
                         alt="Google posdcast"
-                        width={154}
-                        height={0}
+                        width={160}
+                        height={42}
+                        className="w-40 h-auto"
                     />
                 </a>
                 <a href="https://podcasts.apple.com/us/podcast/khojgurbani/id1435439834" target="_blank">
                     <Image
                         src="/Images/Home/apple_podcast.png"
                         alt="Apple Podcast"
-                        width={154}
-                        height={0}
+                        width={160}
+                        height={42}
+                        className="w-40 h-auto"
                     />
                 </a>
             </div>

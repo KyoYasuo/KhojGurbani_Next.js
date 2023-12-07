@@ -7,6 +7,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'sans': ['var(--font-poppins)', 'ui-sans-serif', 'system-ui'],
+      },
       boxShadow: {
         'common': '0 0 18px 0 rgba(0, 0, 0, 0.19)',
       },

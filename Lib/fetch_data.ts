@@ -1,6 +1,6 @@
 import { endpoint } from "@/environments/endpoint"
 
-async function getArchive() {
+export async function getArchive() {
     const res = await fetch(`${endpoint}media/archive-latest`);
 
     if (!res.ok) {
@@ -10,10 +10,11 @@ async function getArchive() {
     return res.json()
 }
 
-async function getPodcasts() {
+export async function getPodcasts() {
     const res = await fetch(`${endpoint}featured-api/podcast-listing`);
 
     if (!res.ok) {
+        toastr.error('Failed to fetch data');
         throw new Error('Failed to fetch data');
     }
 

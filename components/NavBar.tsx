@@ -46,6 +46,7 @@ export default function NavBar() {
                             alt="Logo"
                             width={136}
                             height={32.5}
+                            priority
                         />
                     </div>
 

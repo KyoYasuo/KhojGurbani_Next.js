@@ -36,7 +36,7 @@ export async function getFeaturedMedia() {
     }
 }
 
-export async function getPodmedias(slug: number) {
+export async function getPodmedias(slug: string) {
     try {
         const data = await fetchPodmediasData(slug);
         const archives = data.result;

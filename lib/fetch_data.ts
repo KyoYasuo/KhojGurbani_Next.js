@@ -1,5 +1,15 @@
 import { endpoint } from "@/environments/endpoint"
 
+export async function fetchTodayPodcastData() {
+    const res = await fetch(`${endpoint}media/podcast-index`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch archive data');
+    }
+
+    return res.json();
+}
+
 export async function fetchArchiveData() {
     const res = await fetch(`${endpoint}media/archive-latest`);
 

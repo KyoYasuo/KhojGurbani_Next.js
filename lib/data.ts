@@ -1,4 +1,14 @@
-import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData } from "./fetch_data";
+import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData } from "./fetch_data";
+
+export async function getTodayPodcast() {
+    try {
+        const data = await fetchTodayPodcastData();
+        const todayPocast = data.result;
+        return todayPocast;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
 
 export async function getCatResults() {
     try {

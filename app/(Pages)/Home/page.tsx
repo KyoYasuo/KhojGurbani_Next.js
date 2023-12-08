@@ -1,4 +1,4 @@
-import { getArchives, getCatResults, getFeaturedMedia } from "@/lib/data"
+import { getArchives, getCatResults, getFeaturedMedia, getTodayPodcast } from "@/lib/data"
 import FeaturedTheme from "@/components/FeaturedTheme";
 import HomeBanner from "@/components/HomeBanner";
 import HomeWelcome from "@/components/HomeWelcome";
@@ -9,10 +9,11 @@ export default async function HomePage() {
     const cat_results = await getCatResults();
     const archives = await getArchives();
     const featuredMedias = await getFeaturedMedia();
+    const todayPodcast = await getTodayPodcast();
 
     return (
         <div className="">
-            <HomeBanner recent={archives[1]} />
+            <HomeBanner recent={todayPodcast} />
             <div className="mx-auto max-w-6xl p-4">
                 <HomeWelcome />
                 <div className="my-6 flex justify-between">

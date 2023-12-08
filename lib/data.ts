@@ -4,7 +4,7 @@ export async function getTodayPodcast() {
     try {
         const data = await fetchTodayPodcastData();
         const todayPocast = data.result;
-        return todayPocast;
+        return todayPocast[0];
     } catch (error: any) {
         throw new Error(error);
     }

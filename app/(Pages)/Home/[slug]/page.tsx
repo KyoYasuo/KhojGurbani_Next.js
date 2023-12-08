@@ -15,6 +15,7 @@ export default async function HomeSubPage({ params: { slug } }: { params: { slug
     return (
         <>
             <div className="w-full h-64 bg-right-top bg-cover bg-[url('/Images/Home/nitnem.jpg')]">
+                <h1 className="mx-auto max-w-6xl p-4 pt-24 text-4xl font-bold text-white">{slugInfo.title}</h1>
             </div>
             {pod_medias.map((item: { id: number; thumbnail: string; title: string; description: string; }) => (
                 <div key={item.id} className="flex flex-col mx-auto max-w-6xl p-4">

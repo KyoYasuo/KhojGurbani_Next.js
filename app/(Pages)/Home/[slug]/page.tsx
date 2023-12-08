@@ -4,7 +4,6 @@ import Link from "next/link";
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
     const slugs = await getSlugs();
-    // console.log('[HomeSubPage] generateStaticParams:', slugs);
     return slugs.map((slug: string) => ({ slug }));
 }
 
@@ -12,7 +11,6 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 export default async function HomeSubPage({ params: { slug } }: { params: { slug: string } }) {
     const pod_medias = await getPodmedias(slug);
     const slugInfo = await getSlugInfo(slug);
-    // console.log(slugInfo);
     return (
         <>
             <div className="w-full h-64 bg-right-top bg-cover bg-[url('/Images/Home/nitnem.jpg')]">

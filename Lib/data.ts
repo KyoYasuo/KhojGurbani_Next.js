@@ -60,7 +60,6 @@ export async function getSlugInfo(slug: string) {
     try {
         const data = await fetchPodcastsData();
         const slugInfo = data.result.cat_result.find((item: { id: number; }) => item.id === parseInt(slug));
-        // console.log(slugInfo);
         return slugInfo;
     } catch (error: any) {
         throw new Error(error);

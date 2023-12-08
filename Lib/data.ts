@@ -56,6 +56,17 @@ export async function getSlugs() {
     }
 }
 
+export async function getSlugInfo(slug: string) {
+    try {
+        const data = await fetchPodcastsData();
+        const slugInfo = data.result.cat_result.find((item: { id: number; }) => item.id === parseInt(slug));
+        console.log(slugInfo);
+        return slugInfo;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
 export function dateTransform(value: string): string {
     const dd: string = value.substr(8, 2);
     const MM: string = value.substr(5, 2);

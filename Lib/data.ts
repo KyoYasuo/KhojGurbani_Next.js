@@ -1,4 +1,4 @@
-import { fetchPodcastsData, fetchArchiveData } from "./fetch_data";
+import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData } from "./fetch_data";
 
 export async function getCatResults() {
     try {
@@ -31,6 +31,16 @@ export async function getFeaturedMedia() {
             return a.featured_display_order - b.featured_display_order;
         });
         return featuredMedia;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getPodmedias(slug: number) {
+    try {
+        const data = await fetchPodmediasData(slug);
+        const archives = data.result;
+        return archives;
     } catch (error: any) {
         throw new Error(error);
     }

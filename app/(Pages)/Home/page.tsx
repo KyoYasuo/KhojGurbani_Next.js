@@ -1,4 +1,4 @@
-import { getArchives, getCatResults, getFeaturedMedia } from "@/Lib/data"
+import { getArchives, getCatResults, getFeaturedMedia } from "@/lib/data"
 import FeaturedTheme from "@/components/FeaturedTheme";
 import HomeBanner from "@/components/HomeBanner";
 import HomeWelcome from "@/components/HomeWelcome";
@@ -12,7 +12,7 @@ export default async function Page() {
 
     return (
         <div className="">
-            <HomeBanner recent={archives[1]}/>
+            <HomeBanner recent={archives[1]} />
             <div className="mx-auto max-w-6xl p-4">
                 <HomeWelcome />
                 <div className="my-6 flex justify-between">
@@ -30,7 +30,7 @@ export default async function Page() {
                 </div>
                 <div className="grid grid-cols-2 gap-y-4">
                     {cat_results.map((item: { id: number; category_image: string; title: string; description: string; }) => (
-                        <Link key={item.id} href={""}>
+                        <Link key={item.id} href={"/Home/" + item.id}>
                             <FeaturedTheme
                                 imgURL={item.category_image}
                                 title={item.title}

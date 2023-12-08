@@ -1,6 +1,6 @@
 import Image from "next/image";
 import LanguageButton from "./LanguageButton";
-import { dateTransform } from "@/Lib/data";
+import { dateTransform } from "@/lib/data";
 
 export default function HomeBanner(props: { recent: any; }) {
     const recent = props.recent

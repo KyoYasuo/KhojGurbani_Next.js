@@ -19,3 +19,13 @@ export async function fetchPodcastsData() {
 
     return res.json();
 }
+
+export async function fetchPodmediasData(slug: number) {
+    const res = await fetch(`${endpoint}media/resource-category-podmedia-new/${slug}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

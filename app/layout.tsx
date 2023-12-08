@@ -3,7 +3,11 @@ import { Poppins } from 'next/font/google'
 import './globals.css'
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
-import AudioPlayer from '@/components/AudioPlayer';
+import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
+import dynamic from 'next/dynamic'
+
+const AudioPlayer = dynamic(() => import('@/components/AudioPlayer'), { ssr: false });
+
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -22,19 +26,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${poppins.variable} antialiased`}>
-      <body className="flex flex-col min-h-screen">
-        <header>
-          <NavBar />
-        </header>
-        <main className="grow pt-16">
-          {children}
-        </main>
-        <footer>
-          <Footer />
-        </footer>
-        <AudioPlayer url=''/>
-      </body>
-    </html>
+    <AudioPlayerProvider>
+      <html lang="en" className={`${poppins.variable} antialiased`}>
+        <body className="flex flex-col min-h-screen">
+          <header>
+            <NavBar />
+          </header>
+          <main className="grow pt-16">
+            {children}
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+        </body>
+        <AudioPlayer />
+      </html>
+    </AudioPlayerProvider>
   )
 }

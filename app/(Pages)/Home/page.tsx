@@ -5,7 +5,7 @@ import HomeWelcome from "@/components/HomeWelcome";
 import SlideShow from "@/components/SlideShow";
 import Link from "next/link";
 
-export default async function Page() {
+export default async function HomePage() {
     const cat_results = await getCatResults();
     const archives = await getArchives();
     const featuredMedias = await getFeaturedMedia();

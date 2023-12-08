@@ -4,16 +4,14 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
     return (
         <div className="flex">
 
-            <div className="relative aspect-[325/219]">
+            <div className="aspect-[325/219]">
 
                 <Image
                     src={props.imgURL}
                     alt="Featuredsample"
-                    fill
-                    sizes="max-width: 325px, max-height: 219px"
-                    style={{
-                        objectFit: 'cover', // cover, contain, none
-                    }}
+                    width={325}
+                    height={219}
+                    className="max-w-[325px] max-h-[219px] w-[325px] h-[219px] rounded-md"
                 />
 
             </div>

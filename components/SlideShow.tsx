@@ -19,21 +19,16 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; s
 
     const { playAudio } = useAudioPlayer();
 
-    const handleClick = () => {
-        const audioUrl = 'https://mcdn.podbean.com/mf/web/nz7dbd/_Sri_Guru_Granth_Sahib_Page_420_Sabad_1131_65e3w.mp3'; // Replace with the actual audio URL
-        playAudio(audioUrl);
-    };
-
     return (
         <Swiper
             spaceBetween={8}
             slidesPerView={showCount}
         >
-            {featuredMedias?.map((item: { id: number; title: string; thumbnail: string; }) => (
+            {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string;}) => (
                 <SwiperSlide key={item.id}>
                     <div
-                        onClick={handleClick}
-                        className="relative"
+                        onClick={() => playAudio(item.media)}
+                        className="relative cursor-pointer"
                     >
                         <div className="absolute top-4 left-4 text-white text-lg">{item.title}</div>
                         <Image
@@ -45,11 +40,11 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; s
                     </div>
                 </SwiperSlide>
             ))}
-            {archives?.map((item: { id: number; thumbnail: string; title: string; created_at: string; }) => (
+            {archives?.map((item: { attachment_name: string; id: number; thumbnail: string; title: string; created_at: string; }) => (
                 <SwiperSlide key={item.id}>
                     <div
-                        onClick={handleClick}
-                        className="relative"
+                        onClick={() => playAudio(item.attachment_name)}
+                        className="relative cursor-pointer"
                     >
                         <Image
                             src={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail}

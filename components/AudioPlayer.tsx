@@ -168,12 +168,12 @@ const AudioPlayer: React.FC = () => {
     const { audioUrl, isPlaying, pauseAudio } = useAudioPlayer();
     const playerRef = useRef<ReactPlayer | null>(null);
 
-    useEffect(() => {
-        return () => {
-            // Cleanup when the component unmounts
-            pauseAudio();
-        };
-    }, [pauseAudio]);
+    // useEffect(() => {
+    //     return () => {
+    //         // Cleanup when the component unmounts
+    //         pauseAudio();
+    //     };
+    // }, [pauseAudio]);
 
     return (
         <div className='fixed bottom-0 left-0 w-full z-50'>

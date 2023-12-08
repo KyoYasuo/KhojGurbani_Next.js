@@ -38,7 +38,6 @@ export async function getFeaturedMedia() {
 
 export async function getPodmedias(slug: string) {
     try {
-        console.log(slug);
         const data = await fetchPodmediasData(slug);
         const archives = data.result;
         return archives;

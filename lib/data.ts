@@ -77,9 +77,9 @@ export async function getSlugInfo(slug: string) {
 }
 
 export function dateTransform(value: string): string {
-    const dd: string = value.substr(8, 2);
-    const MM: string = value.substr(5, 2);
-    const yyyy: string = value.substr(0, 4);
+    const dd: string = value?.slice(8, 2);
+    const MM: string = value?.slice(5, 2);
+    const yyyy: string = value?.slice(0, 4);
     const months: { [key: string]: string } = {
         '01': 'Jan',
         '02': 'Feb',

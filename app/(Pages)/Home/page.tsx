@@ -12,7 +12,7 @@ export default async function Page() {
 
     return (
         <div className="">
-            <HomeBanner />
+            <HomeBanner recent={archives[1]}/>
             <div className="mx-auto max-w-6xl p-4">
                 <HomeWelcome />
                 <div className="my-6 flex justify-between">
@@ -40,7 +40,7 @@ export default async function Page() {
                     ))}
                 </div>
             </div>
-            {/* <div className="w-full p-[60px] bg-right-top bg-cover bg-[url('/Images/Home/homebottom.png')]">
+            <div className="w-full p-[60px] bg-right-top bg-cover bg-[url('/Images/Home/homebottom.png')]">
                 <div className="mx-auto max-w-6xl p-4">
                     <h2 className="text-3xl py-4 font-bold text-white">
                         Featured Podcasts
@@ -48,8 +48,8 @@ export default async function Page() {
                     <SlideShow showCount={3} featuredMedias={featuredMedias} archives={undefined}
                     />
                 </div>
-            </div> */}
-            {/* <div className="mx-auto max-w-6xl p-4">
+            </div>
+            <div className="mx-auto max-w-6xl p-4">
                 <div className="flex justify-between items-center">
                     <h2 className="text-3xl py-4 font-bold text-title">Archive</h2>
                     <a className=" cursor-pointer text-blue-primary font-bold text-sm">
@@ -57,7 +57,7 @@ export default async function Page() {
                     </a>
                 </div>
                 <SlideShow showCount={4} archives={archives} featuredMedias={undefined} />
-            </div> */}
+            </div>
             <div className="w-full bg-right-top bg-cover bg-[url('/Images/Home/homesub.jpg')]">
                 <div className="mx-auto max-w-6xl p-4">
                     <h2 className="text-3xl py-4 font-bold text-title text-center">

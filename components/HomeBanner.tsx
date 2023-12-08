@@ -1,12 +1,14 @@
 import Image from "next/image";
 import LanguageButton from "./LanguageButton";
+import { dateTransform } from "@/Lib/data";
 
-export default function HomeBanner() {
+export default function HomeBanner(props: { recent: any; }) {
+    const recent = props.recent
     return (
         <div className="w-full h-128 bg-right-top bg-cover bg-[url('/Images/Home/homebanner.jpg')]">
             <div className="mx-auto max-w-6xl px-4 py-12">
-                <h1 className="text-3xl font-bold text-white">Jup Salok</h1>
-                <p className="text-sm text-white">Oct 11, 2020</p>
+                <h1 className="text-3xl font-bold text-white">{recent.title}</h1>
+                <p className="text-sm text-white">{dateTransform(recent.created_at)}</p>
                 <LanguageButton></LanguageButton>
             </div>
             <div className="my-24 mx-auto max-w-6xl h-24 px-4 flex flex-col items-end justify-between">

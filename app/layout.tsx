@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 import './globals.css'
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
+import AudioPlayer from '@/components/AudioPlayer';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -32,6 +33,7 @@ export default function RootLayout({
         <footer>
           <Footer />
         </footer>
+        <AudioPlayer url=''/>
       </body>
     </html>
   )

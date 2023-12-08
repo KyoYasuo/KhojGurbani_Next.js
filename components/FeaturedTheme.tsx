@@ -3,17 +3,19 @@ import Image from "next/image";
 
 export default function FeaturedTheme(props: { imgURL: string; title: string; description: string; }) {
     return (
-        <div className="shadow-common cursor-pointer h-full">
+        <div className="shadow-common cursor-pointer h-full max-w-[545px]">
 
-            <div className="w-full">
+            <div className="relative aspect-[545/300]">
 
-                {/* <Image
+                <Image
                     src={props.imgURL}
                     alt="Featuredsample"
-                    width={545}
-                    height={300}
-                    className="w-full max-h-[300px]"
-                /> */}
+                    fill
+                    sizes="max-width: 545px, max-height: 300px"
+                    style={{
+                        objectFit: 'cover', // cover, contain, none
+                    }}
+                />
 
             </div>
 

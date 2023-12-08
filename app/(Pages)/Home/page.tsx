@@ -28,7 +28,7 @@ export default async function Page() {
                         <span></span>
                     </form>
                 </div>
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-2 gap-y-4">
                     {cat_results.map((item: { id: number; category_image: string; title: string; description: string; }) => (
                         <Link key={item.id} href={""}>
                             <FeaturedTheme

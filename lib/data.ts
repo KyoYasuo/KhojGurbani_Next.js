@@ -95,6 +95,5 @@ export function dateTransform(value: string): string {
         '12': 'Dec',
     };
     const date: string = `${months[MM]} ${dd}, ${yyyy}`;
-    console.log(date);
     return date;
 }

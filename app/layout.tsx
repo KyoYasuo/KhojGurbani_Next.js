@@ -29,10 +29,10 @@ export default function RootLayout({
     <AudioPlayerProvider>
       <html lang="en" className={`${poppins.variable} antialiased`}>
         <body className="flex flex-col min-h-screen">
-          <header>
+          <header className='h-16'>
             <NavBar />
           </header>
-          <main className="grow pt-16">
+          <main className="grow">
             {children}
           </main>
           <footer>

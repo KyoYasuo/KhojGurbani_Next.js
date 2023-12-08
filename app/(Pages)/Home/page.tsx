@@ -30,7 +30,7 @@ export default async function Page() {
                 </div>
                 <div className="grid grid-cols-2 gap-y-4">
                     {cat_results.map((item: { id: number; category_image: string; title: string; description: string; }) => (
-                        <Link key={item.id} href={"/Home/" + item.id}>
+                        <Link key={item.id} href={`/Home/${item.id}`}>
                             <FeaturedTheme
                                 imgURL={item.category_image}
                                 title={item.title}

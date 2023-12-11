@@ -1,6 +1,6 @@
 import PodMedia from "@/components/PodMedia";
 import Search from "@/components/Search";
-import { getAllArchiveResult } from "@/lib/data";
+import { getAllArchiveResult, getArchivePageCount } from "@/lib/data";
 import Link from "next/link";
 
 export default async function ArchivelistPage({
@@ -11,7 +11,8 @@ export default async function ArchivelistPage({
     };
 }) {
     const page = searchParams?.page || '1';
-    const ArchiveResult = await getAllArchiveResult(page);
+    const pageCout = await getArchivePageCount(page);
+    const archiveResult = await getAllArchiveResult(page);
 
     return (
         <>
@@ -26,11 +27,12 @@ export default async function ArchivelistPage({
                                 Home
                             </div>
                         </Link>
-                        <span className=" text-subtitle"> / Search </span>
+                        <span className=" text-subtitle"> / Archive </span>
                     </div>
                     <Search />
                 </div>
-                {ArchiveResult.map((item: { id: number; thumbnail: string; title: string; description: string; }) => (
+                
+                {archiveResult.map((item: { id: number; thumbnail: string; title: string; description: string; }) => (
                     <div key={item.id} className="py-4">
                         <PodMedia imgURL={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail} title={item.title} description={item.description} />
                     </div>

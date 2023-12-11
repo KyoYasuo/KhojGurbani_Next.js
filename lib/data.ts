@@ -86,6 +86,16 @@ export async function getSearchResult(query: string) {
     }
 }
 
+export async function getArchivePageCount(page: string) {
+    try {
+        const data = await fetchAllArchiveData(page);
+        const archiveAllData = data.result.last_page;
+        return archiveAllData;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
 export async function getAllArchiveResult(page: string) {
     try {
         const data = await fetchAllArchiveData(page);

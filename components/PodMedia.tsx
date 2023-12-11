@@ -11,19 +11,19 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
     return (
         <div className="flex flex-col sm:flex-row" onClick={() => playAudio(props.media)}>
 
-            <div className="aspect-[325/219]" >
+            <div className="relative w-full sm:w-80 shrink-0" >
 
                 <Image
                     src={props.imgURL}
                     alt="Featuredsample"
-                    width={325}
-                    height={219}
-                    className="rounded-md"
+                    width={320}
+                    height={220}
+                    className="object-fill w-full rounded-md"
                 />
 
             </div>
 
-            <div className="flex flex-col px-4">
+            <div className="flex flex-col px-4 pt-2 sm:pt-0">
 
                 <h3 className="text-2xl text-blue-primary">
                     <Highlighter

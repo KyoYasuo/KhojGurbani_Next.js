@@ -45,10 +45,10 @@ export default function Footer() {
                         ))}
                     </div>
                 </div>
-                <div className='flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-32 pt-8'>
+                <div className='flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-32 md:pt-8 pt-4'>
                     <div className='flex flex-col items-center gap-2'>
 
-                        <h4 className='text-xs tracking-[4px] text-white'>
+                        <h4 className='text-sm tracking-[4px] text-white'>
                             FOLLOW US
                         </h4>
                         <div className='flex gap-2'>
@@ -91,7 +91,7 @@ export default function Footer() {
                     </div>
                     <div className='flex flex-col items-center gap-2'>
 
-                        <h4 className='text-xs tracking-[4px] text-white'>
+                        <h4 className='text-sm tracking-[4px] text-white'>
                             CONTACT US
                         </h4>
                         <h4 className='text-sm text-white'>
@@ -99,9 +99,17 @@ export default function Footer() {
                         </h4>
                     </div>
                 </div>
+                <div className='flex items-center gap-6 justify-center md:hidden pt-8'>
+                    <h4 className='text-sm text-white'>
+                        Terms & Conditions
+                    </h4>
+                    <h4 className='text-sm text-white'>
+                        Privacy Policy
+                    </h4>
+                </div>
 
             </div>
-            <div className='mx-auto block w-fit mt-4 text-white text-xs'>
+            <div className='mx-auto block w-fit mt-8 text-white text-xs'>
                 Copyright © 2023 KhojGurbani
             </div>
 

@@ -32,7 +32,7 @@ export default function RootLayout({
       <AudioPlayerProvider>
         <body className="flex flex-col min-h-screen">
           <ToastContainer />
-          <header className='h-12 lg:h-16'>
+          <header>
             <NavBar />
           </header>
           <main className="grow">

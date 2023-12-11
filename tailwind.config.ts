@@ -10,6 +10,9 @@ const config: Config = {
       fontFamily: {
         'sans': ['var(--font-poppins)', 'ui-sans-serif', 'system-ui'],
       },
+      transitionProperty: {
+        'height': 'height'
+      },
       boxShadow: {
         'common': '0 0 18px 0 rgba(0, 0, 0, 0.19)',
       },

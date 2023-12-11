@@ -73,13 +73,13 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; c
             ))}
             {cat_results?.map((item: { id: number; category_image: string; title: string; }) => (
                 <SwiperSlide key={item.id}>
-                    <Link key={item.id} href={`/Home/${item.id}`}>
+                    <Link key={item.id} href={`/Home/${item.id}`} className='relative aspect-[545/300]'>
                         <Image
                             src={item.category_image}
                             alt={item.title}
                             width={545}
                             height={300}
-                            className=''
+                            className='w-full h-full object-fill'
                         />
                         <div className="text-subtitle text-sm text-center font-bold">{item.title}</div>
                     </Link>

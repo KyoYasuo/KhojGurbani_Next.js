@@ -11,9 +11,7 @@ export default function FeaturedTheme(props: { imgURL: string; title: string; de
                     src={props.imgURL}
                     alt="Featuredsample"
                     fill
-                    style={{
-                        objectFit: 'cover', // cover, contain, none
-                    }}
+                    className='object-cover'
                 />
 
             </div>

@@ -26,7 +26,7 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; c
             spaceBetween={showCount === 1 ? 0 : 8}
             centeredSlides={showCount === 1 ? true : false}
             slidesPerView={showCount}
-            loop={true}
+            // loop={true}
             autoplay={{
                 delay: 2500,
                 disableOnInteraction: false,

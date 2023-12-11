@@ -79,6 +79,7 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; c
                             alt={item.title}
                             width={545}
                             height={300}
+                            className=''
                         />
                         <div className="text-subtitle text-sm text-center font-bold">{item.title}</div>
                     </Link>

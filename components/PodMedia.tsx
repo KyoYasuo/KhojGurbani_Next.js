@@ -11,7 +11,7 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
     return (
         <div className="flex flex-col sm:flex-row" onClick={() => playAudio(props.media)}>
 
-            <div className="relative w-full sm:w-80 shrink-0" >
+            <div className="w-full sm:w-80 shrink-0" >
 
                 <Image
                     src={props.imgURL}

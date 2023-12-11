@@ -32,7 +32,7 @@ export default async function HomePage() {
                         </Link>
                     ))}
                 </div>
-                <div className="md:hidden">
+                <div className="md:hidden max-w-[400px] mx-auto">
                     <SlideShow showCount={1} featuredMedias={undefined} archives={undefined} cat_results={cat_results}/>
                 </div>
             </div>

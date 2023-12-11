@@ -1,3 +1,4 @@
+import ArchivePageNav from "@/components/ArchivePageNav";
 import PodMedia from "@/components/PodMedia";
 import Search from "@/components/Search";
 import { getAllArchiveResult, getArchivePageCount } from "@/lib/data";
@@ -31,7 +32,7 @@ export default async function ArchivelistPage({
                     </div>
                     <Search />
                 </div>
-                
+                <ArchivePageNav totalPageCount={pageCout} currentPage={parseInt(page)}/>
                 {archiveResult.map((item: { id: number; thumbnail: string; title: string; description: string; }) => (
                     <div key={item.id} className="py-4">
                         <PodMedia imgURL={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail} title={item.title} description={item.description} />

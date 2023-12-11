@@ -51,7 +51,7 @@ export async function fetchSearchData(query: string) {
 }
 
 export async function fetchAllArchiveData(page: string) {
-    const res = await fetch(`${endpoint}media/get-archive-all?page=${page}`, { cache: 'no-store' });
+    const res = await fetch(`${endpoint}media/get-archive-all?page=${page}`);
 
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');

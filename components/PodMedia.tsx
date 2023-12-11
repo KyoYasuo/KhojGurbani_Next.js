@@ -18,7 +18,7 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
                     alt="Featuredsample"
                     width={325}
                     height={219}
-                    className="max-w-[325px] max-h-[219px] w-[325px] h-[219px] rounded-md"
+                    className="rounded-md"
                 />
 
             </div>

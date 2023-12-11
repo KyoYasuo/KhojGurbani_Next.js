@@ -53,35 +53,35 @@ export default function Footer() {
                         </h4>
                         <div className='flex gap-2'>
                             <Image
-                                src='Images/SVG/twitter.svg'
+                                src='Images/SVG/soc_1.svg'
                                 alt=''
                                 width={25}
                                 height={25}
 
                             />
                             <Image
-                                src='Images/SVG/facebook.svg'
+                                src='Images/SVG/soc_2.svg'
                                 alt=''
                                 width={25}
                                 height={25}
 
                             />
                             <Image
-                                src='Images/SVG/podbean.svg'
+                                src='Images/SVG/soc_3.svg'
                                 alt=''
                                 width={25}
                                 height={25}
 
                             />
                             <Image
-                                src='Images/SVG/spotify.svg'
+                                src='Images/SVG/soc_4.svg'
                                 alt=''
                                 width={25}
                                 height={25}
 
                             />
                             <Image
-                                src='Images/SVG/twitter.svg'
+                                src='Images/SVG/soc_1.svg'
                                 alt=''
                                 width={25}
                                 height={25}

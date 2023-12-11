@@ -21,13 +21,17 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
 
                 <h3 className="text-2xl text-blue-primary">
                     <Highlighter
-                        searchWords={["query"]}
+                        searchWords={[props.query]}
                         autoEscape={true}
                         textToHighlight={props.title}
                     />
                 </h3>
                 <p className=" text-line">
-                    {props.description}
+                    <Highlighter
+                        searchWords={[props.query]}
+                        autoEscape={true}
+                        textToHighlight={props.description}
+                    />
                 </p>
 
             </div>

@@ -8,6 +8,8 @@ import Footer from '@/components/Footer';
 import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
 import dynamic from 'next/dynamic'
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
+
 const AudioPlayer = dynamic(() => import('@/components/AudioPlayer'), { ssr: false });
 
 
@@ -42,6 +44,7 @@ export default function RootLayout({
             <Footer />
           </footer>
           <AudioPlayer />
+          <SpeedInsights />
         </body>
       </AudioPlayerProvider>
     </html>

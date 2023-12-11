@@ -1,4 +1,4 @@
-import PodMedia from "@/app/components/PodMedia";
+import PodMedia from "@/components/PodMedia";
 import { getPodmedias, getSlugInfo, getSlugs } from "@/lib/data";
 import Link from "next/link";
 

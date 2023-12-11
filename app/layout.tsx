@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
-import NavBar from '@/app/components/NavBar';
-import Footer from '@/app/components/Footer';
+import NavBar from '@/components/NavBar';
+import Footer from '@/components/Footer';
 import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
 import dynamic from 'next/dynamic'
 
-const AudioPlayer = dynamic(() => import('@/app/components/AudioPlayer'), { ssr: false });
+const AudioPlayer = dynamic(() => import('@/components/AudioPlayer'), { ssr: false });
 
 
 const poppins = Poppins({

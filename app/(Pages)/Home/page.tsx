@@ -1,10 +1,10 @@
 import { getArchives, getCatResults, getFeaturedMedia, getTodayPodcast } from "@/lib/data"
-import FeaturedTheme from "@/app/components/FeaturedTheme";
-import HomeBanner from "@/app/components/HomeBanner";
-import HomeWelcome from "@/app/components/HomeWelcome";
-import SlideShow from "@/app/components/SlideShow";
+import FeaturedTheme from "@/components/FeaturedTheme";
+import HomeBanner from "@/components/HomeBanner";
+import HomeWelcome from "@/components/HomeWelcome";
+import SlideShow from "@/components/SlideShow";
 import Link from "next/link";
-import Search from "@/app/components/Search";
+import Search from "@/components/Search";
 
 export default async function HomePage() {
     const cat_results = await getCatResults();

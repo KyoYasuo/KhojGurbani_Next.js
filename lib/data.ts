@@ -78,8 +78,8 @@ export async function getSlugInfo(slug: string) {
 
 export async function getSearchResult(query: string) {
     try {
-        const data = await fetchSearchData(query);
-        const searchData = data.result;
+        const data = await fetchPodcastsData();
+        const searchData = data.result.media_result.filter((item: { title: string; }) => item.title.toLowerCase().includes(query.toLowerCase()));
         return searchData;
     } catch (error: any) {
         throw new Error(error);

@@ -22,6 +22,8 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; s
         <Swiper
             spaceBetween={8}
             slidesPerView={showCount}
+            autoplay={{ delay: 3000 }}
+            loop={true}
         >
             {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string;}) => (
                 <SwiperSlide key={item.id}>

@@ -21,7 +21,7 @@ export default async function ArchivelistPage({
                 <h1 className="mx-auto max-w-6xl p-4 pt-24 text-5xl font-bold text-white">Archive</h1>
             </div>
             <div className="mx-auto max-w-6xl p-4">
-                <div className="my-6 flex justify-between">
+                <div className="my-6 flex flex-col sm:flex-row gap-4 justify-between">
                     <div className="">
                         <Link href="/Home">
                             <div className="hover:text-blue-primary hover:underline text-black inline">

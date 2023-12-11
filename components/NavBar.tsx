@@ -2,6 +2,7 @@
 import Link from 'next/link'
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { Bars3Icon } from '@heroicons/react/24/outline';
 interface NavigationItem {
     name: string;
     href: string;
@@ -38,7 +39,7 @@ export default function NavBar() {
 
             <div className="mx-auto max-w-6xl px-4">
 
-                <div className="h-16 flex flex-1 items-center justify-between">
+                <div className="h-12 lg:h-16 flex flex-1 items-center justify-between">
 
                     <div className="flex flex-shrink-0 items-center">
                         <Link href="/Home">
@@ -53,14 +54,14 @@ export default function NavBar() {
                         </Link>
                     </div>
 
-                    <div className="hidden sm:flex">
+                    <div className="hidden lg:flex">
                         {navigation.map((item) => (
                             <Link
                                 key={item.name}
                                 href={`${item.href}`}
                                 className={classNames(
                                     selectedPage === item.name ? 'border-b-blue-primary border-b-2' : 'hover:bg-gray-700',
-                                    'flex h-16 px-4 text-white items-center'
+                                    'flex h-16 px-4 text-white items-center text-center'
                                 )}
                                 onClick={() => {
                                     setSelectedPage(item.name);
@@ -71,6 +72,8 @@ export default function NavBar() {
                             </Link>
                         ))}
                     </div>
+
+                    <Bars3Icon className="w-8 h-8 text-white lg:hidden" />
 
                 </div>
             </div>

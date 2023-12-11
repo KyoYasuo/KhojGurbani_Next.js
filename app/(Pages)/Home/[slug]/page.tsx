@@ -1,4 +1,5 @@
 import PodMedia from "@/components/PodMedia";
+import Search from "@/components/Search";
 import { getPodmedias, getSlugInfo, getSlugs } from "@/lib/data";
 import Link from "next/link";
 
@@ -17,7 +18,7 @@ export default async function HomeSubPage({ params: { slug } }: { params: { slug
                 <h1 className="mx-auto max-w-6xl p-4 pt-24 text-5xl font-bold text-white">{slugInfo.title}</h1>
             </div>
             <div className="mx-auto max-w-6xl p-4">
-                <div className="my-6 flex justify-between">
+                <div className="my-6 flex flex-col sm:flex-row gap-4 justify-between">
                     <div className="">
                         <Link href="/Home">
                             <div className="hover:text-blue-primary hover:underline text-black inline">
@@ -26,16 +27,7 @@ export default async function HomeSubPage({ params: { slug } }: { params: { slug
                         </Link>
                         <span className=" text-subtitle"> / {slugInfo.title} </span>
                     </div>
-                    <form className="shadow-common h-10 px-4 rounded-lg">
-                        <input
-                            id="search_val"
-                            name="searchval"
-                            placeholder="Search Podcast"
-                            type="text"
-                            className=" text-xl h-full border-none outline-none"
-                        />
-                        <span></span>
-                    </form>
+                    <Search />
                 </div>
 
                 {pod_medias.map((item: { id: number; thumbnail: string; title: string; description: string; attachment_name: string}) => (

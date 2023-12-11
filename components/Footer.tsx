@@ -22,8 +22,8 @@ const navigation: NavigationItem[] = [
 export default function Footer() {
     return (
         <div className="w-full pt-8 pb-4 bg-primary">
-            <div className="mx-auto max-w-6xl px-4 divide-y divide-[#545454]">
-                <div className=''>
+            <div className="mx-auto max-w-6xl px-4 md:divide-y divide-[#545454]">
+                <div className='hidden md:block'>
                     <Image
                         src="/Images/logo2.png"
                         alt="Logo"
@@ -38,14 +38,14 @@ export default function Footer() {
                             <Link
                                 key={item.name}
                                 href={`${item.href}`}
-                                className="flex h-16 text-white text-xs items-center"
+                                className="flex h-16 text-white text-xs items-center text-center"
                             >
                                 <span>{item.name}</span>
                             </Link>
                         ))}
                     </div>
                 </div>
-                <div className='flex items-center justify-center gap-32 pt-8'>
+                <div className='flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-32 pt-8'>
                     <div className='flex flex-col items-center gap-2'>
 
                         <h4 className='text-xs tracking-[4px] text-white'>

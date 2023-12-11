@@ -13,7 +13,7 @@ export default function HomeWelcome() {
             />
             <div className="">
 
-                <h2 className="pt-2 pb-6 text-3xl font-bold text-title text-center">
+                <h2 className="pt-2 pb-6 text-xl md:text-3xl font-bold text-title text-center">
                     Welcome to KhojGurbani
                 </h2>
                 <p className="hidden mb-4 text-line md:block">

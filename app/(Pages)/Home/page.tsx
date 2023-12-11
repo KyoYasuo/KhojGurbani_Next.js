@@ -17,11 +17,11 @@ export default async function HomePage() {
             <HomeBanner recent={todayPodcast} />
             <div className="mx-auto max-w-6xl p-4">
                 <HomeWelcome />
-                <div className="my-6 flex justify-between">
+                <div className="my-6 flex flex-col sm:flex-row gap-4 justify-between">
                     <h2 className="text-3xl font-bold text-title">Featured Themes</h2>
                     <Search />
                 </div>
-                <div className="grid grid-cols-2 gap-8">
+                <div className="hidden md:grid grid-cols-2 gap-8">
                     {cat_results.map((item: { id: number; category_image: string; title: string; description: string; }) => (
                         <Link key={item.id} href={`/Home/${item.id}`}>
                             <FeaturedTheme
@@ -32,14 +32,21 @@ export default async function HomePage() {
                         </Link>
                     ))}
                 </div>
+                <div className="md:hidden">
+                    <SlideShow showCount={1} featuredMedias={undefined} archives={undefined} cat_results={cat_results}/>
+                </div>
             </div>
-            <div className="w-full p-[60px] bg-right-top bg-cover bg-[url('/Images/Home/homebottom.png')]">
+            <div className="w-full py-4 md:py-16 bg-left-top bg-cover bg-[url('/Images/Home/homebottom.png')]">
                 <div className="mx-auto max-w-6xl p-4">
                     <h2 className="text-3xl py-4 font-bold text-white">
                         Featured Podcasts
                     </h2>
-                    <SlideShow showCount={3} featuredMedias={featuredMedias} archives={undefined}
-                    />
+                    <div className="hidden md:block">
+                        <SlideShow showCount={3} featuredMedias={featuredMedias} archives={undefined} cat_results={undefined} />
+                    </div>
+                    <div className="md:hidden mx-auto max-w-[400px]">
+                        <SlideShow showCount={1} featuredMedias={featuredMedias} archives={undefined} cat_results={undefined} />
+                    </div>
                 </div>
             </div>
             <div className="mx-auto max-w-6xl p-4">
@@ -49,7 +56,12 @@ export default async function HomePage() {
                         View all Podcasts
                     </Link>
                 </div>
-                <SlideShow showCount={4} archives={archives} featuredMedias={undefined} />
+                <div className="hidden md:block">
+                    <SlideShow showCount={4} archives={archives} featuredMedias={undefined} cat_results={undefined} />
+                </div>
+                <div className="md:hidden mx-auto max-w-[300px]">
+                    <SlideShow showCount={1} archives={archives} featuredMedias={undefined} cat_results={undefined} />
+                </div>
             </div>
             <div className="w-full bg-right-top bg-cover bg-[url('/Images/Home/homesub.jpg')]">
                 <div className="mx-auto max-w-6xl p-4">

@@ -9,23 +9,26 @@ import Image from "next/image";
 import { dateTransform } from '@/lib/data';
 
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
+import Link from 'next/link';
 
-export default function SlideShow(props: { featuredMedias: any; archives: any; showCount: any; }) {
+export default function SlideShow(props: { featuredMedias: any; archives: any; cat_results: any; showCount: any; }) {
 
     const featuredMedias = props.featuredMedias;
     const archives = props.archives;
+    const cat_results = props.cat_results;
     const showCount = props.showCount;
 
     const { playAudio } = useAudioPlayer();
 
     return (
         <Swiper
-            spaceBetween={8}
+            spaceBetween={showCount === 1 ? 0 : 8}
+            centeredSlides={showCount === 1 ? true : false}
             slidesPerView={showCount}
             autoplay={{ delay: 3000 }}
             loop={true}
         >
-            {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string;}) => (
+            {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string; }) => (
                 <SwiperSlide key={item.id}>
                     <div
                         onClick={() => playAudio(item.media)}
@@ -45,7 +48,7 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; s
                 <SwiperSlide key={item.id}>
                     <div
                         onClick={() => playAudio(item.attachment_name)}
-                        className="relative cursor-pointer"
+                        className="cursor-pointer"
                     >
                         <Image
                             src={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail}
@@ -58,6 +61,19 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; s
                             <div className="text-date text-xs font-bold">{dateTransform(item.created_at)}</div>
                         </div>
                     </div>
+                </SwiperSlide>
+            ))}
+            {cat_results?.map((item: { id: number; category_image: string; title: string; }) => (
+                <SwiperSlide key={item.id}>
+                    <Link key={item.id} href={`/Home/${item.id}`}>
+                        <Image
+                            src={item.category_image}
+                            alt={item.title}
+                            width={545}
+                            height={300}
+                        />
+                        <div className="text-subtitle text-sm text-center font-bold">{item.title}</div>
+                    </Link>
                 </SwiperSlide>
             ))}
         </Swiper>

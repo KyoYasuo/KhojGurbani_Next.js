@@ -31,7 +31,7 @@ export default function Search() {
 
     return (
         <>
-            <div className="relative w-80 h-10">
+            <div className="relative w-full sm:w-80 h-10">
                 <input
                     className="absolute w-full right-0 rounded-md shadow-common py-2 pl-4 pr-6 text-base outline-none placeholder:text-[#BDBDBD]"
                     placeholder="Search Podcast"

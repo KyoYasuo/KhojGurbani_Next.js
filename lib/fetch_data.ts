@@ -49,3 +49,13 @@ export async function fetchSearchData(query: string) {
 
     return res.json();
 }
+
+export async function fetchAllArchiveData(page: string) {
+    const res = await fetch(`${endpoint}media/get-archive-all?page=${page}`, { cache: 'no-store' });
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

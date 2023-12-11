@@ -45,9 +45,9 @@ export default async function HomePage() {
             <div className="mx-auto max-w-6xl p-4">
                 <div className="flex justify-between items-center">
                     <h2 className="text-3xl py-4 font-bold text-title">Archive</h2>
-                    <a className=" cursor-pointer text-blue-primary font-bold text-sm">
+                    <Link className=" cursor-pointer text-blue-primary font-bold text-sm" href={"/Home/Archivelist?page=1"}>
                         View all Podcasts
-                    </a>
+                    </Link>
                 </div>
                 <SlideShow showCount={4} archives={archives} featuredMedias={undefined} />
             </div>

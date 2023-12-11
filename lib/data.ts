@@ -1,4 +1,4 @@
-import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData } from "./fetch_data";
+import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData, fetchAllArchiveData } from "./fetch_data";
 
 export async function getTodayPodcast() {
     try {
@@ -81,6 +81,16 @@ export async function getSearchResult(query: string) {
         const data = await fetchSearchData(query);
         const searchData = data.result;
         return searchData;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getAllArchiveResult(page: string) {
+    try {
+        const data = await fetchAllArchiveData(page);
+        const archiveAllData = data.result.data;
+        return archiveAllData;
     } catch (error: any) {
         throw new Error(error);
     }

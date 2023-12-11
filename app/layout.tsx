@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './globals.css'
 import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
@@ -29,6 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} antialiased`}>
       <AudioPlayerProvider>
         <body className="flex flex-col min-h-screen">
+          <ToastContainer />
           <header className='h-16'>
             <NavBar />
           </header>

@@ -1,5 +1,6 @@
+"use client"
+
 import Image from "next/image";
-import LanguageButton from "./LanguageButton";
 import { dateTransform } from "@/lib/data";
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 

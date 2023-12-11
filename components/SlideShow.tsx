@@ -10,6 +10,7 @@ import { dateTransform } from '@/lib/data';
 
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 import Link from 'next/link';
+import { Autoplay, Navigation } from 'swiper/modules';
 
 export default function SlideShow(props: { featuredMedias: any; archives: any; cat_results: any; showCount: any; }) {
 
@@ -25,8 +26,15 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; c
             spaceBetween={showCount === 1 ? 0 : 8}
             centeredSlides={showCount === 1 ? true : false}
             slidesPerView={showCount}
-            autoplay={{ delay: 3000 }}
             loop={true}
+            autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+            }}
+            speed={1000}
+            navigation={true}
+            modules={[Autoplay, Navigation]}
+            className="mySwiper"
         >
             {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string; }) => (
                 <SwiperSlide key={item.id}>

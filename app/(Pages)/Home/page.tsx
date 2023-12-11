@@ -1,9 +1,10 @@
 import { getArchives, getCatResults, getFeaturedMedia, getTodayPodcast } from "@/lib/data"
-import FeaturedTheme from "@/components/FeaturedTheme";
-import HomeBanner from "@/components/HomeBanner";
-import HomeWelcome from "@/components/HomeWelcome";
-import SlideShow from "@/components/SlideShow";
+import FeaturedTheme from "@/app/components/FeaturedTheme";
+import HomeBanner from "@/app/components/HomeBanner";
+import HomeWelcome from "@/app/components/HomeWelcome";
+import SlideShow from "@/app/components/SlideShow";
 import Link from "next/link";
+import Search from "@/app/components/Search";
 
 export default async function HomePage() {
     const cat_results = await getCatResults();
@@ -18,16 +19,7 @@ export default async function HomePage() {
                 <HomeWelcome />
                 <div className="my-6 flex justify-between">
                     <h2 className="text-3xl font-bold text-title">Featured Themes</h2>
-                    <form className="shadow-common h-10 px-4 rounded-lg">
-                        <input
-                            id="search_val"
-                            name="searchval"
-                            placeholder="Search Podcast"
-                            type="text"
-                            className=" text-xl h-full border-none outline-none"
-                        />
-                        <span></span>
-                    </form>
+                    
                 </div>
                 <div className="grid grid-cols-2 gap-y-4">
                     {cat_results.map((item: { id: number; category_image: string; title: string; description: string; }) => (

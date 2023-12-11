@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import './globals.css'
-import NavBar from '@/components/NavBar';
-import Footer from '@/components/Footer';
+import NavBar from '@/app/components/NavBar';
+import Footer from '@/app/components/Footer';
 import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
 import dynamic from 'next/dynamic'
 
-const AudioPlayer = dynamic(() => import('@/components/AudioPlayer'), { ssr: false });
+const AudioPlayer = dynamic(() => import('@/app/components/AudioPlayer'), { ssr: false });
 
 
 const poppins = Poppins({
@@ -26,8 +26,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <AudioPlayerProvider>
-      <html lang="en" className={`${poppins.variable} antialiased`}>
+    <html lang="en" className={`${poppins.variable} antialiased`}>
+      <AudioPlayerProvider>
         <body className="flex flex-col min-h-screen">
           <header className='h-16'>
             <NavBar />
@@ -38,9 +38,9 @@ export default function RootLayout({
           <footer>
             <Footer />
           </footer>
+          <AudioPlayer />
         </body>
-        <AudioPlayer />
-      </html>
-    </AudioPlayerProvider>
+      </AudioPlayerProvider>
+    </html>
   )
 }

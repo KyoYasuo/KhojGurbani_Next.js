@@ -1,4 +1,5 @@
 import PodMedia from "@/components/PodMedia";
+import Search from "@/components/Search";
 import { getSearchResult } from "@/lib/data";
 import Link from "next/link";
 
@@ -28,16 +29,7 @@ export default async function PodcastlistPage({
                         </Link>
                         <span className=" text-subtitle"> / Search </span>
                     </div>
-                    <form className="shadow-common h-10 px-4 rounded-lg">
-                        <input
-                            id="search_val"
-                            name="searchval"
-                            placeholder="Search Podcast"
-                            type="text"
-                            className=" text-xl h-full border-none outline-none"
-                        />
-                        <span></span>
-                    </form>
+                    <Search />
                 </div>
                 {searchResult.map((item: { id: number; thumbnail_pod: string; title: string; description: string; }) => (
                     <div key={item.id} className="py-4">

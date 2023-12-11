@@ -33,9 +33,9 @@ export default async function ArchivelistPage({
                     <Search />
                 </div>
                 <ArchivePageNav totalPageCount={pageCout} currentPage={parseInt(page)}/>
-                {archiveResult.map((item: { id: number; thumbnail: string; title: string; description: string; }) => (
+                {archiveResult.map((item: { id: number; thumbnail: string; title: string; description: string; attachment_name: string}) => (
                     <div key={item.id} className="py-4">
-                        <PodMedia imgURL={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail} title={item.title} description={item.description} query={""} />
+                        <PodMedia imgURL={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail} title={item.title} description={item.description} query={""} media={item.attachment_name} />
                     </div>
                 ))}
             </div>

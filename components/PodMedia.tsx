@@ -1,11 +1,15 @@
+import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import Image from "next/image";
 import Highlighter from "react-highlight-words";
 
-export default function PodMedia(props: { imgURL: string; title: string; description: string; query: string; }) {
-    return (
-        <div className="flex">
+export default function PodMedia(props: { imgURL: string; title: string; description: string; query: string; media: string; }) {
 
-            <div className="aspect-[325/219]">
+    const { playAudio } = useAudioPlayer();
+
+    return (
+        <div className="flex" onClick={() => playAudio(props.media)}>
+
+            <div className="aspect-[325/219]" >
 
                 <Image
                     src={props.imgURL}

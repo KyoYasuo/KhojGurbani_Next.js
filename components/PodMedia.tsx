@@ -1,6 +1,7 @@
 import Image from "next/image";
+import Highlighter from "react-highlight-words";
 
-export default function PodMedia(props: { imgURL: string; title: string; description: string; }) {
+export default function PodMedia(props: { imgURL: string; title: string; description: string; query: string; }) {
     return (
         <div className="flex">
 
@@ -19,7 +20,11 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
             <div className="flex flex-col px-4">
 
                 <h3 className="text-2xl text-blue-primary">
-                    {props.title}
+                    <Highlighter
+                        searchWords={["query"]}
+                        autoEscape={true}
+                        textToHighlight={props.title}
+                    />
                 </h3>
                 <p className=" text-line">
                     {props.description}

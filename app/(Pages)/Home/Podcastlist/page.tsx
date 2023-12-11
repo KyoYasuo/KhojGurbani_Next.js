@@ -33,7 +33,7 @@ export default async function PodcastlistPage({
                 </div>
                 {searchResult.map((item: { id: number; thumbnail_pod: string; title: string; description: string; }) => (
                     <div key={item.id} className="py-4">
-                        <PodMedia imgURL={item.thumbnail_pod} title={item.title} description={item.description} />
+                        <PodMedia imgURL={item.thumbnail_pod} title={item.title} description={item.description} query={query}/>
                     </div>
                 ))}
             </div>

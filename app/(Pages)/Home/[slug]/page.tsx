@@ -9,9 +9,6 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 
 
 export default async function HomeSubPage({ params: { slug } }: { params: { slug: string } }) {
-    if (slug === "search") {
-
-    }
     const pod_medias = await getPodmedias(slug);
     const slugInfo = await getSlugInfo(slug);
     return (

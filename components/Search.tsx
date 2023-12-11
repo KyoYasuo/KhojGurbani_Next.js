@@ -15,7 +15,7 @@ export default function Search() {
         } else {
             params.delete('query');
         }
-        replace(`Podcastlist/${params.toString()}`);
+        replace(`Podcastlist?${params.toString()}`);
     }
 
     return (

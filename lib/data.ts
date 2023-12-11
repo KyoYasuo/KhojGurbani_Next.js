@@ -1,4 +1,4 @@
-import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData } from "./fetch_data";
+import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData } from "./fetch_data";
 
 export async function getTodayPodcast() {
     try {
@@ -71,6 +71,16 @@ export async function getSlugInfo(slug: string) {
         const data = await fetchPodcastsData();
         const slugInfo = data.result.cat_result.find((item: { id: number; }) => item.id === parseInt(slug));
         return slugInfo;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getSearchResult(query: string) {
+    try {
+        const data = await fetchSearchData(query);
+        const searchData = data.result;
+        return searchData;
     } catch (error: any) {
         throw new Error(error);
     }

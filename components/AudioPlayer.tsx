@@ -160,26 +160,131 @@
 
 
 // components/AudioPlayer.tsx
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
+
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 import ReactPlayer from 'react-player';
 
 const AudioPlayer: React.FC = () => {
-    const { audioUrl, isPlaying, pauseAudio } = useAudioPlayer();
+    const { audioUrl, isPlaying, pauseAudio, playAudio } = useAudioPlayer();
     const playerRef = useRef<ReactPlayer | null>(null);
+    const sliderRef = useRef<HTMLDivElement>(null);
 
-    // useEffect(() => {
-    //     return () => {
-    //         // Cleanup when the component unmounts
-    //         pauseAudio();
-    //     };
-    // }, [pauseAudio]);
+    const [duration, setDuration] = useState<number | null>(null);
+    const [currentTime, setCurrentTime] = useState<number>(0);
+    const [loadedTime, setLoadedTime] = useState<number>(0);
+    const [isDragging, setIsDragging] = useState<boolean>(false);
+
+    const handleDuration = (duration: number) => {
+        setDuration(duration);
+    };
+    const handleProgress = (progress: { played: number; playedSeconds: number; loaded: number; loadedSeconds: number; }) => {
+        setCurrentTime(progress.playedSeconds);
+        setLoadedTime(progress.loadedSeconds);
+    };
+
+    const handlePlayPause = () => {
+        if (playerRef.current) {
+            isPlaying ? pauseAudio() : playAudio(audioUrl);
+        }
+    }
+
+    const handleBackward = () => {
+        if (playerRef.current) {
+            playerRef.current.seekTo(playerRef.current.getCurrentTime() - 15, 'seconds');
+        }
+    };
+
+    const handleForward = () => {
+        if (playerRef.current) {
+            playerRef.current.seekTo(playerRef.current.getCurrentTime() + 15, 'seconds');
+        }
+    };
+
+    const handleMouseDown = () => {
+        if (playerRef.current) {
+            setIsDragging(true);
+        }
+    };
+
+    useEffect(() => {
+        const handleMouseUp = (event: { clientX: number; }) => {
+            if (isDragging && sliderRef.current && playerRef.current) {
+                const rect = sliderRef.current.getBoundingClientRect();
+                const offsetX = event.clientX - rect.left;
+                const newValue = offsetX / rect.width;
+                playerRef.current.seekTo(newValue * (duration || 0), 'seconds');
+                setIsDragging(false);
+            }
+        }
+
+        const handleMouseMove = (event: { clientX: number; }) => {
+            if (isDragging && sliderRef.current && playerRef.current) {
+                const rect = sliderRef.current.getBoundingClientRect();
+                const offsetX = event.clientX - rect.left;
+                const newValue = offsetX / rect.width;
+                playerRef.current.seekTo(newValue * (duration || 0), 'seconds');
+            }
+        };
+
+        if (isDragging) {
+            document.addEventListener('mousemove', handleMouseMove);
+            document.addEventListener('mouseup', handleMouseUp);
+
+            return () => {
+                document.removeEventListener('mousemove', handleMouseMove);
+                document.removeEventListener('mouseup', handleMouseUp);
+            };
+        }
+    }, [duration, isDragging]);
+
+    function convertStoMs(seconds: number) {
+        const minutes = Math.floor(seconds / 60);
+        const extraSeconds = Math.round(seconds % 60);
+        return `${String(minutes).padStart(2, '0')}:${String(extraSeconds).padStart(2, '0')}`;
+    }
 
     return (
-        <div className='fixed bottom-0 left-0 w-full h-16 z-50 overflow-hidden'>
-            <div className='absolute top-[-300px]'>
-                <ReactPlayer url={audioUrl} playing={isPlaying} ref={playerRef} controls />
+        <div className='mt-16'>
+
+            <div className='fixed bottom-0 left-0 w-full h-16 z-50 bg-white'>
+                <ReactPlayer
+                    ref={playerRef}
+                    url={audioUrl}
+                    controls={false}
+                    playing={isPlaying}
+                    progressInterval={100}
+                    onProgress={handleProgress}
+                    onDuration={handleDuration}
+                    className="hidden"
+                />
+                <div className='flex items-center'>
+                    <div className='flex justify-between items-center'>
+                        <button onClick={handleBackward}>
+                            <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={30} height={30} />
+                        </button>
+                        <button onClick={handlePlayPause}>
+                            {isPlaying ? <Image src='/Images/SVG/pause.svg' alt='pause' width={50} height={50} />
+                                : <Image src='/Images/SVG/play.svg' alt='play' width={50} height={50} />}
+                        </button>
+                        <button onClick={handleForward}>
+                            <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={30} height={30} />
+                        </button>
+                    </div>
+                    <div className='w-12 text-center'>{convertStoMs(currentTime)}</div>
+                    <div className='grow cursor-pointer'
+                        onMouseDown={handleMouseDown}
+                    >
+                        <div ref={sliderRef} className="relative h-2 w-full bg-gray-200 rounded-md">
+                            <div className='absolute h-2 bg-gray-300 rounded-md transition-width' style={{ width: `${loadedTime * 100 / (duration || 1)}%` }}></div>
+                            <div className='absolute h-2 bg-[#0B79BE] rounded-md transition-width' style={{ width: `${currentTime * 100 / (duration || 1)}%` }}></div>
+                        </div>
+                    </div>
+                    <div className='w-12 text-center'>{convertStoMs((duration || 0) - currentTime)}</div>
+                </div>
             </div>
+
         </div>
     );
 };

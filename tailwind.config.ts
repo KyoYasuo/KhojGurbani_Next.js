@@ -11,7 +11,8 @@ const config: Config = {
         'sans': ['var(--font-poppins)', 'ui-sans-serif', 'system-ui'],
       },
       transitionProperty: {
-        'height': 'height'
+        'height': 'height',
+        'width': 'width',
       },
       boxShadow: {
         'common': '0 0 18px 0 rgba(0, 0, 0, 0.19)',
@@ -25,7 +26,7 @@ const config: Config = {
         'date': '#9A9595',
         'blue-primary': '#0A79BE',
         'blue-secondary': '#0069D9',
-        'line': '#6E6E6E'
+        'line': '#6E6E6E',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

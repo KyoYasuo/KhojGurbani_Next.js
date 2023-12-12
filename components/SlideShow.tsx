@@ -32,6 +32,7 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; c
                 disableOnInteraction: false,
             }}
             speed={1000}
+            loop={true}
             navigation={true}
             modules={[Autoplay, Navigation]}
             className="mySwiper"

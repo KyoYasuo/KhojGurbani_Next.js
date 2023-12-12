@@ -40,7 +40,7 @@ export default function SlideTheme(props: { cat_results: any; showCount: any; })
             >
                 <Image src='/Images/SVG/arrow_left.svg' alt='prev' width={16} height={16} />
             </button>
-            <div className='w-full md:w-[90%] aspect-[16/10] md:aspect-[48/10] grow'>
+            <div className='w-full aspect-[16/10] md:aspect-[48/10] grow'>
                 <Swiper
                     ref={swiperRef}
                     spaceBetween={showCount === 1 ? 0 : 8}

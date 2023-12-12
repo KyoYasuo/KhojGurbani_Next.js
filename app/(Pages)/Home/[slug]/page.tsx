@@ -30,9 +30,11 @@ export default async function HomeSubPage({ params: { slug } }: { params: { slug
                     <Search />
                 </div>
 
-                {pod_medias.map((item: { id: number; thumbnail: string; title: string; description: string; attachment_name: string}) => (
+                {pod_medias.map((item: {
+                    created_at: string; id: number; thumbnail: string; title: string; description: string; attachment_name: string
+                }) => (
                     <div key={item.id} className="py-4">
-                        <PodMedia imgURL={item.thumbnail} title={item.title} description={item.description} query={""} media={item.attachment_name}/>
+                        <PodMedia imgURL={item.thumbnail} title={item.title} description={item.description} query={""} media={item.attachment_name} created_at={item.created_at} />
                     </div>
                 ))}
 

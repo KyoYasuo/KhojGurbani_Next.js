@@ -175,6 +175,25 @@ const AudioPlayer: React.FC = () => {
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [loadedTime, setLoadedTime] = useState<number>(0);
     const [isDragging, setIsDragging] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+
+    useEffect(() => {
+        console.log(audioUrl, "is loading");
+        setIsLoading(true);
+        setDuration(0);
+        setCurrentTime(0);
+        setLoadedTime(0);
+    }, [audioUrl]);
+
+    const handleReady = () => {
+        setIsLoading(false);
+        console.log("ready");
+    }
+
+    const handleBuffer = () => {
+        setIsLoading(true)
+        console.log("buffer");
+    }
 
     const handleDuration = (duration: number) => {
         setDuration(duration);
@@ -257,6 +276,8 @@ const AudioPlayer: React.FC = () => {
                     progressInterval={100}
                     onProgress={handleProgress}
                     onDuration={handleDuration}
+                    onReady={handleReady}
+                    onBuffer={handleBuffer}
                     className="hidden"
                 />
                 <div className='flex items-center'>
@@ -265,8 +286,17 @@ const AudioPlayer: React.FC = () => {
                             <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={30} height={30} />
                         </button>
                         <button onClick={handlePlayPause}>
-                            {isPlaying ? <Image src='/Images/SVG/pause.svg' alt='pause' width={50} height={50} />
-                                : <Image src='/Images/SVG/play.svg' alt='play' width={50} height={50} />}
+                            {
+                                isLoading ? (
+                                    <Image src='/Images/SVG/loading.svg' alt='loading' width={50} height={50} />
+                                ) : (
+                                    isPlaying ? (
+                                        <Image src='/Images/SVG/pause.svg' alt='pause' width={50} height={50} />
+                                    ) : (
+                                        <Image src='/Images/SVG/play.svg' alt='play' width={50} height={50} />
+                                    )
+                                )
+                            }
                         </button>
                         <button onClick={handleForward}>
                             <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={30} height={30} />

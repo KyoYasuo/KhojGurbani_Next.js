@@ -2,9 +2,11 @@ import { getArchives, getCatResults, getFeaturedMedia, getTodayPodcast } from "@
 import FeaturedTheme from "@/components/FeaturedTheme";
 import HomeBanner from "@/components/HomeBanner";
 import HomeWelcome from "@/components/HomeWelcome";
-import SlideShow from "@/components/SlideShow";
 import Link from "next/link";
 import Search from "@/components/Search";
+import SlideTheme from "@/components/SlideTheme";
+import SlidePodcast from "@/components/SlidePodcast";
+import SlideArchive from "@/components/SlideArchive";
 
 export default async function HomePage() {
     const cat_results = await getCatResults();
@@ -33,34 +35,40 @@ export default async function HomePage() {
                     ))}
                 </div>
                 <div className="md:hidden mx-auto max-w-[500px]">
-                    <SlideShow showCount={1} featuredMedias={undefined} archives={undefined} cat_results={cat_results}/>
+                    <SlideTheme showCount={1} cat_results={cat_results}/>
                 </div>
             </div>
             <div className="w-full py-4 md:py-16 bg-left-top bg-cover md:bg-[url('/Images/Home/homebottom.png')]">
-                <div className="mx-auto max-w-6xl p-4">
-                    <h2 className="text-3xl py-4 font-bold text-black md:text-white">
+                <div className="mx-auto max-w-[1200px]">
+                    <h2 className="text-3xl mx-auto max-w-6xl px-4 py-4 font-bold text-black md:text-white">
                         Featured Podcasts
                     </h2>
-                    <div className="hidden md:block">
-                        <SlideShow showCount={3} featuredMedias={featuredMedias} archives={undefined} cat_results={undefined} />
+                    <div className="hidden lg:block">
+                        <SlidePodcast showCount={3} featuredMedias={featuredMedias} />
                     </div>
                     <div className="md:hidden mx-auto max-w-[500px]">
-                        <SlideShow showCount={1} featuredMedias={featuredMedias} archives={undefined} cat_results={undefined} />
+                        <SlidePodcast showCount={1} featuredMedias={featuredMedias} />
+                    </div>
+                    <div className="hidden md:block lg:hidden mx-auto">
+                        <SlidePodcast showCount={2} featuredMedias={featuredMedias} />
                     </div>
                 </div>
             </div>
-            <div className="mx-auto max-w-6xl p-4">
-                <div className="flex justify-between items-center">
+            <div className="mx-auto max-w-[1200px]">
+                <div className="flex mx-auto max-w-6xl px-4 justify-between items-center">
                     <h2 className="text-3xl py-4 font-bold text-title">Archive</h2>
                     <Link className=" cursor-pointer text-blue-primary font-bold text-sm" href={"/Home/Archivelist?page=1"}>
                         View all Podcasts
                     </Link>
                 </div>
-                <div className="hidden md:block">
-                    <SlideShow showCount={4} archives={archives} featuredMedias={undefined} cat_results={undefined} />
+                <div className="hidden lg:block">
+                    <SlideArchive showCount={4} archives={archives} />
                 </div>
                 <div className="md:hidden mx-auto max-w-[500px]">
-                    <SlideShow showCount={1} archives={archives} featuredMedias={undefined} cat_results={undefined} />
+                    <SlideArchive showCount={1} archives={archives} />
+                </div>
+                <div className="hidden md:block lg:hidden mx-auto">
+                    <SlideArchive showCount={2} archives={archives} />
                 </div>
             </div>
             <div className="w-full bg-right-top bg-cover bg-[url('/Images/Home/homesub.jpg')]">

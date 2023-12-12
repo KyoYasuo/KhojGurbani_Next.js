@@ -327,7 +327,7 @@ const AudioPlayer: React.FC = () => {
                             <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={32} height={32} />
                         </button>
                     </div>
-                    <div className='w-12 text-center'>{convertStoMs(currentTime)}</div>
+                    <div className='w-16 text-center'>{convertStoMs(currentTime)}</div>
                     <div className='grow cursor-pointer'
                         onMouseDown={handleMouseDown}
                     >
@@ -336,7 +336,7 @@ const AudioPlayer: React.FC = () => {
                             <div className='absolute h-2 bg-[#0B79BE] rounded-md transition-width' style={{ width: `${currentTime * 100 / (duration || 1)}%` }}></div>
                         </div>
                     </div>
-                    <div className='w-12 text-center'>-{convertStoMs((duration || 0) - currentTime)}</div>
+                    <div className='w-16 text-center'>-{convertStoMs((duration || 0) - currentTime)}</div>
                 </div>
             </div>
 

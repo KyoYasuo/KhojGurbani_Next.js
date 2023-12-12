@@ -13,10 +13,8 @@ import Link from 'next/link';
 import { Autoplay, Navigation } from 'swiper/modules';
 import { useCallback, useRef } from 'react';
 
-export default function SlideShow(props: { featuredMedias: any; archives: any; cat_results: any; showCount: any; }) {
+export default function SlideTheme(props: { cat_results: any; showCount: any; }) {
 
-    const featuredMedias = props.featuredMedias;
-    const archives = props.archives;
     const cat_results = props.cat_results;
     const showCount = props.showCount;
 
@@ -45,49 +43,9 @@ export default function SlideShow(props: { featuredMedias: any; archives: any; c
                     spaceBetween={showCount === 1 ? 0 : 8}
                     centeredSlides={showCount === 1 ? true : false}
                     slidesPerView={showCount}
-                    // loop={true}
-                    autoplay={featuredMedias ? {
-                        delay: 4000,
-                        disableOnInteraction: false,
-                    } : false}
                     speed={showCount === 1 ? 500 : 1000}
-                    loop={featuredMedias ? true : false}
-                    modules={[Autoplay]}
                     className="w-full h-full overflow-visible"
                 >
-                    {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string; }) => (
-                        <SwiperSlide key={item.id}>
-                            <div
-                                onClick={() => playAudio(item.media)}
-                                className="relative cursor-pointer w-full h-full"
-                            >
-                                <Image
-                                    src={item.thumbnail}
-                                    alt={item.title}
-                                    fill
-                                />
-                                <div className="absolute top-2 left-2 text-white text-lg">{item.title}</div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                    {archives?.map((item: { attachment_name: string; id: number; thumbnail: string; title: string; created_at: string; }) => (
-                        <SwiperSlide key={item.id}>
-                            <div
-                                onClick={() => playAudio(item.attachment_name)}
-                                className="relative cursor-pointer w-full h-[90%]"
-                            >
-                                <Image
-                                    src={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail}
-                                    alt={item.title}
-                                    fill
-                                />
-                            </div>
-                            <div className="absolute bottom-0 w-full flex justify-between">
-                                <div className="text-subtitle text-sm font-bold">{item.title}</div>
-                                <div className="text-date text-xs font-bold">{dateTransform(item.created_at)}</div>
-                            </div>
-                        </SwiperSlide>
-                    ))}
                     {cat_results?.map((item: { id: number; category_image: string; title: string; }) => (
                         <SwiperSlide key={item.id}>
                             <Link key={item.id} href={`/Home/${item.id}`} className='relative cursor-pointer w-full h-full'>

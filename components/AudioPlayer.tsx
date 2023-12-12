@@ -165,11 +165,14 @@ import Image from 'next/image';
 
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 import ReactPlayer from 'react-player';
+import { toast } from 'react-toastify';
 
 const AudioPlayer: React.FC = () => {
     const { audioUrl, isPlaying, pauseAudio, playAudio } = useAudioPlayer();
     const playerRef = useRef<ReactPlayer | null>(null);
     const sliderRef = useRef<HTMLDivElement>(null);
+
+    const [isShow, setIsShow] = useState<boolean>(false);
 
     const [duration, setDuration] = useState<number | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
@@ -179,11 +182,16 @@ const AudioPlayer: React.FC = () => {
 
     useEffect(() => {
         console.log(audioUrl, "is loading");
+        if (audioUrl) setIsShow(true);
         setIsLoading(true);
         setDuration(0);
         setCurrentTime(0);
         setLoadedTime(0);
     }, [audioUrl]);
+
+    const handleError = (error: any) => {
+        toast.error(error);
+    }
 
     const handleReady = () => {
         setIsLoading(false);
@@ -265,9 +273,25 @@ const AudioPlayer: React.FC = () => {
     }
 
     return (
-        <div className='mt-16'>
+        <div className={(isShow ? 'mt-16 ' : 'mt-0 ') + 'transition-all'}>
+            <button
+                className={(isShow ? 'bottom-16 ' : 'bottom-0 ') + 'transition-all fixed right-0 h-8 w-8 z-50 bg-black bg-opacity-40 p-1'}
+                onClick={() => {
+                    if (audioUrl) setIsShow(!isShow);
+                    else toast.error("please load the audio first");
+                }}
+            >
+                {
+                    isShow ?
+                        <Image src='/Images/SVG/arrow_down.svg' alt='pause' width={24} height={24} />
+                        :
+                        <Image src='/Images/SVG/arrow_up.svg' alt='play' width={24} height={24} />
+                }
+            </button>
 
-            <div className='fixed bottom-0 left-0 w-full h-16 z-50 bg-white'>
+            <div
+                className={(isShow ? 'bottom-0 ' : 'bottom-[-64px] ') + 'fixed left-0 w-full h-16 z-50 bg-white transition-all'}
+            >
                 <ReactPlayer
                     ref={playerRef}
                     url={audioUrl}
@@ -278,28 +302,29 @@ const AudioPlayer: React.FC = () => {
                     onDuration={handleDuration}
                     onReady={handleReady}
                     onBuffer={handleBuffer}
+                    onError={handleError}
                     className="hidden"
                 />
                 <div className='flex items-center'>
                     <div className='flex justify-between items-center'>
                         <button onClick={handleBackward}>
-                            <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={30} height={30} />
+                            <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={32} height={32} />
                         </button>
                         <button onClick={handlePlayPause}>
                             {
                                 isLoading ? (
-                                    <Image src='/Images/SVG/loading.svg' alt='loading' width={50} height={50} className=' cursor-wait'/>
+                                    <Image src='/Images/SVG/loading.svg' alt='loading' width={64} height={64} className=' cursor-wait' />
                                 ) : (
                                     isPlaying ? (
-                                        <Image src='/Images/SVG/pause.svg' alt='pause' width={50} height={50} />
+                                        <Image src='/Images/SVG/pause.svg' alt='pause' width={64} height={64} />
                                     ) : (
-                                        <Image src='/Images/SVG/play.svg' alt='play' width={50} height={50} />
+                                        <Image src='/Images/SVG/play.svg' alt='play' width={64} height={64} />
                                     )
                                 )
                             }
                         </button>
                         <button onClick={handleForward}>
-                            <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={30} height={30} />
+                            <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={32} height={32} />
                         </button>
                     </div>
                     <div className='w-12 text-center'>{convertStoMs(currentTime)}</div>

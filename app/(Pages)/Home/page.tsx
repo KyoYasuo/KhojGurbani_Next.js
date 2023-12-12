@@ -32,19 +32,19 @@ export default async function HomePage() {
                         </Link>
                     ))}
                 </div>
-                <div className="md:hidden max-w-[400px] mx-auto">
+                <div className="md:hidden mx-auto max-w-[500px]">
                     <SlideShow showCount={1} featuredMedias={undefined} archives={undefined} cat_results={cat_results}/>
                 </div>
             </div>
-            <div className="w-full py-4 md:py-16 bg-left-top bg-cover bg-[url('/Images/Home/homebottom.png')]">
+            <div className="w-full py-4 md:py-16 bg-left-top bg-cover md:bg-[url('/Images/Home/homebottom.png')]">
                 <div className="mx-auto max-w-6xl p-4">
-                    <h2 className="text-3xl py-4 font-bold text-white">
+                    <h2 className="text-3xl py-4 font-bold text-black md:text-white">
                         Featured Podcasts
                     </h2>
                     <div className="hidden md:block">
                         <SlideShow showCount={3} featuredMedias={featuredMedias} archives={undefined} cat_results={undefined} />
                     </div>
-                    <div className="md:hidden mx-auto max-w-[400px]">
+                    <div className="md:hidden mx-auto max-w-[500px]">
                         <SlideShow showCount={1} featuredMedias={featuredMedias} archives={undefined} cat_results={undefined} />
                     </div>
                 </div>
@@ -59,7 +59,7 @@ export default async function HomePage() {
                 <div className="hidden md:block">
                     <SlideShow showCount={4} archives={archives} featuredMedias={undefined} cat_results={undefined} />
                 </div>
-                <div className="md:hidden mx-auto max-w-[300px]">
+                <div className="md:hidden mx-auto max-w-[500px]">
                     <SlideShow showCount={1} archives={archives} featuredMedias={undefined} cat_results={undefined} />
                 </div>
             </div>

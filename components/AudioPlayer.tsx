@@ -336,7 +336,7 @@ const AudioPlayer: React.FC = () => {
                             <div className='absolute h-2 bg-[#0B79BE] rounded-md transition-width' style={{ width: `${currentTime * 100 / (duration || 1)}%` }}></div>
                         </div>
                     </div>
-                    <div className='w-12 text-center'>{convertStoMs((duration || 0) - currentTime)}</div>
+                    <div className='w-12 text-center'>-{convertStoMs((duration || 0) - currentTime)}</div>
                 </div>
             </div>
 

@@ -204,7 +204,7 @@ const AudioPlayer: React.FC = () => {
     };
 
     const handlePlayPause = () => {
-        if (playerRef.current) {
+        if (playerRef.current && !isLoading) {
             isPlaying ? pauseAudio() : playAudio(audioUrl);
         }
     }
@@ -288,7 +288,7 @@ const AudioPlayer: React.FC = () => {
                         <button onClick={handlePlayPause}>
                             {
                                 isLoading ? (
-                                    <Image src='/Images/SVG/loading.svg' alt='loading' width={50} height={50} />
+                                    <Image src='/Images/SVG/loading.svg' alt='loading' width={50} height={50} className=' cursor-wait'/>
                                 ) : (
                                     isPlaying ? (
                                         <Image src='/Images/SVG/pause.svg' alt='pause' width={50} height={50} />

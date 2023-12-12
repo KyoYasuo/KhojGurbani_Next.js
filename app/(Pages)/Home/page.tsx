@@ -19,7 +19,7 @@ export default async function HomePage() {
             <HomeBanner recent={todayPodcast} />
             <div className="mx-auto max-w-6xl p-4">
                 <HomeWelcome />
-                <div className="my-6 flex flex-col sm:flex-row gap-4 justify-between">
+                <div className="my-6 flex sm:flex-row flex-col-reverse gap-4 justify-between">
                     <h2 className="text-3xl font-bold text-title">Featured Themes</h2>
                     <Search />
                 </div>

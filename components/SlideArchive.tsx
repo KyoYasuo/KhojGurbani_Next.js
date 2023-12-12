@@ -32,10 +32,13 @@ export default function SlideArchive(props: { archives: any; showCount: any; }) 
 
     return (
         <div className='flex gap-2 items-center relative'>
-            <button onClick={() => navigateToPrevSlide()} className='bg-slate-700 rounded-full p-2 absolute left-0 md:static z-10'>
+            <button
+                onClick={() => navigateToPrevSlide()}
+                className='bg-[#4F4F4F] bg-opacity-50 rounded-full p-2 absolute top-[calc(50%-16px)] left-2 xl:left-[-36px] z-10 transition-all'
+            >
                 <Image src='/Images/SVG/arrow_left.svg' alt='prev' width={16} height={16} />
             </button>
-            <div className='w-full md:w-[90%] aspect-[16/10] md:aspect-[32/10] lg:aspect-[48/10] grow'>
+            <div className='w-full aspect-[16/10] md:aspect-[32/10] lg:aspect-[48/10] grow'>
                 <Swiper
                     ref={swiperRef}
                     spaceBetween={showCount === 1 ? 0 : 8}
@@ -64,7 +67,10 @@ export default function SlideArchive(props: { archives: any; showCount: any; }) 
                     ))}
                 </Swiper>
             </div>
-            <button onClick={() => navigateToNextSlide()} className=' bg-slate-700 rounded-full p-2 absolute right-0 md:static z-10'>
+            <button
+                onClick={() => navigateToNextSlide()}
+                className='bg-[#4F4F4F] bg-opacity-50 rounded-full p-2 absolute top-[calc(50%-16px)] right-2 xl:right-[-36px] z-10 transition-all'
+            >
                 <Image src='/Images/SVG/arrow_right.svg' alt='right' width={16} height={16} />
             </button>
         </div>

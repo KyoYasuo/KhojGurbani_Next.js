@@ -39,8 +39,8 @@ export default async function HomePage() {
                 </div>
             </div>
             <div className="w-full py-4 md:py-16 bg-left-top bg-cover md:bg-[url('/Images/Home/homebottom.png')]">
-                <div className="mx-auto max-w-[1200px]">
-                    <h2 className="text-3xl mx-auto max-w-6xl px-4 py-4 font-bold text-black md:text-white">
+                <div className="mx-auto max-w-6xl px-4">
+                    <h2 className="text-3xl mx-auto py-4 font-bold text-black md:text-white">
                         Featured Podcasts
                     </h2>
                     <div className="hidden lg:block">
@@ -54,7 +54,7 @@ export default async function HomePage() {
                     </div>
                 </div>
             </div>
-            <div className="mx-auto max-w-[1200px]">
+            <div className="mx-auto max-w-6xl px-4">
                 <div className="flex mx-auto max-w-6xl px-4 justify-between items-center">
                     <h2 className="text-3xl py-4 font-bold text-title">Archive</h2>
                     <Link className=" cursor-pointer text-blue-primary font-bold text-sm" href={"/Home/Archivelist?page=1"}>

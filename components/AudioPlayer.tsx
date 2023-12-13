@@ -130,7 +130,7 @@ const AudioPlayer: React.FC = () => {
             </button>
 
             <div
-                className={(isShow ? 'bottom-0 ' : '-bottom-[80px] ') + 'fixed left-0 w-full h-20 z-50 bg-white transition-all border-t-2 border-[#607D8B]'}
+                className={(isShow ? 'bottom-0 ' : '-bottom-[80px] ') + 'fixed left-0 w-full h-32 md:h-20 z-50 bg-white transition-all border-t-2 border-[#607D8B]'}
             >
                 <ReactPlayer
                     ref={playerRef}
@@ -145,9 +145,9 @@ const AudioPlayer: React.FC = () => {
                     onError={handleError}
                     className="hidden"
                 />
-                <div className={(isShow ? 'bottom-12 ' : 'bottom-[-48px] ') + 'fixed left-[calc(50%-32px)] transition-all text-xs'}>{audioTitle}</div>
-                <div className='flex flex-col-reverse md:flex-row items-center h-full'>
-                    <div className='flex justify-around items-center w-36'>
+                <div className='relative flex flex-col-reverse md:flex-row items-center h-full'>
+                    <div className='absolute left-0 top-2 w-full transition-all text-center text-xs'>{audioTitle}</div>
+                    <div className='flex justify-around items-center w-64 md:w-36'>
                         <button onClick={handleBackward}>
                             <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={32} height={32} />
                         </button>
@@ -168,7 +168,7 @@ const AudioPlayer: React.FC = () => {
                             <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={32} height={32} />
                         </button>
                     </div>
-                    <div className='flex grow'>
+                    <div className='flex grow items-center w-full'>
                         <div className='w-16 text-center'>{convertStoMs(currentTime)}</div>
                         <div className='grow cursor-pointer'
                             onMouseDown={handleMouseDown}

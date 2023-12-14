@@ -55,7 +55,7 @@ export default async function HomePage() {
                 </div>
             </div>
             <div className="mx-auto max-w-6xl px-4">
-                <div className="flex mx-auto max-w-6xl px-4 justify-between items-center">
+                <div className="flex mx-auto max-w-6xl justify-between items-center">
                     <h2 className="text-3xl py-4 font-bold text-title">Archive</h2>
                     <Link className=" cursor-pointer text-blue-primary font-bold text-sm" href={"/Home/Archivelist?page=1"}>
                         View all Podcasts

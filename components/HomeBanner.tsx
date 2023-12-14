@@ -64,13 +64,13 @@ export default function HomeBanner(props: { recent: any; }) {
                 </div>
                 <div className="flex gap-2 justify-between max-w-[350px] md:mt-8">
                     <button
-                        onClick={() => playAudio(recent.englishPodcastSrc)}
+                        onClick={() => playAudio(recent.englishPodcastSrc, recent.title)}
                         className="text-sm text-white px-2 6 py-1 rounded-full border border-line bg-blue-primary hover:bg-blue-secondary transition-all"
                     >
                         English
                     </button>
                     <button
-                        onClick={() => playAudio(recent.punjabiPodcardSrc)}
+                        onClick={() => playAudio(recent.punjabiPodcardSrc, recent.title)}
                         className="text-sm text-white px-2 py-1 rounded-full border border-line bg-primary hover:bg-third transition-all"
                     >
                         Punjabi

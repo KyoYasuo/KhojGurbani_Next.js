@@ -16,13 +16,13 @@ export default function HomeBanner(props: { recent: any; }) {
                     <p className="text-sm text-white">{dateTransform(recent.created_at)}</p>
                     <div className="flex gap-2 justify-between max-w-[350px] md:mt-8">
                         <button
-                            onClick={() => playAudio(recent.englishPodcastSrc)}
+                            onClick={() => playAudio(recent.englishPodcastSrc, recent.title)}
                             className="text-sm text-white px-6 py-1 rounded-lg border border-line bg-blue-primary hover:bg-blue-secondary transition-all"
                         >
                             English - ਅੰਗਰੇਜ਼ੀ
                         </button>
                         <button
-                            onClick={() => playAudio(recent.punjabiPodcardSrc)}
+                            onClick={() => playAudio(recent.punjabiPodcardSrc, recent.title)}
                             className="text-sm text-white px-6 py-1 rounded-lg border border-line bg-primary hover:bg-third transition-all"
                         >
                             Punjabi- ਪੰਜਾਬੀ

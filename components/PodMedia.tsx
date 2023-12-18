@@ -10,7 +10,7 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
     const { playAudio } = useAudioPlayer();
 
     return (
-        <div className="flex flex-col sm:flex-row" onClick={() => playAudio(props.media, props.title)}>
+        <div className="flex flex-col sm:flex-row cursor-pointer" onClick={() => playAudio(props.media, props.title)}>
 
             <div className="w-full sm:w-80 shrink-0" >
 

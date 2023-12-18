@@ -65,3 +65,25 @@ export async function fetchAllArchiveData(page: string) {
 
     return res.json();
 }
+
+export async function fetchDictionaryWords(language: string, value: string) {
+    const res = await fetch(`${endpoint}get-dictionary-words?lang=${language}&value=${value}`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}get-dictionary-words?lang=${language}&value=${value}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchWordDetail(language: string, value: string) {
+    const res = await fetch(`${endpoint}get-dictionary-word-detail?lang=${language}&value=${value}`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}get-dictionary-word-detail?lang=${language}&value=${value}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

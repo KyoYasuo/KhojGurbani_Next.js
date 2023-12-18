@@ -69,16 +69,16 @@ export default function VirtualKeyboard(): JSX.Element {
                         onChange={onChangeInput}
                         className="h-12 pl-8 pr-2 py-2 w-full border border-[#BBBBBB] rounded-full outline-none"
                     />
-                    <div className="absolute right-[2px] top-[2px]">
+                    <div className="sm:absolute right-[2px] top-[2px] flex flex-col gap-2 sm:gap-0 mt-2 sm:mt-0 sm:flex-row">
                         <button
-                            className={"h-11 px-8 text-white text-sm rounded-full outline-none " + (selectedValue === 'english' ? "bg-[#0C79BE]" : "bg-[#58ABDF]")}
+                            className={"h-11 w-full sm:w-auto px-8 text-white text-sm sm:rounded-full outline-none " + (selectedValue === 'english' ? "bg-[#0C79BE]" : "bg-[#58ABDF]")}
                             onClick={() => {
                                 setSelectedValue('english');
                                 clear();
                             }}
                         >ENGLISH</button>
                         <button
-                            className={"h-11 px-8 text-white text-sm rounded-full outline-none " + (selectedValue === 'gurmukhi' ? "bg-[#0C79BE]" : "bg-[#58ABDF]")}
+                            className={"h-11 w-full sm:w-auto px-8 text-white text-sm sm:rounded-full outline-none " + (selectedValue === 'gurmukhi' ? "bg-[#0C79BE]" : "bg-[#58ABDF]")}
                             onClick={() => {
                                 setSelectedValue('gurmukhi');
                                 clear();
@@ -138,19 +138,19 @@ export default function VirtualKeyboard(): JSX.Element {
 
             {wordDetail && <div className="max-w-6xl px-4 mx-auto">
                 {wordDetail.pun_mahankosh && <div className="my-4">
-                    <h3 className="text-[26px] font-bold py-2">Mahan Kosh Encyclopedia</h3>
-                    <div className="text-2xl">{wordDetail.pun_mahankosh}</div>
+                    <h3 className="text-[26px] text-primary font-bold py-2">Mahan Kosh Encyclopedia</h3>
+                    <div className="text-2xl text-primary">{wordDetail.pun_mahankosh}</div>
                 </div>}
                 {wordDetail.pun_kosh && <div className="my-4">
-                    <h3 className="text-[26px] font-bold py-2">SGGS Gurmukhi-Gurmukhi Dictionary</h3>
-                    <div className="text-2xl">{wordDetail.pun_kosh}</div>
+                    <h3 className="text-[26px] text-primary font-bold py-2">SGGS Gurmukhi-Gurmukhi Dictionary</h3>
+                    <div className="text-2xl text-primary">{wordDetail.pun_kosh}</div>
                 </div>}
                 {wordDetail.word && <div className="my-4">
-                    <h3 className="text-[26px] font-bold py-2">SGGS Gurmukhi-English Dictionary</h3>
-                    <div className="text-2xl">Gurmukhi Pronunciation:{wordDetail.word}</div>
+                    <h3 className="text-[26px] text-primary font-bold py-2">SGGS Gurmukhi-English Dictionary</h3>
+                    <div className="text-2xl text-primary">Gurmukhi Pronunciation:{wordDetail.word}</div>
                 </div>}
                 {wordDetail.eng_dic_sri && <div className="my-4">
-                    <div className="text-2xl">{wordDetail.eng_dic_sri}</div>
+                    <div className="text-2xl text-primary">{wordDetail.eng_dic_sri}</div>
                 </div>}
             </div>}
         </>

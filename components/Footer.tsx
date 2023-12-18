@@ -25,7 +25,7 @@ export default function Footer() {
             <div className="mx-auto max-w-6xl px-4 md:divide-y divide-[#545454]">
                 <div className='hidden md:block'>
                     <Image
-                        src="/Images/logo2.png"
+                        src="/Images/logo.png"
                         alt="Logo"
                         width={193}
                         height={60}

@@ -113,9 +113,9 @@ const AudioPlayer: React.FC = () => {
     }
 
     return (
-        <div className={(isShow ? 'mt-20 ' : 'mt-0 ') + 'transition-all'}>
+        <div className={(isShow ? 'md:mt-20 mt-28 ' : 'mt-0 ') + 'transition-all'}>
             <button
-                className={(isShow ? 'bottom-20 ' : 'bottom-0 ') + 'transition-all fixed right-0 h-8 w-8 z-50 bg-black bg-opacity-40 p-1'}
+                className={(isShow ? 'md:bottom-20 bottom-28 ' : 'bottom-0 ') + 'transition-all fixed right-0 h-8 w-8 z-50 bg-black bg-opacity-40 p-1'}
                 onClick={() => {
                     if (audioUrl) setIsShow(!isShow);
                     else toast.error("please load the audio first");
@@ -130,7 +130,7 @@ const AudioPlayer: React.FC = () => {
             </button>
 
             <div
-                className={(isShow ? 'bottom-0 ' : '-bottom-[80px] ') + 'fixed left-0 w-full h-32 md:h-20 z-50 bg-white transition-all border-t-2 border-[#607D8B]'}
+                className={(isShow ? 'bottom-0 ' : 'md:-bottom-20 -bottom-28 ') + 'fixed left-0 w-full h-28 md:h-20 z-50 bg-white transition-all border-t-2 border-[#607D8B]'}
             >
                 <ReactPlayer
                     ref={playerRef}
@@ -168,7 +168,7 @@ const AudioPlayer: React.FC = () => {
                             <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={32} height={32} />
                         </button>
                     </div>
-                    <div className='flex grow items-center w-full'>
+                    <div className='flex md:grow items-center w-full'>
                         <div className='w-16 text-center'>{convertStoMs(currentTime)}</div>
                         <div className='grow cursor-pointer'
                             onMouseDown={handleMouseDown}

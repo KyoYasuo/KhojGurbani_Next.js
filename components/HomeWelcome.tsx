@@ -13,7 +13,7 @@ export default function HomeWelcome() {
             />
             <div className="">
 
-                <h2 className="pt-2 pb-6 text-xl md:text-3xl font-bold text-title text-center">
+                <h2 className="pt-2 pb-6 text-lg md:text-3xl font-bold text-title text-center">
                     Welcome to KhojGurbani
                 </h2>
                 <p className="hidden mb-4 text-line md:block">
@@ -34,7 +34,7 @@ export default function HomeWelcome() {
                     Panjabi and English commentaries. An unmatched repository of Gurbani Kirtan, an interactive blog, a weekly online discussion
                     forum with over 200 YouTube videos and podcasts.
                 </p>
-                <p className="mb-4 text-line md:hidden">
+                <p className="text-sm mb-4 text-line md:hidden">
                     Your site for a holistic experience with the Guru. Engage Gurbani with interactive access to multiple commentaries and dictionaries.
                     Enjoy the bliss of listening to a vast collection of Gurmat sangeet with some rare collections.
                     Enhance your understanding of key Gurmat concepts by listening to KhojGurbani&apos;s thought-provoking webinars.

@@ -25,18 +25,19 @@ export default function PodMedia(props: { imgURL: string; title: string; descrip
             </div>
 
             <div className="flex flex-col px-4 pt-2 sm:pt-0">
-                <div className="flex flex-col md:flex-row items-baseline gap-2 mb-4">
-                    <h3 className="text-2xl text-blue-primary">
+                <div className="">
+                    <h3 className="text-2xl text-blue-primary inline">
                         <Highlighter
                             searchWords={[props.query]}
                             autoEscape={true}
                             textToHighlight={props.title}
                         />
                     </h3>
-                    <span className="text-xs text-blue-primary min-w-[80px]">{props.created_at && dateTransform(props.created_at)}</span>
+                    <span>  </span>
+                    <span className="text-xs text-blue-primary inline-block">{props.created_at && dateTransform(props.created_at)}</span>
                 </div>
 
-                <p className=" text-line">
+                <p className="text-line">
                     <Highlighter
                         searchWords={[props.query]}
                         autoEscape={true}

@@ -59,7 +59,7 @@ export default function SlideArchive(props: { archives: any; showCount: any; }) 
                                     fill
                                 />
                             </div>
-                            <div className="absolute bottom-0 w-full flex justify-between">
+                            <div className="absolute bottom-0 w-full flex justify-between items-baseline">
                                 <div className="text-subtitle text-sm font-bold">{item.title}</div>
                                 <div className="text-date text-xs font-bold">{dateTransform(item.created_at)}</div>
                             </div>

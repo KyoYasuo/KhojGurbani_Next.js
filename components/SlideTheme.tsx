@@ -59,7 +59,7 @@ export default function SlideTheme(props: { cat_results: any; showCount: any; })
                                         fill
                                     />
                                 </div>
-                                <div className="text-subtitle font-bold">{item.title}</div>
+                                <div className="text-subtitle text-sm font-bold">{item.title}</div>
                             </Link>
                         </SwiperSlide>
                     ))}

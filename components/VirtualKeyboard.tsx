@@ -13,9 +13,11 @@ export default function VirtualKeyboard(): JSX.Element {
     const [selectedValue, setSelectedValue] = useState<string>("gurmukhi");
     const [dictionaryWords, setDictionaryWords] = useState<string[]>(['']);
     const [wordDetail, setWordDetail] = useState<any>();
+    const [show, setShow] = useState<boolean>(true);
     const keyboard = useRef<any>();
 
     const onChange = (input: string) => {
+        setShow(true);
         setInput(input);
         console.log("Input changed", input);
     };
@@ -27,6 +29,7 @@ export default function VirtualKeyboard(): JSX.Element {
 
     const onKeyPress = (button: string) => {
         console.log("Button pressed", button);
+        setShow(true);
 
         if (button === "{shift}" || button === "{lock}") handleShift();
     };
@@ -38,6 +41,7 @@ export default function VirtualKeyboard(): JSX.Element {
     };
 
     const wordClick = async (word: string) => {
+        setShow(false);
         setWordDetail(await getWordDetail(selectedValue, word));
         setInput(word);
         keyboard.current.setInput(word);
@@ -48,15 +52,16 @@ export default function VirtualKeyboard(): JSX.Element {
         setInput('');
         keyboard.current.setInput('');
         setWordDetail('');
+        setShow(true);
     }
 
     useEffect(() => {
-        const fetchData = async () => {
-            if (input) setDictionaryWords(await getDictionaryWord(selectedValue, input));
-            else setDictionaryWords([]);
-        };
+            const fetchData = async () => {
+                if (input) setDictionaryWords(await getDictionaryWord(selectedValue, input));
+                else setDictionaryWords([]);
+            };
 
-        fetchData();
+            fetchData();
     }, [input, selectedValue]);
 
     return (
@@ -87,15 +92,15 @@ export default function VirtualKeyboard(): JSX.Element {
                     </div>
                 </div>
                 <div className="flex flex-col my-8">
-                    {dictionaryWords.map((word: string) => (
+                    {show ? dictionaryWords.map((word: string) => (
                         <div
                             key={word}
                             className="cursor-pointer hover:bg-gray-100 border-b border-gray-200"
-                            onClick={() => wordClick(word)}
+                            onClick={() => { wordClick(word); }}
                         >
                             {word}
                         </div>
-                    ))}
+                    )) : <></>}
                 </div>
                 <div className="flex justify-center gap-4 mb-4">
                     <label className="items-center">

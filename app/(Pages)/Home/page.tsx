@@ -20,7 +20,7 @@ export default async function HomePage() {
             <div className="mx-auto max-w-6xl p-4">
                 <HomeWelcome />
                 <div className="mt-4 md:my-6 flex sm:flex-row flex-col-reverse gap-4 justify-between">
-                    <h2 className="text-[26px] pb-2 font-bold text-title">Featured Themes</h2>
+                    <h2 className="text-[26px] pb-2 sm:pb-0 font-bold text-title">Featured Themes</h2>
                     <Search />
                 </div>
                 <div className="hidden md:grid grid-cols-2 gap-8">
@@ -56,7 +56,7 @@ export default async function HomePage() {
             </div>
             <div className="mx-auto max-w-6xl px-4 mb-8">
                 <div className="flex mx-auto max-w-6xl justify-between items-center">
-                    <h2 className="text-[26px] pb-2 font-bold text-title">Archive</h2>
+                    <h2 className="text-[26px] py-2 font-bold text-title">Archive</h2>
                     <Link className="cursor-pointer text-blue-primary font-bold text-sm" href={"/Home/Archivelist?page=1"}>
                         View all Podcasts
                     </Link>

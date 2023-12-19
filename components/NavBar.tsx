@@ -64,7 +64,7 @@ export default function NavBar() {
                                     href={`${item.href}`}
                                     className={classNames(
                                         selectedPage === item.name ? 'border-b-blue-primary border-b-2' : 'hover:bg-gray-700',
-                                        'flex h-16 px-4 text-white items-center text-center'
+                                        'flex h-16 px-4 text-white items-center text-center text-sm'
                                     )}
                                     onClick={() => {
                                         setSelectedPage(item.name);

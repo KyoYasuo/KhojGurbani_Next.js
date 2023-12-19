@@ -61,7 +61,7 @@ export default function VirtualKeyboard(): JSX.Element {
 
     return (
         <>
-            <div className="max-w-2xl px-4 mx-auto mt-2">
+            <div className="max-w-2xl px-4 mx-auto mt-12">
                 <div className="relative">
                     <input
                         value={input}
@@ -69,16 +69,16 @@ export default function VirtualKeyboard(): JSX.Element {
                         onChange={onChangeInput}
                         className="h-12 pl-8 pr-2 py-2 w-full border border-[#BBBBBB] rounded-full outline-none"
                     />
-                    <div className="sm:absolute right-[2px] top-[2px] flex flex-col gap-2 sm:gap-0 mt-2 sm:mt-0 sm:flex-row">
+                    <div className="sm:absolute right-[2px] top-[2px] flex flex-col gap-3 sm:gap-0 mt-3 sm:mt-0 sm:flex-row">
                         <button
-                            className={"h-11 w-full sm:w-auto px-8 text-white text-sm sm:rounded-full outline-none " + (selectedValue === 'english' ? "bg-[#0C79BE]" : "bg-[#58ABDF]")}
+                            className={"h-10 sm:h-11 w-full sm:w-auto px-8 text-white text-sm sm:rounded-full outline-none " + (selectedValue === 'english' ? "bg-[#58ABDF]" : "bg-[#0C79BE]")}
                             onClick={() => {
                                 setSelectedValue('english');
                                 clear();
                             }}
                         >ENGLISH</button>
                         <button
-                            className={"h-11 w-full sm:w-auto px-8 text-white text-sm sm:rounded-full outline-none " + (selectedValue === 'gurmukhi' ? "bg-[#0C79BE]" : "bg-[#58ABDF]")}
+                            className={"h-10 sm:h-11 w-full sm:w-auto px-8 text-white text-sm sm:rounded-full outline-none " + (selectedValue === 'gurmukhi' ? "bg-[#58ABDF]" : "bg-[#0C79BE]")}
                             onClick={() => {
                                 setSelectedValue('gurmukhi');
                                 clear();
@@ -97,7 +97,7 @@ export default function VirtualKeyboard(): JSX.Element {
                         </div>
                     ))}
                 </div>
-                <div className="flex justify-center gap-4">
+                <div className="flex justify-center gap-4 mb-4">
                     <label className="items-center">
                         <input
                             type="radio"

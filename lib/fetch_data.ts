@@ -87,3 +87,36 @@ export async function fetchWordDetail(language: string, value: string) {
 
     return res.json();
 }
+
+export async function fetchFeaturedRagis() {
+    const res = await fetch(`${endpoint}media-authors/featured`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}media-authors/featured`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchRagiMedias(ragi: string) {
+    const res = await fetch(`${endpoint}media/featured-artist-gurbani/${ragi}`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}media/featured-artist-gurbani/${ragi}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchRadios() {
+    const res = await fetch(`${endpoint}radio`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}radio`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

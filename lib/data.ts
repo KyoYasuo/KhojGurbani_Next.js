@@ -1,4 +1,4 @@
-import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData, fetchAllArchiveData, fetchDictionaryWords, fetchWordDetail } from "./fetch_data";
+import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData, fetchAllArchiveData, fetchDictionaryWords, fetchWordDetail, fetchFeaturedRagis, fetchRagiMedias, fetchRadios } from "./fetch_data";
 
 export async function getTodayPodcast() {
     try {
@@ -125,6 +125,37 @@ export async function getWordDetail(language: string, value: string) {
         throw new Error(error);
     }
 }
+
+export async function getFeaturedRagis() {
+    try {
+        const data = await fetchFeaturedRagis();
+        const featuredRagis = data.result;
+        return featuredRagis;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getRagiMedias(ragi: string) {
+    try {
+        const data = await fetchRagiMedias(ragi);
+        const ragiMedias = data.result;
+        return ragiMedias;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getRadios() {
+    try {
+        const data = await fetchRadios();
+        const radios = data.data;
+        return radios;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
 
 export function dateTransform(value: string): string {
     const dd: string = value?.substr(8, 2);

@@ -10,9 +10,9 @@ import Image from "next/image";
 import { useCallback, useRef } from 'react';
 import Link from 'next/link';
 
-export default function SlideRagi(props: { featuredRagis: any; showCount: any; }) {
+export default function SlideCategory(props: { featuredCategories: any; showCount: any; }) {
 
-    const featuredRagis = props.featuredRagis;
+    const featuredCategories = props.featuredCategories;
     const showCount = props.showCount;
 
     const swiperRef = useRef<any>(null);
@@ -42,7 +42,7 @@ export default function SlideRagi(props: { featuredRagis: any; showCount: any; }
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {featuredRagis?.map((item: { name: string; id: number; attachment_name: string; }) => (
+                    {featuredCategories?.map((item: { name: string; id: number; attachment_name: string; }) => (
                         <SwiperSlide key={item.id}>
                             <Link 
                                 href={`/Media/${item.id}`}

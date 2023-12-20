@@ -120,3 +120,14 @@ export async function fetchRadios() {
 
     return res.json();
 }
+
+export async function fetchFeaturedCategories() {
+    const res = await fetch(`${endpoint}categories/featured`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}categories/featured`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

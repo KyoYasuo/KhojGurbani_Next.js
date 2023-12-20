@@ -1,4 +1,4 @@
-import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData, fetchAllArchiveData, fetchDictionaryWords, fetchWordDetail, fetchFeaturedRagis, fetchRagiMedias, fetchRadios } from "./fetch_data";
+import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData, fetchAllArchiveData, fetchDictionaryWords, fetchWordDetail, fetchFeaturedRagis, fetchRagiMedias, fetchRadios, fetchFeaturedCategories } from "./fetch_data";
 
 export async function getTodayPodcast() {
     try {
@@ -151,6 +151,16 @@ export async function getRadios() {
         const data = await fetchRadios();
         const radios = data.data;
         return radios;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getFeaturedCategories() {
+    try {
+        const data = await fetchFeaturedCategories();
+        const featuredCategories = data.featured_categories;
+        return featuredCategories;
     } catch (error: any) {
         throw new Error(error);
     }

@@ -51,9 +51,9 @@ export default function SlideCategory(props: { featuredCategories: any; showCoun
                                 <img
                                     src={item.attachment_name}
                                     alt={item.name}
-                                    className='aspect-square rounded-xl'
+                                    className=''
                                 />
-                                <div className="text-[#4E4E4E] text-sm">{item.name}</div>
+                                <div className="text-[#252638] text-[15px] mt-2">{item.name}</div>
                             </Link>
                         </SwiperSlide>
                     ))}

@@ -13,7 +13,7 @@ export default async function Page() {
         <>
             <div className="max-w-6xl px-4 mx-auto">
                 <div>
-                    <h2 className="text-[26px] font-bold">Live Kirtan Radio</h2>
+                    <h2 className="text-[26px] font-bold">Featured Categories</h2>
                     <div className="sm:hidden">
                         <SlideCategory showCount={1} featuredCategories={featuredCategories} />
                     </div>

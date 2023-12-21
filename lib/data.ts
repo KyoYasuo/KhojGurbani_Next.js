@@ -206,27 +206,34 @@ export async function getAllRagis() {
     try {
         const data = await fetchAllRagis();
         const allRagis = data.result;
-        let tmp;
-        let orderedRagis = {};
-        allRagis.map = (item: { name: any; }) => {
-            if (item.name.startsWith("Ustad") || item.name.startsWith("Gyani") || item.name.startsWith("Giani")) {
-                tmp = item.name.substring(6);
+        const cutName = (name: string) => {
+            let tmp;
+            if (name.startsWith("Ustad") || name.startsWith("Gyani") || name.startsWith("Giani")) {
+                tmp = name.substring(6);
             }
-            else if (item.name.startsWith("Bhai") || item.name.startsWith("Prof") || item.name.startsWith("Bibi") || item.name.startsWith("Sant")) {
-                tmp = item.name.substring(5);
+            else if (name.startsWith("Bhai") || name.startsWith("Prof") || name.startsWith("Bibi") || name.startsWith("Sant")) {
+                tmp = name.substring(5);
             }
-            else if (item.name.startsWith("Dr.") || item.name.startsWith("Sri")) {
-                tmp = item.name.substring(4);
+            else if (name.startsWith("Dr.") || name.startsWith("Sri")) {
+                tmp = name.substring(4);
             }
-            else if (item.name.startsWith("Dr")) {
-                tmp = item.name.substring(3);
+            else if (name.startsWith("Dr")) {
+                tmp = name.substring(3);
             }
             else {
-                tmp = item.name;
+                tmp = name;
             }
-            console.log(tmp.charAt(0).toUpperCase());
+            return tmp;
         }
-        return allRagis;
+        allRagis.sort((a: { name: string; }, b: { name: string; }) => { return cutName(a.name) < cutName(b.name) });
+
+        let orderedRagis: { [key: string]: any[] } = {};
+        allRagis.map((item: { name: any; }) => {
+            const firstLetter = cutName(item.name).substring(0, 1).toUpperCase();
+            orderedRagis[firstLetter] = [...orderedRagis[firstLetter] || [], item];
+        })
+        // console.log(orderedRagis);
+        return orderedRagis;
         //replace: Ustad, Gyani, Giani, Bhai, Prof, Bibi, Sant, Dr., Sri, Dr, 
     } catch (error: any) {
         throw new Error(error);

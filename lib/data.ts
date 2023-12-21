@@ -1,4 +1,20 @@
-import { fetchPodcastsData, fetchArchiveData, fetchPodmediasData, fetchTodayPodcastData, fetchSearchData, fetchAllArchiveData, fetchDictionaryWords, fetchWordDetail, fetchFeaturedRagis, fetchRagiMedias, fetchRadios, fetchFeaturedCategories } from "./fetch_data";
+import {
+    fetchPodcastsData,
+    fetchArchiveData,
+    fetchPodmediasData,
+    fetchTodayPodcastData,
+    fetchSearchData,
+    fetchAllArchiveData,
+    fetchDictionaryWords,
+    fetchWordDetail,
+    fetchFeaturedRagis,
+    fetchRagiMedias,
+    fetchRadios,
+    fetchFeaturedCategories,
+    fetchFeaturedTracks,
+    fetchRecents,
+    fetchAllRagis
+} from "./fetch_data";
 
 export async function getTodayPodcast() {
     try {
@@ -161,6 +177,36 @@ export async function getFeaturedCategories() {
         const data = await fetchFeaturedCategories();
         const featuredCategories = data.featured_categories;
         return featuredCategories;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getFeaturedTracks() {
+    try {
+        const data = await fetchFeaturedTracks();
+        const featuredTracks = data.featured_media;
+        return featuredTracks;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getRecents() {
+    try {
+        const data = await fetchRecents();
+        const recents = data.recently_played;
+        return recents;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getAllRagis() {
+    try {
+        const data = await fetchAllRagis();
+        const allRagis = data.result;
+        return allRagis;
     } catch (error: any) {
         throw new Error(error);
     }

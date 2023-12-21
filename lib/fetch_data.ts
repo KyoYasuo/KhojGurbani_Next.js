@@ -131,3 +131,36 @@ export async function fetchFeaturedCategories() {
 
     return res.json();
 }
+
+export async function fetchFeaturedTracks() {
+    const res = await fetch(`${endpoint}media/featured?type=AUDIO`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}media/featured?type=AUDIO`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchRecents() {
+    const res = await fetch(`${endpoint}media/recently-played?machine_id=a230fd3d-266c-4874-9278-db460b91dc13&user_id=`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}media/recently-played?machine_id=a230fd3d-266c-4874-9278-db460b91dc13&user_id=`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchAllRagis() {
+    const res = await fetch(`${endpoint}media-authors/alphabet-list`, { cache: 'no-store' });
+    console.log("fetch: ", `${endpoint}media-authors/alphabet-list`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

@@ -8,7 +8,7 @@ export default async function MediaRagiSubPage({ params: { ragi } }: { params: {
 
     return (
         <>
-            <div className="w-full bg-top bg-cover bg-[url('/Images/Media/ragis.jpg')]">
+            <div className="w-full bg-top bg-cover bg-[url('/Images/Home/nitnem.jpg')]">
                 <h1 className="mx-auto max-w-6xl px-4 py-[27px] sm:py-16 md:py-20 lg:py-[100px] text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-white">{ragiMedias[0].author_name}</h1>
             </div>
             <div className="max-w-6xl px-4 mx-auto">

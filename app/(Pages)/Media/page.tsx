@@ -82,7 +82,7 @@ export default async function MediaPage() {
                 </div>
                 <div className="flex justify-center mt-10">
                     <Link
-                        href="/Ragis"
+                        href="/Media/Ragis"
                         className='mx-auto text-white text-sm bg-blue-primary px-[20px] py-[5px] border border-white rounded-full gap-1'
                     >
                         View All Ragis

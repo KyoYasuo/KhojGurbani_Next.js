@@ -206,7 +206,28 @@ export async function getAllRagis() {
     try {
         const data = await fetchAllRagis();
         const allRagis = data.result;
+        let tmp;
+        let orderedRagis = {};
+        allRagis.map = (item: { name: any; }) => {
+            if (item.name.startsWith("Ustad") || item.name.startsWith("Gyani") || item.name.startsWith("Giani")) {
+                tmp = item.name.substring(6);
+            }
+            else if (item.name.startsWith("Bhai") || item.name.startsWith("Prof") || item.name.startsWith("Bibi") || item.name.startsWith("Sant")) {
+                tmp = item.name.substring(5);
+            }
+            else if (item.name.startsWith("Dr.") || item.name.startsWith("Sri")) {
+                tmp = item.name.substring(4);
+            }
+            else if (item.name.startsWith("Dr")) {
+                tmp = item.name.substring(3);
+            }
+            else {
+                tmp = item.name;
+            }
+            console.log(tmp.charAt(0).toUpperCase());
+        }
         return allRagis;
+        //replace: Ustad, Gyani, Giani, Bhai, Prof, Bibi, Sant, Dr., Sri, Dr, 
     } catch (error: any) {
         throw new Error(error);
     }

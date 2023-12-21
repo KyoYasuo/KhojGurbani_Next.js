@@ -32,7 +32,7 @@ export default function Groups(props: { allRagis: any; }) {
                     <div
                         key={group}
                         className="text-[#646464] text-base font-bold rounded-full w-[30px] h-[30px] bg-[#DCDCDC] m-[5px] flex items-center justify-center"
-                        onClick={() => scrollToDiv(group)}
+                        // onClick={() => scrollToDiv(group)}
                     >
                         <p>{group}</p>
                     </div>

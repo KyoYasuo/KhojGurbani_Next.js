@@ -14,7 +14,9 @@ import {
     fetchFeaturedTracks,
     fetchRecents,
     fetchAllRagis,
-    fetchMediaCategories
+    fetchMediaCategories,
+    fetchSubCategoryMedias,
+    fetchCategoryMedias
 } from "./fetch_data";
 
 export async function getTodayPodcast() {
@@ -246,6 +248,48 @@ export async function getMediaCategories(category: string) {
         const data = await fetchMediaCategories(category);
         const mediaCategories = data.featured_sub_categories;
         return mediaCategories;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getMediaCategoryInfo(category: string) {
+    try {
+        const data = await fetchFeaturedCategories();
+        const featuredCategories = data.featured_categories;
+        const categoryInfo = featuredCategories.find((item: { id: number; }) => item.id === parseInt(category));
+        return categoryInfo;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getSubCategoryMedias(subCategory: string) {
+    try {
+        const data = await fetchSubCategoryMedias(subCategory);
+        const subCategoryMedias = data.subcategory_media;
+        return subCategoryMedias;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getSubCategoryMediaInfo(category: string, subCategory: string) {
+    try {
+        const data = await fetchMediaCategories(category);
+        const mediaCategories = data.featured_sub_categories;
+        const subCategoryInfo = mediaCategories.find((item: { id: number; }) => item.id === parseInt(subCategory));
+        return subCategoryInfo;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getCategoryMedias(category: string) {
+    try {
+        const data = await fetchCategoryMedias(category);
+        const categoryMedias = data.category_media;
+        return categoryMedias;
     } catch (error: any) {
         throw new Error(error);
     }

@@ -6,21 +6,35 @@ import Image from 'next/image';
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 import ReactPlayer from 'react-player';
 import { toast } from 'react-toastify';
+import { v4 as uuidv4 } from 'uuid';
+
 
 const AudioPlayer: React.FC = () => {
+    const getMachinId: any = () => {
+        let machinUUIDNew;
+        if (localStorage.getItem('machinUUID') == null) {
+            machinUUIDNew = uuidv4();
+            localStorage.setItem('machinUUID', machinUUIDNew);
+        } else {
+            machinUUIDNew = localStorage.getItem('machinUUID');
+        }
+        return machinUUIDNew;
+    }
+
     const { audioTitle, audioUrl, isPlaying, pauseAudio, playAudio } = useAudioPlayer();
     const playerRef = useRef<ReactPlayer | null>(null);
     const sliderRef = useRef<HTMLDivElement>(null);
-
+    
     const [isShow, setIsShow] = useState<boolean>(false);
-
+    
     const [duration, setDuration] = useState<number | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [loadedTime, setLoadedTime] = useState<number>(0);
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-
+    
     useEffect(() => {
+        getMachinId();
         console.log(audioUrl, "is loading");
         if (audioUrl) setIsShow(true);
         setIsLoading(true);
@@ -28,7 +42,7 @@ const AudioPlayer: React.FC = () => {
         setCurrentTime(0);
         setLoadedTime(0);
     }, [audioUrl]);
-
+    
     const handleError = (error: any) => {
         toast.error(error);
     }

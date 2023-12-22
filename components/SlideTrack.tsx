@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import { useCallback, useRef } from 'react';
 import Link from 'next/link';
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 export default function SlideTrack(props: { featuredTracks: any; showCount: any; }) {
 
@@ -27,8 +28,10 @@ export default function SlideTrack(props: { featuredTracks: any; showCount: any;
         swiperRef.current.swiper.slidePrev();
     }, []);
 
+    const { playAudio } = useAudioPlayer();
+
     return (
-        <div className='gap-2 items-center relative'>
+        <div className='gap-2 items-center relative object-fill'>
             <button
                 onClick={() => navigateToPrevSlide()}
                 className='bg-[#4F4F4F] bg-opacity-50 rounded-full p-2 absolute top-[calc(50%-16px)] left-2 xl:left-[-36px] z-10 transition-all'
@@ -42,19 +45,23 @@ export default function SlideTrack(props: { featuredTracks: any; showCount: any;
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {featuredTracks?.map((item: { title: string; id: number; img: string; }) => (
+                    {featuredTracks?.map((item: { title: string; id: number; img: string; duration: string; author_name: string; attachment_name: string}) => (
                         <SwiperSlide key={item.id}>
-                            <Link 
-                                href={`/Media/${item.id}`}
-                                className="cursor-pointer"
+                            <div
+                                className="cursor-pointer text-[#252638] hover:text-blue-primary text-[15px]"
+                                onClick={() => playAudio(item.attachment_name, item.title)}
                             >
                                 <img
                                     src={item.img}
                                     alt={item.title}
                                     className=''
                                 />
-                                <div className="text-[#252638] text-[15px] mt-2">{item.title}</div>
-                            </Link>
+                                <div className='flex justify-between'>
+                                    <div className="">{item.title}</div>
+                                    <div className="text-[#767373] text-sm">{item.duration}</div>
+                                </div>
+                                <div className="text-[#767373] text-sm">{item.author_name}</div>
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

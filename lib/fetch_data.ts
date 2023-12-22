@@ -175,3 +175,25 @@ export async function fetchMediaCategories(category: string) {
 
     return res.json();
 }
+
+export async function fetchSubCategoryMedias(subCategory: string) {
+    const res = await fetch(`${endpoint}media/resource-subcategory-media-new/${subCategory}`);
+    console.log("fetch: ", `${endpoint}media/resource-subcategory-media-new/${subCategory}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchCategoryMedias(category: string) {
+    const res = await fetch(`${endpoint}media/resource-category-media-new/${category}`);
+    console.log("fetch: ", `${endpoint}media/resource-category-media-new/${category}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

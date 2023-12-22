@@ -38,9 +38,9 @@ const AudioPlayer: React.FC = () => {
     const sendTrack = (): void => {
         const machineId = getMachineId();
         let param = new URLSearchParams();
-        param.set('machineId', machineId); // Corrected the spelling of 'machine'
+        param.set('machine_id', machineId); // Corrected the spelling of 'machine'
         param.set('media_id', audioId);
-        param.set('view_date', new Date().toISOString());
+        param.set('view_date', new Date().toLocaleDateString());
         param.set('user_id', ''); // Assuming you have a mechanism to obtain a user_id if needed
         postTrack(param); // Assuming postTrack is a function you've defined elsewhere
     };
@@ -79,7 +79,7 @@ const AudioPlayer: React.FC = () => {
 
     const handlePlayPause = () => {
         if (playerRef.current && !isLoading) {
-            isPlaying ? pauseAudio() : playAudio(audioUrl, audioTitle);
+            isPlaying ? pauseAudio() : playAudio(audioUrl, audioTitle, audioId);
         }
     }
 

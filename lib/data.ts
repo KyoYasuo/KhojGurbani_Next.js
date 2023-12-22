@@ -197,7 +197,8 @@ export async function getFeaturedTracks() {
 
 export async function getRecents() {
     try {
-        const data = await fetchRecents();
+        const data = await fetchRecents("ddf41b28-eda8-4594-ab08-1241031fe61d");
+        console.log(data);
         const recents = data.recently_played;
         return recents;
     } catch (error: any) {

@@ -5,7 +5,7 @@ import { dateTransform } from "@/lib/data";
 import Image from "next/image";
 import Highlighter from "react-highlight-words";
 
-export default function PodMedia(props: { id: string; imgURL: string; title: string; description: string; query: string; media: string; created_at: string; }) {
+export default function PodMedia(props: { id: number; imgURL: string; title: string; description: string; query: string; media: string; created_at: string; }) {
 
     const { playAudio } = useAudioPlayer();
 

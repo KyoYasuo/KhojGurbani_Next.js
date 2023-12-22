@@ -5,6 +5,7 @@ import SlideRecent from "@/components/SlideRecent";
 import SlideTrack from "@/components/SlideTrack";
 import { getFeaturedCategories, getFeaturedTracks, getFeaturedRagis, getRadios, getRecents } from "@/lib/data";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default async function MediaPage() {
 
@@ -14,6 +15,8 @@ export default async function MediaPage() {
     const featuredTracks = await getFeaturedTracks();
     const recents = await getRecents();
 
+    console.log(recents);
+
     return (
         <>
             <div className="w-full bg-top bg-cover bg-[url('/Images/Media/top.png')]">
@@ -21,7 +24,7 @@ export default async function MediaPage() {
             </div>
             <div className="max-w-6xl px-4 mx-auto">
                 <div>
-                    <h2 className="text-[26px] font-bold">Featured Tracks</h2>
+                    <h2 className="text-[26px] font-bold">Recent played</h2>
                     <div className="sm:hidden">
                         <SlideRecent showCount={1} recents={recents} />
                     </div>

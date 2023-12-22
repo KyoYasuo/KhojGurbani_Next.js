@@ -143,9 +143,9 @@ export async function fetchFeaturedTracks() {
     return res.json();
 }
 
-export async function fetchRecents() {
-    const res = await fetch(`${endpoint}media/recently-played?machine_id=a230fd3d-266c-4874-9278-db460b91dc13&user_id=`);
-    console.log("fetch: ", `${endpoint}media/recently-played?machine_id=a230fd3d-266c-4874-9278-db460b91dc13&user_id=`);
+export async function fetchRecents(machine_id: string | null) {
+    const res = await fetch(`${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`);
+    console.log("fetch: ", `${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`);
 
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');

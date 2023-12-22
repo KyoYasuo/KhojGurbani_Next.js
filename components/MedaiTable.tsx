@@ -4,7 +4,7 @@
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { useState } from "react";
 
-export default function MediaTable(props: { medias: { id: number; title: string; duration: string; Scripture: string; ScriptureRomanEnglish: string; page: number; shabad_id: number; attachment_name: string; }[]; }) {
+export default function MediaTable(props: { medias: { id: string; title: string; duration: string; Scripture: string; ScriptureRomanEnglish: string; page: number; shabad_id: string; attachment_name: string; }[]; }) {
 
     // console.log(props.medias);
     const { isPlaying, pauseAudio, playAudio } = useAudioPlayer();
@@ -24,8 +24,8 @@ export default function MediaTable(props: { medias: { id: number; title: string;
             <tbody>
                 {props.medias.map((
                     item: {
-                        id: number; title: string; duration: string; Scripture: string;
-                        ScriptureRomanEnglish: string; page: number; shabad_id: number; attachment_name: string;
+                        id: string; title: string; duration: string; Scripture: string;
+                        ScriptureRomanEnglish: string; page: number; shabad_id: string; attachment_name: string;
                     },
                     index: number
                 ) => (

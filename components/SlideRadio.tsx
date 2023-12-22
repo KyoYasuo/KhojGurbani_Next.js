@@ -45,7 +45,7 @@ export default function SlideRadio(props: { radios: any; showCount: any; }) {
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {radios?.map((item: { title: string; id: number; img: string; src: string; }) => (
+                    {radios?.map((item: { title: string; id: string; img: string; src: string; }) => (
                         <SwiperSlide key={item.id}>
                             <div
                                 className="cursor-pointer relative"

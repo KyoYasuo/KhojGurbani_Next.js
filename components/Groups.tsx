@@ -56,7 +56,7 @@ export default function Groups(props: { allRagis: any; }) {
                         <span className="absolute w-full top-[2px] text-center text-sm text-white font-normal">{group}</span>
                     </div>
                     <div className="grid grid-cols-6 gap-[14px] px-6">
-                        {allRagis[group].map((item: { id: number; name: string; description: string; attachment_name: string; }) => (
+                        {allRagis[group].map((item: { id: string; name: string; description: string; attachment_name: string; }) => (
                             <Link
                                 key={item.id}
                                 href={`/Media/${item.id}`}

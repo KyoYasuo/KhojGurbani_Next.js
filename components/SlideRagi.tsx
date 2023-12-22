@@ -42,7 +42,7 @@ export default function SlideRagi(props: { featuredRagis: any; showCount: any; }
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {featuredRagis?.map((item: { name: string; id: number; attachment_name: string; }) => (
+                    {featuredRagis?.map((item: { name: string; id: string; attachment_name: string; }) => (
                         <SwiperSlide key={item.id}>
                             <Link 
                                 href={`/Media/${item.id}`}

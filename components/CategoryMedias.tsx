@@ -2,14 +2,14 @@
 
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 
-export default function CategoryMedias(props: {categoryMedias: { id: number; author_image: string; title: string; author_name: string; duration: string; attachment_name: string; }[]}) {
+export default function CategoryMedias(props: {categoryMedias: { id: string; author_image: string; title: string; author_name: string; duration: string; attachment_name: string; }[]}) {
 
     const { playAudio } = useAudioPlayer();
 
     return (
         <>
             <div className="grid grid-col grid-cols-3 gap-8 mb-8">
-                {props.categoryMedias.map((item: { id: number; author_image: string; title: string; author_name: string; duration: string; attachment_name: string;}) => (
+                {props.categoryMedias.map((item: { id: string; author_image: string; title: string; author_name: string; duration: string; attachment_name: string;}) => (
                     <div
                         key={item.id}
                         className="hover:text-blue-primary text-[#767373] text-sm"

@@ -42,7 +42,7 @@ export default function SlideRecent(props: { recents: any; showCount: any; }) {
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {recents?.map((item: { title: string; id: number; img: string; }) => (
+                    {recents?.map((item: { title: string; id: string; img: string; }) => (
                         <SwiperSlide key={item.id}>
                             <Link 
                                 href={`/Media/${item.id}`}

@@ -47,7 +47,7 @@ export default function SlideArchive(props: { archives: any; showCount: any; }) 
                     speed={showCount === 1 ? 500 : 1000}
                     className="w-full h-full overflow-visible"
                 >
-                    {archives?.map((item: { attachment_name: string; id: number; thumbnail: string; title: string; created_at: string; }) => (
+                    {archives?.map((item: { attachment_name: string; id: string; thumbnail: string; title: string; created_at: string; }) => (
                         <SwiperSlide key={item.id}>
                             <div
                                 onClick={() => playAudio(item.attachment_name, item.title, item.id)}

@@ -42,7 +42,7 @@ export default function SlideCategory(props: { featuredCategories: any; showCoun
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {featuredCategories?.map((item: { name: string; id: number; attachment_name: string; }) => (
+                    {featuredCategories?.map((item: { name: string; id: string; attachment_name: string; }) => (
                         <SwiperSlide key={item.id}>
                             <Link 
                                 href={`/Media/Category/${item.id}`}

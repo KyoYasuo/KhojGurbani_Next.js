@@ -45,7 +45,7 @@ export default function SlideTrack(props: { featuredTracks: any; showCount: any;
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {featuredTracks?.map((item: { title: string; id: number; img: string; duration: string; author_name: string; attachment_name: string}) => (
+                    {featuredTracks?.map((item: { title: string; id: string; img: string; duration: string; author_name: string; attachment_name: string}) => (
                         <SwiperSlide key={item.id}>
                             <div
                                 className="cursor-pointer text-[#252638] hover:text-blue-primary text-[15px]"

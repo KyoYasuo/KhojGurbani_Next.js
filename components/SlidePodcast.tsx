@@ -54,7 +54,7 @@ export default function SlidePodcast(props: { featuredMedias: any; showCount: an
                     modules={[Autoplay]}
                     className="w-full h-full overflow-visible"
                 >
-                    {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string; }) => (
+                    {featuredMedias?.map((item: { media: string; id: string; title: string; thumbnail: string; }) => (
                         <SwiperSlide key={item.id}>
                             <div
                                 onClick={() => playAudio(item.media, item.title, item.id)}

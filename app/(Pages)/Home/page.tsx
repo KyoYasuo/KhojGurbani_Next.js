@@ -24,7 +24,7 @@ export default async function HomePage() {
                     <Search />
                 </div>
                 <div className="hidden md:grid grid-cols-2 gap-8">
-                    {cat_results.map((item: { id: number; category_image: string; title: string; description: string; }) => (
+                    {cat_results.map((item: { id: string; category_image: string; title: string; description: string; }) => (
                         <Link key={item.id} href={`/Home/${item.id}`}>
                             <FeaturedTheme
                                 imgURL={item.category_image}

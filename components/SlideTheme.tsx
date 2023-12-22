@@ -44,7 +44,7 @@ export default function SlideTheme(props: { cat_results: any; showCount: any; })
                     speed={showCount === 1 ? 500 : 1000}
                     className="w-full h-full overflow-visible"
                 >
-                    {cat_results?.map((item: { id: number; category_image: string; title: string; }) => (
+                    {cat_results?.map((item: { id: string; category_image: string; title: string; }) => (
                         <SwiperSlide key={item.id}>
                             <Link key={item.id} href={`/Home/${item.id}`} className='relative cursor-pointer w-full h-full'>
                                 <div className='relative cursor-pointer w-full h-[90%]'>

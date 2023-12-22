@@ -28,7 +28,7 @@ export default async function MediaCategoryPage({ params: { category } }: { para
                     </div>
 
                     <div className="grid grid-cols-2 gap-8 mb-8">
-                        {mediaCateories.map((item: { name: string; id: number; attachment_name: string; }) => (
+                        {mediaCateories.map((item: { name: string; id: string; attachment_name: string; }) => (
                             <Link
                                 key={item.id}
                                 href={`/Media/Category/${category}/${item.id}`}

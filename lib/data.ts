@@ -79,7 +79,7 @@ export async function getSlugs() {
     try {
         const data = await fetchPodcastsData();
         const cat_result = data.result.cat_result;
-        return cat_result.map((item: { id: number; }) => `${item.id}`);
+        return cat_result.map((item: { id: string; }) => `${item.id}`);
     } catch (error: any) {
         throw new Error(error);
     }
@@ -258,7 +258,7 @@ export async function getMediaCategoryInfo(category: string) {
     try {
         const data = await fetchFeaturedCategories();
         const featuredCategories = data.featured_categories;
-        const categoryInfo = featuredCategories.find((item: { id: number; }) => item.id === parseInt(category));
+        const categoryInfo = featuredCategories.find((item: { id: string; }) => item.id === category);
         return categoryInfo;
     } catch (error: any) {
         throw new Error(error);
@@ -279,7 +279,7 @@ export async function getSubCategoryMediaInfo(category: string, subCategory: str
     try {
         const data = await fetchMediaCategories(category);
         const mediaCategories = data.featured_sub_categories;
-        const subCategoryInfo = mediaCategories.find((item: { id: number; }) => item.id === parseInt(subCategory));
+        const subCategoryInfo = mediaCategories.find((item: { id: string; }) => item.id === subCategory);
         return subCategoryInfo;
     } catch (error: any) {
         throw new Error(error);

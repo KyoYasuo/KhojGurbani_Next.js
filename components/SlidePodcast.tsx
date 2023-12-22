@@ -57,7 +57,7 @@ export default function SlidePodcast(props: { featuredMedias: any; showCount: an
                     {featuredMedias?.map((item: { media: string; id: number; title: string; thumbnail: string; }) => (
                         <SwiperSlide key={item.id}>
                             <div
-                                onClick={() => playAudio(item.media, item.title)}
+                                onClick={() => playAudio(item.media, item.title, item.id)}
                                 className="relative cursor-pointer w-full h-[90%]"
                             >
                                 <Image

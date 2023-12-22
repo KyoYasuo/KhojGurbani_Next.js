@@ -49,7 +49,7 @@ export default function SlideRadio(props: { radios: any; showCount: any; }) {
                         <SwiperSlide key={item.id}>
                             <div
                                 className="cursor-pointer relative"
-                                onClick={() => playAudio(item.src, item.title)}
+                                onClick={() => playAudio(item.src, item.title, item.id)}
                             >
                                 <img
                                     src={"/Images/" + item.img}

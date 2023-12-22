@@ -13,7 +13,7 @@ export default function CategoryMedias(props: {categoryMedias: { id: number; aut
                     <div
                         key={item.id}
                         className="hover:text-blue-primary text-[#767373] text-sm"
-                        onClick={() => playAudio(item.attachment_name, item.author_name + " (" + item.title + ")")}
+                        onClick={() => playAudio(item.attachment_name, item.author_name + " (" + item.title + ")", item.id)}
                     >
                         <img
                             src={item.author_image}

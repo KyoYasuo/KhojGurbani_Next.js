@@ -6,7 +6,7 @@ interface AudioPlayerContextProps {
     audioTitle: string;
     audioUrl: string;
     isPlaying: boolean;
-    playAudio: (url: string, title: string) => void;
+    playAudio: (url: string, title: string, id: string) => void;
     pauseAudio: () => void;
 }
 

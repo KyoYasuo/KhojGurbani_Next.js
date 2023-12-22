@@ -16,13 +16,13 @@ export default function HomeBanner(props: { recent: any; }) {
                     <p className="text-sm text-white">{dateTransform(recent.created_at)}</p>
                     <div className="flex gap-2 justify-between max-w-[350px] md:mt-8">
                         <button
-                            onClick={() => playAudio(recent.englishPodcastSrc, recent.title)}
+                            onClick={() => playAudio(recent.englishPodcastSrc, recent.title, recent.id)}
                             className="text-sm text-white px-6 py-1 rounded-lg border border-line bg-blue-primary hover:bg-blue-secondary transition-all"
                         >
                             English - ਅੰਗਰੇਜ਼ੀ
                         </button>
                         <button
-                            onClick={() => playAudio(recent.punjabiPodcardSrc, recent.title)}
+                            onClick={() => playAudio(recent.punjabiPodcardSrc, recent.title, recent.id)}
                             className="text-sm text-white px-6 py-1 rounded-lg border border-line bg-primary hover:bg-third transition-all"
                         >
                             Punjabi- ਪੰਜਾਬੀ
@@ -64,13 +64,13 @@ export default function HomeBanner(props: { recent: any; }) {
                 </div>
                 <div className="flex gap-2 justify-between max-w-[350px] md:mt-8">
                     <button
-                        onClick={() => playAudio(recent.englishPodcastSrc, recent.title)}
+                        onClick={() => playAudio(recent.englishPodcastSrc, recent.title, recent.id)}
                         className="text-sm text-white px-2 6 py-1 rounded-full border border-line bg-blue-primary hover:bg-blue-secondary transition-all"
                     >
                         English
                     </button>
                     <button
-                        onClick={() => playAudio(recent.punjabiPodcardSrc, recent.title)}
+                        onClick={() => playAudio(recent.punjabiPodcardSrc, recent.title, recent.id)}
                         className="text-sm text-white px-2 py-1 rounded-full border border-line bg-primary hover:bg-third transition-all"
                     >
                         Punjabi

@@ -39,12 +39,12 @@ export default function CategoryMediaTable(props: { medias: { id: number; title:
                                         if (isPlaying) {
                                             pauseAudio();
                                         } else {
-                                            playAudio(item.attachment_name, item.title);
+                                            playAudio(item.attachment_name, item.title, item.id);
                                         }
                                         return;
                                     }
                                     setMediaIndex(index);
-                                    playAudio(item.attachment_name, item.title);
+                                    playAudio(item.attachment_name, item.title, item.id);
                                 }}
                             >
                                 {

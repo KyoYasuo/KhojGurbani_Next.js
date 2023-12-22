@@ -45,7 +45,7 @@ export default function SlideCategory(props: { featuredCategories: any; showCoun
                     {featuredCategories?.map((item: { name: string; id: number; attachment_name: string; }) => (
                         <SwiperSlide key={item.id}>
                             <Link 
-                                href={`/Media/${item.id}`}
+                                href={`/Media/Category/${item.id}`}
                                 className="cursor-pointer"
                             >
                                 <img

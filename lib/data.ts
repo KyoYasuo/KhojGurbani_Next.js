@@ -13,7 +13,8 @@ import {
     fetchFeaturedCategories,
     fetchFeaturedTracks,
     fetchRecents,
-    fetchAllRagis
+    fetchAllRagis,
+    fetchMediaCategories
 } from "./fetch_data";
 
 export async function getTodayPodcast() {
@@ -235,6 +236,16 @@ export async function getAllRagis() {
         // console.log(orderedRagis);
         return orderedRagis;
         //replace: Ustad, Gyani, Giani, Bhai, Prof, Bibi, Sant, Dr., Sri, Dr, 
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getMediaCategories(category: string) {
+    try {
+        const data = await fetchMediaCategories(category);
+        const mediaCategories = data.featured_sub_categories;
+        return mediaCategories;
     } catch (error: any) {
         throw new Error(error);
     }

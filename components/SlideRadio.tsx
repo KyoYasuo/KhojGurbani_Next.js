@@ -9,6 +9,7 @@ import Image from "next/image";
 
 import { useCallback, useRef } from 'react';
 import Link from 'next/link';
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 export default function SlideRadio(props: { radios: any; showCount: any; }) {
 
@@ -27,6 +28,8 @@ export default function SlideRadio(props: { radios: any; showCount: any; }) {
         swiperRef.current.swiper.slidePrev();
     }, []);
 
+    const { playAudio } = useAudioPlayer();
+
     return (
         <div className='gap-2 items-center relative'>
             <button
@@ -42,10 +45,11 @@ export default function SlideRadio(props: { radios: any; showCount: any; }) {
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {radios?.map((item: { title: string; id: number; img: string; }) => (
+                    {radios?.map((item: { title: string; id: number; img: string; src: string; }) => (
                         <SwiperSlide key={item.id}>
                             <div
                                 className="cursor-pointer relative"
+                                onClick={() => playAudio(item.src, item.title)}
                             >
                                 <img
                                     src={"/Images/" + item.img}

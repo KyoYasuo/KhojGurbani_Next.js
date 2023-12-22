@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import { createRef, useRef } from "react";
 
 export default function Groups(props: { allRagis: any; }) {
@@ -32,7 +33,7 @@ export default function Groups(props: { allRagis: any; }) {
                     <div
                         key={group}
                         className="text-[#646464] text-base font-bold rounded-full w-[30px] h-[30px] bg-[#DCDCDC] m-[5px] flex items-center justify-center"
-                        // onClick={() => scrollToDiv(group)}
+                    // onClick={() => scrollToDiv(group)}
                     >
                         <p>{group}</p>
                     </div>
@@ -56,10 +57,14 @@ export default function Groups(props: { allRagis: any; }) {
                     </div>
                     <div className="grid grid-cols-6 gap-[14px] px-6">
                         {allRagis[group].map((item: { id: number; name: string; description: string; attachment_name: string; }) => (
-                            <div key={item.id} className="">
+                            <Link
+                                key={item.id}
+                                href={`/Media/${item.id}`}
+                                className="cursor-pointer"
+                            >
                                 <img className="" src={item.attachment_name} />
                                 <div className="text-[#424242] text-sm my-3">{item.name}</div>
-                            </div>
+                            </Link>
                         ))}
                     </div>
                 </div>

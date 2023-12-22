@@ -197,3 +197,18 @@ export async function fetchCategoryMedias(category: string) {
 
     return res.json();
 }
+
+export async function postTrack(params: any) {
+    const res = await fetch(`${endpoint}media/play`, {
+        method: 'POST',
+        body: JSON.stringify(params),
+    });
+    console.log("post: ", `${endpoint}media/play`);
+    console.log(res.json());
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

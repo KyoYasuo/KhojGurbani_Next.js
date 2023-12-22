@@ -7,42 +7,54 @@ import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 import ReactPlayer from 'react-player';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
+import { postTrack } from '@/lib/fetch_data';
 
 
 const AudioPlayer: React.FC = () => {
-    const getMachinId: any = () => {
-        let machinUUIDNew;
-        if (localStorage.getItem('machinUUID') == null) {
-            machinUUIDNew = uuidv4();
-            localStorage.setItem('machinUUID', machinUUIDNew);
-        } else {
-            machinUUIDNew = localStorage.getItem('machinUUID');
-        }
-        return machinUUIDNew;
-    }
 
-    const { audioTitle, audioUrl, isPlaying, pauseAudio, playAudio } = useAudioPlayer();
+
+    const { audioId, audioTitle, audioUrl, isPlaying, pauseAudio, playAudio } = useAudioPlayer();
     const playerRef = useRef<ReactPlayer | null>(null);
     const sliderRef = useRef<HTMLDivElement>(null);
-    
+
     const [isShow, setIsShow] = useState<boolean>(false);
-    
+
     const [duration, setDuration] = useState<number | null>(null);
     const [currentTime, setCurrentTime] = useState<number>(0);
     const [loadedTime, setLoadedTime] = useState<number>(0);
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    
+
+    const getMachineId = (): string => {
+        let machineUUIDNew: string | null = localStorage.getItem('machineUUID'); // Corrected the spelling of 'machine'
+        if (machineUUIDNew === null) {
+            machineUUIDNew = uuidv4();
+            localStorage.setItem('machineUUID', machineUUIDNew);
+        }
+        console.log(machineUUIDNew);
+        return machineUUIDNew;
+    };
+
+    const sendTrack = (): void => {
+        const machineId = getMachineId();
+        let param = new URLSearchParams();
+        param.set('machineId', machineId); // Corrected the spelling of 'machine'
+        param.set('media_id', audioId);
+        param.set('view_date', new Date().toISOString());
+        param.set('user_id', ''); // Assuming you have a mechanism to obtain a user_id if needed
+        postTrack(param); // Assuming postTrack is a function you've defined elsewhere
+    };
+
     useEffect(() => {
-        getMachinId();
         console.log(audioUrl, "is loading");
+        sendTrack(); // Corrected to call the function
         if (audioUrl) setIsShow(true);
         setIsLoading(true);
         setDuration(0);
         setCurrentTime(0);
         setLoadedTime(0);
     }, [audioUrl]);
-    
+
     const handleError = (error: any) => {
         toast.error(error);
     }

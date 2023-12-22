@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface AudioPlayerContextProps {
+    audioId: string;
     audioTitle: string;
     audioUrl: string;
     isPlaying: boolean;
@@ -16,11 +17,13 @@ interface AudioPlayerProviderProps {
 }
 
 export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ children }) => {
+    const [audioId, setAudioId] = useState<string>('');
     const [audioTitle, setAudioTitle] = useState<string>('');
     const [audioUrl, setAudioUrl] = useState<string>('');
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
-    const playAudio = (url: string, title: string) => {
+    const playAudio = (url: string, title: string, id: string) => {
+        setAudioId(id);
         setAudioTitle(title);
         setAudioUrl(url);
         setIsPlaying(true);
@@ -31,7 +34,7 @@ export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ childr
     };
 
     return (
-        <AudioPlayerContext.Provider value={{ audioTitle,audioUrl, isPlaying, playAudio, pauseAudio }}>
+        <AudioPlayerContext.Provider value={{ audioId, audioTitle, audioUrl, isPlaying, playAudio, pauseAudio }}>
             {children}
         </AudioPlayerContext.Provider>
     );

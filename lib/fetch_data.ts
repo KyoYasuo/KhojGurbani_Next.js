@@ -210,5 +210,4 @@ export async function postTrack(params: any) {
         throw new Error('Failed to fetch podcast data');
     }
 
-    return res.json();
 }

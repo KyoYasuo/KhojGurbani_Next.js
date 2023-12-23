@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function MediaTable(props: { medias: { id: string; title: string; duration: string; Scripture: string; ScriptureRomanEnglish: string; page: number; shabad_id: string; attachment_name: string; }[]; }) {
 
-    // console.log(props.medias);
     const { isPlaying, pauseAudio, playAudio } = useAudioPlayer();
     const [mediaIndex, setMediaIndex] = useState<number | null>(null);
 

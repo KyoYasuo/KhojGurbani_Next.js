@@ -236,7 +236,6 @@ export async function getAllRagis() {
             const firstLetter = cutName(item.name).substring(0, 1).toUpperCase();
             orderedRagis[firstLetter] = [...orderedRagis[firstLetter] || [], item];
         })
-        // console.log(orderedRagis);
         return orderedRagis;
         //replace: Ustad, Gyani, Giani, Bhai, Prof, Bibi, Sant, Dr., Sri, Dr, 
     } catch (error: any) {

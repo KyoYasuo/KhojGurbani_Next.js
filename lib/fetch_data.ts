@@ -146,7 +146,7 @@ export async function fetchFeaturedTracks() {
 export async function fetchRecents(machine_id: string | null) {
     const res = await fetch(`${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`);
     console.log("fetch: ", `${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`);
-
+    
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');
     }
@@ -207,7 +207,7 @@ export async function postTrack(params: any) {
         body: params.toString(),
     });
     console.log("post: ", `${endpoint}media/play`);
-    console.log(params);
+    console.log(params.toString());
 
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');

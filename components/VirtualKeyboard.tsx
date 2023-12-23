@@ -45,7 +45,6 @@ export default function VirtualKeyboard(): JSX.Element {
         setWordDetail(await getWordDetail(selectedValue, word));
         setInput(word);
         keyboard.current.setInput(word);
-        console.log(wordDetail);
     }
 
     const clear = () => {

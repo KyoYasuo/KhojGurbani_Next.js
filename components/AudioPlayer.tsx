@@ -40,7 +40,7 @@ const AudioPlayer: React.FC = () => {
         let param = new URLSearchParams();
         param.set('machine_id', machineId); // Corrected the spelling of 'machine'
         param.set('media_id', audioId);
-        param.set('view_date', new Date().toLocaleDateString());
+        param.set('view_date', new Date().toISOString().substring(0, 10));
         param.set('user_id', ''); // Assuming you have a mechanism to obtain a user_id if needed
         postTrack(param); // Assuming postTrack is a function you've defined elsewhere
     };

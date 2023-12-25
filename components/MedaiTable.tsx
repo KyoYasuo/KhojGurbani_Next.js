@@ -12,7 +12,7 @@ export default function MediaTable(props: { medias: { id: string; title: string;
     return (
         <table className="border-collapse rounded-t-md overflow-hidden w-full">
             <thead className="bg-[#094457]">
-                <tr className="border border-[#094457]">
+                <tr className=" hidden md:table-row border border-[#094457]">
                     <th className="text-white text-lg text-left font-normal px-[15px] py-[12px] w-[5%]">#</th>
                     <th className="text-white text-lg text-left font-normal px-[15px] py-[12px] w-[30%]">Title</th>
                     <th className="text-white text-lg text-left font-normal px-[15px] py-[12px] w-[15%]">Duration</th>
@@ -32,7 +32,7 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                         <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{index + 1}</td>
                         <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{item.title}</td>
                         <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{item.duration}</td>
-                        <td className="px-[15px] py-[12px] align-top">
+                        <td className="hidden md:table-cell px-[15px] py-[12px] align-top">
                             <div className="text-blue-primary text-base text-left font-bold pb-1 leading-normal">
                                 {item.Scripture}
                             </div>
@@ -45,7 +45,7 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                         </td>
                         <td className="px-[15px] py-[12px] align-top">
                             <button
-                                className=""
+                                className="w-9 h-9"
                                 onClick={() => {
                                     if (mediaIndex === index) {
                                         if (isPlaying) {

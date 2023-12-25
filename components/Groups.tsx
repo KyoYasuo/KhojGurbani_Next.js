@@ -28,7 +28,7 @@ export default function Groups(props: { allRagis: any; }) {
 
     return (
         <>
-            <div className="flex justify-center my-4">
+            <div className="flex flex-wrap justify-center my-4">
                 {groups.map((group: string) => (
                     <div
                         key={group}
@@ -55,7 +55,7 @@ export default function Groups(props: { allRagis: any; }) {
                         </svg>
                         <span className="absolute w-full top-[2px] text-center text-sm text-white font-normal">{group}</span>
                     </div>
-                    <div className="grid grid-cols-6 gap-[14px] px-6">
+                    <div className="grid grid-col-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-[14px] px-6">
                         {allRagis[group].map((item: { id: string; name: string; description: string; attachment_name: string; }) => (
                             <Link
                                 key={item.id}

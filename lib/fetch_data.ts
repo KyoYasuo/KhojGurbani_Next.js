@@ -214,3 +214,14 @@ export async function postTrack(params: any) {
     }
 
 }
+
+export async function fetchSearchMedias(query: string) {
+    const res = await fetch(`${endpoint}scripture/media-advance-search-web?${query}`);
+    console.log("fetch: ", `${endpoint}scripture/media-advance-search-web?${query}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}

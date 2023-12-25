@@ -42,18 +42,22 @@ export default function SlideRecent(props: { recents: any; showCount: any; }) {
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {recents?.map((item: { title: string; id: string; img: string; }) => (
+                    {recents?.map((item: { title: string; id: string; img: string; duration: string; author_name: string}) => (
                         <SwiperSlide key={item.id}>
-                            <Link 
+                            <Link
                                 href={`/Media/${item.id}`}
-                                className="cursor-pointer"
+                                className="cursor-pointer text-[#252638] hover:text-blue-primary text-[15px]"
                             >
                                 <img
                                     src={item.img}
                                     alt={item.title}
-                                    className=''
+                                    className='w-full'
                                 />
-                                <div className="text-[#252638] text-[15px] mt-2">{item.title}</div>
+                                <div className='flex justify-between'>
+                                    <div className="">{item.title}</div>
+                                    <div className="text-[#767373] text-sm">{item.duration}</div>
+                                </div>
+                                <div className="text-[#767373] text-sm">{item.author_name}</div>
                             </Link>
                         </SwiperSlide>
                     ))}
@@ -65,6 +69,6 @@ export default function SlideRecent(props: { recents: any; showCount: any; }) {
             >
                 <Image src='/Images/SVG/arrow_right.svg' alt='right' width={16} height={16} />
             </button>
-        </div>
+        </div >
     );
 }

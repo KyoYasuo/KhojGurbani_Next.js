@@ -51,7 +51,7 @@ export default function SlideRagi(props: { featuredRagis: any; showCount: any; }
                                 <img
                                     src={item.attachment_name}
                                     alt={item.name}
-                                    className='aspect-square rounded-xl'
+                                    className='aspect-square rounded-xl w-full'
                                 />
                                 <div className="text-[#4E4E4E] text-sm">{item.name}</div>
                             </Link>

@@ -51,7 +51,7 @@ export default function SlideCategory(props: { featuredCategories: any; showCoun
                                 <img
                                     src={item.attachment_name}
                                     alt={item.name}
-                                    className=''
+                                    className='w-full'
                                 />
                                 <div className="text-[#252638] text-[15px] mt-2">{item.name}</div>
                             </Link>

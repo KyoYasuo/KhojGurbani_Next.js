@@ -54,7 +54,7 @@ export default function SlideTrack(props: { featuredTracks: any; showCount: any;
                                 <img
                                     src={item.img}
                                     alt={item.title}
-                                    className=''
+                                    className='w-full'
                                 />
                                 <div className='flex justify-between'>
                                     <div className="">{item.title}</div>

@@ -27,7 +27,7 @@ export default async function MediaCategoryPage({ params: { category } }: { para
                         <span className=" text-[#6C757D] text-[16px]">{mediaCategoryInfo.name}</span>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div className="grid grid-cols-2 gap-8 mb-8">
                         {mediaCateories.map((item: { name: string; id: string; attachment_name: string; }) => (
                             <Link
                                 key={item.id}
@@ -38,7 +38,7 @@ export default async function MediaCategoryPage({ params: { category } }: { para
                                     <img
                                         src={item.attachment_name}
                                         alt={item.name}
-                                        className="w-full"
+                                        className=""
                                     />
                                     <div
                                         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white text-lg font-bold

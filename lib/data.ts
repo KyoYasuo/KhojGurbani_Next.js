@@ -16,7 +16,8 @@ import {
     fetchAllRagis,
     fetchMediaCategories,
     fetchSubCategoryMedias,
-    fetchCategoryMedias
+    fetchCategoryMedias,
+    fetchSearchMedias
 } from "./fetch_data";
 
 export async function getTodayPodcast() {
@@ -198,7 +199,7 @@ export async function getFeaturedTracks() {
 export async function getRecents() {
     try {
         const data = await fetchRecents("ddf41b28-eda8-4594-ab08-1241031fe61d");
-        console.log(data);
+        // console.log(data);
         const recents = data.recently_played;
         return recents;
     } catch (error: any) {
@@ -295,6 +296,22 @@ export async function getCategoryMedias(category: string) {
     }
 }
 
+export async function getSearchMediaResult(params: any) {
+    try {
+        const data = await fetchSearchMedias(params.toString());
+        let searchMediaGroup: { [key: string]: any[] } = {};
+        data.forEach((item: { ShabadID: any; }) => {
+            searchMediaGroup[item.ShabadID] = [...(searchMediaGroup[item.ShabadID] || []), item];
+        });
+
+        const keys = Object.keys(searchMediaGroup);
+        let arr: any[] = keys.map(key => searchMediaGroup[key]);
+        // console.log(arr);
+        return arr;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
 
 export function dateTransform(value: string): string {
     const dd: string = value?.substr(8, 2);

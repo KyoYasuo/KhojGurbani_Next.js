@@ -29,7 +29,23 @@ export default function CategoryMediaTable(props: { medias: { id: string; title:
                     ) => (
                         <tr key={item.id} className="border border-[#DEE2E6]">
                             <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{index + 1}</td>
-                            <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{item.title}</td>
+                            <td
+                                className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top cursor-pointer"
+                                onClick={() => {
+                                    if (mediaIndex === index) {
+                                        if (isPlaying) {
+                                            pauseAudio();
+                                        } else {
+                                            playAudio(item.attachment_name, item.title, item.id);
+                                        }
+                                        return;
+                                    }
+                                    setMediaIndex(index);
+                                    playAudio(item.attachment_name, item.title, item.id);
+                                }}
+                            >
+                                {item.title}
+                            </td>
                             <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{item.duration}</td>
                             <td className="px-[15px] py-[12px] align-top">
                                 <button
@@ -76,7 +92,21 @@ export default function CategoryMediaTable(props: { medias: { id: string; title:
                         <div className="text-[#707070] text-sm text-left font-normal px-[15px] py-[5px] align-top">{index + 1}</div>
                         <div className="flex text-[#707070] px-[15px] py-[5px] align-top">
                             <div className="text-sm font-bold w-[40%]">Title</div>
-                            <div className="text-sm font-normal w-[60%]">{item.title}</div>
+                            <div
+                                className="text-sm font-normal w-[60%] cursor-pointer"
+                                onClick={() => {
+                                    if (mediaIndex === index) {
+                                        if (isPlaying) {
+                                            pauseAudio();
+                                        } else {
+                                            playAudio(item.attachment_name, item.title, item.id);
+                                        }
+                                        return;
+                                    }
+                                    setMediaIndex(index);
+                                    playAudio(item.attachment_name, item.title, item.id);
+                                }}
+                            >{item.title}</div>
                         </div>
                         <div className="flex text-[#707070] px-[15px] py-[5px] align-top">
                             <div className="text-sm font-bold w-[40%]">Duration</div>
@@ -126,7 +156,21 @@ export default function CategoryMediaTable(props: { medias: { id: string; title:
                     <div key={item.id} className="flex text-[#212529] justify-between items-center mb-4">
                         <div className="flex items-baseline">
                             <div className="text-sm mr-4">{index + 1}</div>
-                            <div className="text-[15px] mr-2">{item.title}</div>
+                            <div
+                                className="text-[15px] mr-2 cursor-pointer"
+                                onClick={() => {
+                                    if (mediaIndex === index) {
+                                        if (isPlaying) {
+                                            pauseAudio();
+                                        } else {
+                                            playAudio(item.attachment_name, item.title, item.id);
+                                        }
+                                        return;
+                                    }
+                                    setMediaIndex(index);
+                                    playAudio(item.attachment_name, item.title, item.id);
+                                }}
+                            >{item.title}</div>
                             <div className="text-[13px] text-[#707070]">{item.duration}</div>
                         </div>
                         <button

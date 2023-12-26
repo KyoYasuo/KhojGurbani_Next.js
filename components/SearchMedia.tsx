@@ -1,9 +1,14 @@
 "use client"
 
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
+import keyboardLayout from "@/lib/keyboard_layout";
 import { getSearchMediaResult } from '@/lib/data';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
+import Keyboard from "react-simple-keyboard";
+import "react-simple-keyboard/build/css/index.css";
 
 const SearchMedia = (props: { allRagis: any; }) => {
 
@@ -14,6 +19,44 @@ const SearchMedia = (props: { allRagis: any; }) => {
     const [audio_author_id, setaudio_author_id] = useState('');
 
     const [searchedMedia, setsearchedMedia] = useState<any>();
+
+    const [show, setShow] = useState(false);
+    const [layoutName, setLayoutName] = useState<string>("default");
+    const [selectedValue, setSelectedValue] = useState<string>("gurmukhi");
+    const keyboard = useRef<any>();
+
+    const divRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                divRef.current && !divRef.current.contains(event.target as Node)
+            ) {
+                setShow(false);
+            }
+        };
+
+        window.addEventListener("click", handleClickOutside);
+        return () => {
+            window.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+
+    const onChange = (input: string) => {
+        setsearch_keyword(input);
+        console.log("Input changed", input);
+    };
+
+    const handleShift = () => {
+        const newLayoutName = layoutName === "default" ? "shift" : "default";
+        setLayoutName(newLayoutName);
+    };
+
+    const onKeyPress = (button: string) => {
+        console.log("Button pressed", button);
+
+        if (button === "{shift}" || button === "{lock}") handleShift();
+    };
 
     const allRagis = props.allRagis;
     const groups = Object.keys(allRagis);
@@ -47,13 +90,49 @@ const SearchMedia = (props: { allRagis: any; }) => {
     return (
         <>
             <div className="flex flex-col sm:flex-row justify-between items-end md:gap-8 gap-4 mt-4">
-                <div className='flex flex-col grow w-full sm:max-w-[30%]'>
+                <div className='flex flex-col grow w-full sm:max-w-[35%]'>
                     <div className='text-sm text-[#808080] mb-[7px]'>Gurbani Search</div>
-                    <input
-                        type="text"
-                        className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] h-10 px-[14px] py-[7px]'
-                        onChange={(e) => setsearch_keyword(e.target.value)}
-                    />
+                    <div className='relative w-full' ref={divRef}>
+                        <input
+                            type="text"
+                            className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] w-full h-10 px-[14px] py-[7px]'
+                            onChange={(e) => setsearch_keyword(e.target.value)}
+                            value={search_keyword}
+                        />
+                        <Image
+                            src="/Images/Media/english.png"
+                            alt="english"
+                            width={200}
+                            height={200}
+                            className="absolute right-12 bottom-2 w-[42px] cursor-pointer"
+                            onClick={() => {
+                                if (show === false) setShow(true);
+                                else if (show === true && selectedValue === 'english') setShow(false);
+                                setSelectedValue('english');
+                            }}
+                        />
+                        <Image
+                            src="/Images/Media/punjabi.png"
+                            alt="gurmukhi"
+                            width={200}
+                            height={200}
+                            className="absolute right-1 bottom-2 w-[42px] cursor-pointer"
+                            onClick={() => {
+                                if (show === false) setShow(true);
+                                else if (show === true && selectedValue === 'gurmukhi') setShow(false);
+                                setSelectedValue('gurmukhi');
+                            }}
+                        />
+                        <div className={(show ? " " : "hidden ") + "absolute right-0 sm:left-0 top-10 z-50 min-w-[400px] w-full"}>
+                            <Keyboard
+                                keyboardRef={(r: any) => (keyboard.current = r)}
+                                layout={selectedValue === 'gurmukhi' ? keyboardLayout.gurmukhi : keyboardLayout.english}
+                                layoutName={layoutName}
+                                onChange={onChange}
+                                onKeyPress={onKeyPress}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div className='flex flex-col grow w-full sm:max-w-[25%]'>
                     <div className='flex justify-between'>
@@ -92,7 +171,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                         ))}
                     </select>
                 </div>
-                <div className='flex flex-col grow w-full sm:max-w-[20%]'>
+                <div className='flex flex-col grow w-full sm:max-w-[15%]'>
                     <button
                         className='text-white text-sm rounded-[3px] bg-blue-primary h-10 px-[10.5px] py-[5.25px]'
                         onClick={() => handleSearch()}
@@ -101,7 +180,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                     </button>
                 </div>
             </div>
-            {searchedMedia?.length > 0 ?
+            {searchedMedia && (searchedMedia?.length > 0 ?
                 <div className='mt-4'>
                     <table className="border-collapse rounded-t-md overflow-hidden w-full">
                         <thead className="bg-[#094457]">
@@ -233,7 +312,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                         </tbody>
                     </table>
                 </div >
-                : <div> No Result </div>}
+                : <div> No Result </div>)}
         </>
     );
 };

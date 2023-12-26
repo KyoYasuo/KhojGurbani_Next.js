@@ -144,7 +144,7 @@ export async function fetchFeaturedTracks() {
 }
 
 export async function fetchRecents(machine_id: string | null) {
-    const res = await fetch(`${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`);
+    const res = await fetch(`${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`, { cache: 'no-store' });
     console.log("fetch: ", `${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`);
     
     if (!res.ok) {

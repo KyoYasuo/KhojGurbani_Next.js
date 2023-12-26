@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { getRecents } from '@/lib/data';
+import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 export default function SlideRecent(props: { showCount: any; }) {
 
@@ -39,6 +40,8 @@ export default function SlideRecent(props: { showCount: any; }) {
         swiperRef.current.swiper.slidePrev();
     }, []);
 
+    const { playAudio } = useAudioPlayer();
+
     return (
         <div className='gap-2 items-center relative'>
             <button
@@ -54,11 +57,11 @@ export default function SlideRecent(props: { showCount: any; }) {
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {recents?.map((item: { title: string; id: string; img: string; duration: string; author_name: string }) => (
+                    {recents?.map((item: { title: string; id: string; img: string; duration: string; author_name: string; attachment_name: string; }) => (
                         <SwiperSlide key={item.id}>
-                            <Link
-                                href={`/Media/${item.id}`}
+                            <div
                                 className="cursor-pointer text-[#252638] hover:text-blue-primary text-[15px]"
+                                onClick={() => playAudio(item.attachment_name, item.title, item.id)}
                             >
                                 <img
                                     src={item.img}
@@ -70,7 +73,7 @@ export default function SlideRecent(props: { showCount: any; }) {
                                     <div className="text-[#767373] text-sm">{item.duration}</div>
                                 </div>
                                 <div className="text-[#767373] text-sm">{item.author_name}</div>
-                            </Link>
+                            </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>

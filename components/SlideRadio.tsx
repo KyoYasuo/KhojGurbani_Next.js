@@ -8,7 +8,6 @@ import 'swiper/css/scrollbar';
 import Image from "next/image";
 
 import { useCallback, useRef } from 'react';
-import Link from 'next/link';
 import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 
 export default function SlideRadio(props: { radios: any; showCount: any; }) {

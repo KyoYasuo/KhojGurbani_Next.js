@@ -70,6 +70,7 @@ const AudioPlayer: React.FC = () => {
     }
 
     const handleDuration = (duration: number) => {
+        console.log("duration", duration);
         setDuration(duration);
     };
     const handleProgress = (progress: { played: number; playedSeconds: number; loaded: number; loadedSeconds: number; }) => {
@@ -171,12 +172,46 @@ const AudioPlayer: React.FC = () => {
                     onError={handleError}
                     className="hidden"
                 />
-                <div className='relative flex flex-col-reverse md:flex-row items-center h-full'>
-                    <div className='absolute left-0 top-2 w-full transition-all text-center text-xs'>{audioTitle}</div>
-                    <div className='flex justify-around items-center w-64 md:w-36'>
-                        <button onClick={handleBackward}>
-                            <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={32} height={32} />
-                        </button>
+                {(duration && duration != Infinity) ?
+                    <div className='relative flex flex-col-reverse md:flex-row items-center h-full'>
+                        <div className='absolute left-0 top-2 w-full transition-all text-center text-xs'>{audioTitle}</div>
+                        <div className='flex justify-around items-center w-64 md:w-36'>
+                            <button onClick={handleBackward}>
+                                <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={32} height={32} />
+                            </button>
+                            <button onClick={handlePlayPause}>
+                                {
+                                    isLoading ? (
+                                        <Image src='/Images/SVG/loading.svg' alt='loading' width={64} height={64} className=' cursor-wait' />
+                                    ) : (
+                                        isPlaying ? (
+                                            <Image src='/Images/SVG/pause.svg' alt='pause' width={64} height={64} />
+                                        ) : (
+                                            <Image src='/Images/SVG/play.svg' alt='play' width={64} height={64} />
+                                        )
+                                    )
+                                }
+                            </button>
+                            <button onClick={handleForward}>
+                                <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={32} height={32} />
+                            </button>
+                        </div>
+                        < div className='flex md:grow items-center w-full'>
+                            <div className='w-16 text-center'>{convertStoMs(currentTime)}</div>
+                            <div className='grow cursor-pointer'
+                                onMouseDown={handleMouseDown}
+                            >
+                                <div ref={sliderRef} className="relative h-2 w-full bg-gray-200 rounded-md">
+                                    <div className='absolute h-2 bg-gray-300 rounded-md transition-width' style={{ width: `${loadedTime * 100 / (duration || 1)}%` }}></div>
+                                    <div className='absolute h-2 bg-[#0B79BE] rounded-md transition-width' style={{ width: `${currentTime * 100 / (duration || 1)}%` }}></div>
+                                </div>
+                            </div>
+                            <div className='w-16 text-center'>-{convertStoMs((duration || 0) - currentTime)}</div>
+                        </div>
+                    </div>
+                    :
+                    <div className='flex justify-center items-center h-full'>
+                        <div className='transition-all text-center text-xs'>{audioTitle}</div>
                         <button onClick={handlePlayPause}>
                             {
                                 isLoading ? (
@@ -190,26 +225,11 @@ const AudioPlayer: React.FC = () => {
                                 )
                             }
                         </button>
-                        <button onClick={handleForward}>
-                            <Image src='/Images/SVG/forward-15-seconds.svg' alt='forward' width={32} height={32} />
-                        </button>
                     </div>
-                    <div className='flex md:grow items-center w-full'>
-                        <div className='w-16 text-center'>{convertStoMs(currentTime)}</div>
-                        <div className='grow cursor-pointer'
-                            onMouseDown={handleMouseDown}
-                        >
-                            <div ref={sliderRef} className="relative h-2 w-full bg-gray-200 rounded-md">
-                                <div className='absolute h-2 bg-gray-300 rounded-md transition-width' style={{ width: `${loadedTime * 100 / (duration || 1)}%` }}></div>
-                                <div className='absolute h-2 bg-[#0B79BE] rounded-md transition-width' style={{ width: `${currentTime * 100 / (duration || 1)}%` }}></div>
-                            </div>
-                        </div>
-                        <div className='w-16 text-center'>-{convertStoMs((duration || 0) - currentTime)}</div>
-                    </div>
-                </div>
+                }
             </div>
 
-        </div>
+        </div >
     );
 };
 

@@ -7,12 +7,24 @@ import 'swiper/css/scrollbar';
 
 import Image from "next/image";
 
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import { getRecents } from '@/lib/data';
 
-export default function SlideRecent(props: { recents: any; showCount: any; }) {
+export default function SlideRecent(props: { showCount: any; }) {
 
-    const recents = props.recents;
+    const [recents, setRecents] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const machineUUID = localStorage.getItem('machineUUID');
+            const recents = await getRecents(machineUUID || '');
+            setRecents(recents);
+        };
+
+        fetchData();
+    }, []);
+
     const showCount = props.showCount;
 
     const swiperRef = useRef<any>(null);
@@ -42,7 +54,7 @@ export default function SlideRecent(props: { recents: any; showCount: any; }) {
                     slidesPerView={showCount}
                     speed={showCount === 1 ? 500 : 1000}
                 >
-                    {recents?.map((item: { title: string; id: string; img: string; duration: string; author_name: string}) => (
+                    {recents?.map((item: { title: string; id: string; img: string; duration: string; author_name: string }) => (
                         <SwiperSlide key={item.id}>
                             <Link
                                 href={`/Media/${item.id}`}

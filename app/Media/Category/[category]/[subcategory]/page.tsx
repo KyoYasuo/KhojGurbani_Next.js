@@ -17,7 +17,7 @@ export default async function MediaSubCategoryPage({ params: { category, subcate
             </div>
 
             <div className="max-w-6xl px-4 mx-auto mb-8">
-                <div className="my-6 text-sm">
+                <div className="flex flex-wrap my-6 text-sm">
                     <Link href="/Media" className="hover:text-blue-primary hover:underline text-[#252638] inline">
                         Media
                     </Link>
@@ -25,8 +25,7 @@ export default async function MediaSubCategoryPage({ params: { category, subcate
                     <Link href={`/Media/Category/${category}`} className="hover:text-blue-primary hover:underline text-[#252638] inline">
                         {mediaCategoryInfo.name}
                     </Link>
-                    <span className=" text-[#6C757D]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>
-                    <span className=" text-[#6C757D] text-[16px]">{mediaSubCategoryInfo.name}</span>
+                    <span className=" text-[#6C757D] text-[16px]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;{mediaSubCategoryInfo.name}</span>
                 </div>
                 <CategoryMediaTable medias={mediaSubCategories} />
             </div>

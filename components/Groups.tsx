@@ -8,23 +8,20 @@ export default function Groups(props: { allRagis: any; }) {
     const allRagis = props.allRagis;
     const groups = Object.keys(allRagis);
 
-    // Initialize divRefs as an object with a ref for each group
-    // let divRefs = groups.reduce((acc, group) => {
-    //     acc[group] = createRef();
-    //     return acc;
-    // }, {});
+    const groupRefs = useRef<{ [key: string]: HTMLDivElement | null }>(
+        groups.reduce((acc, group) => {
+            acc[group] = null;
+            return acc;
+        }, {} as { [key: string]: HTMLDivElement | null })
+    );
 
-    // const scrollToDiv = (group) => {
-    //     // Access the ref directly from divRefs object
-    //     const selectedRef = divRefs[group];
-    //     if (selectedRef && selectedRef.current) {
-    //         selectedRef.current.scrollIntoView({
-    //             behavior: 'smooth',
-    //             block: 'start'
-    //         });
-    //     }
-    // };
-
+    const scrollToDiv = (group: string) => {
+        if (groupRefs.current[group]) {
+            const targetElement = groupRefs.current[group] as HTMLDivElement;
+            const targetPosition = targetElement.offsetTop - 80;
+            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+        }
+    };
 
     return (
         <>
@@ -32,15 +29,15 @@ export default function Groups(props: { allRagis: any; }) {
                 {groups.map((group: string) => (
                     <div
                         key={group}
-                        className="text-[#646464] text-base font-bold rounded-full w-[30px] h-[30px] bg-[#DCDCDC] m-[5px] flex items-center justify-center"
-                    // onClick={() => scrollToDiv(group)}
+                        className="cursor-pointer text-[#646464] text-base font-bold rounded-full w-[30px] h-[30px] bg-[#DCDCDC] m-[5px] flex items-center justify-center"
+                        onClick={() => scrollToDiv(group)}
                     >
                         <p>{group}</p>
                     </div>
                 ))}
             </div>
             {groups.map((group: string) => (
-                <div key={group} className="flex flex-col mb-8 shadow-common">
+                <div key={group} ref={(el) => (groupRefs.current[group] = el)} className="flex flex-col mb-8 shadow-common">
                     <div className="relative h-8 mb-2">
                         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                             width="28px" height="28px" viewBox="0 0 173.000000 170.000000"

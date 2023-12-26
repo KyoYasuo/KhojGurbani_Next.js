@@ -4,7 +4,7 @@ import SlideRadio from "@/components/SlideRadio";
 import SlideRagi from "@/components/SlideRagi";
 import SlideRecent from "@/components/SlideRecent";
 import SlideTrack from "@/components/SlideTrack";
-import { getFeaturedCategories, getFeaturedTracks, getFeaturedRagis, getRadios, getRecents, getAllRagis } from "@/lib/data";
+import { getFeaturedCategories, getFeaturedTracks, getFeaturedRagis, getRadios, getAllRagis } from "@/lib/data";
 import Link from "next/link";
 
 export default async function MediaPage() {
@@ -13,7 +13,6 @@ export default async function MediaPage() {
     const radios = await getRadios();
     const featuredRagis = await getFeaturedRagis();
     const featuredTracks = await getFeaturedTracks();
-    const recents = await getRecents();
     const allRagis = await getAllRagis();
 
     return (
@@ -26,13 +25,13 @@ export default async function MediaPage() {
                 <div className="mt-4">
                     <h2 className="text-[26px] font-bold">Recent played</h2>
                     <div className="block sm:hidden">
-                        <SlideRecent showCount={1} recents={recents} />
+                        <SlideRecent showCount={1} />
                     </div>
                     <div className="hidden sm:block lg:hidden">
-                        <SlideRecent showCount={2} recents={recents} />
+                        <SlideRecent showCount={2} />
                     </div>
                     <div className="hidden lg:block">
-                        <SlideRecent showCount={3} recents={recents} />
+                        <SlideRecent showCount={3} />
                     </div>
                 </div>
                 <div className="mt-4">

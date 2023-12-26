@@ -8,7 +8,7 @@ export default function CategoryMedias(props: {categoryMedias: { id: string; aut
 
     return (
         <>
-            <div className="grid grid-col grid-cols-3 gap-8 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mb-8">
                 {props.categoryMedias.map((item: { id: string; author_image: string; title: string; author_name: string; duration: string; attachment_name: string;}) => (
                     <div
                         key={item.id}
@@ -18,7 +18,7 @@ export default function CategoryMedias(props: {categoryMedias: { id: string; aut
                         <img
                             src={item.author_image}
                             alt={item.title}
-                            className=""
+                            className="w-full"
                         />
                         <div className="flex justify-between my-1">
                             <div className="">

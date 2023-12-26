@@ -19,12 +19,11 @@ export default async function MediaCategoryPage({ params: { category } }: { para
                 </div>
                 <div className="max-w-6xl px-4 mx-auto">
 
-                    <div className="my-6 text-sm">
+                    <div className="flex flex-wrap my-6 text-sm">
                         <Link href="/Media" className="hover:text-blue-primary hover:underline text-[#252638] inline">
                             Media
                         </Link>
-                        <span className=" text-[#6C757D]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>
-                        <span className=" text-[#6C757D] text-[16px]">{mediaCategoryInfo.name}</span>
+                        <span className=" text-[#6C757D] text-[16px]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;{mediaCategoryInfo.name}</span>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">

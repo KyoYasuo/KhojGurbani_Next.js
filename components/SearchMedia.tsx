@@ -182,7 +182,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
             </div>
             {searchedMedia && (searchedMedia?.length > 0 ?
                 <div className='mt-4'>
-                    <table className="border-collapse rounded-t-md overflow-hidden w-full">
+                    <table className="hidden sm:table border-collapse rounded-t-md overflow-hidden w-full">
                         <thead className="bg-[#094457]">
                             <tr className="border border-[#094457]">
                                 <th className="text-white text-lg text-left font-normal px-[15px] py-[12px] w-[5%]">#</th>
@@ -307,6 +307,46 @@ const SearchMedia = (props: { allRagis: any; }) => {
                                             </td>
                                         </tr>
                                     ))}
+                                </>
+                            ))}
+                        </tbody>
+                    </table>
+                    <table className="sm:hidden border-collapse rounded-t-md overflow-hidden w-full">
+                        <thead className="bg-[#094457]">
+                            <tr className="border border-[#094457]">
+                                <th className="text-white text-lg text-left font-normal px-[15px] py-[12px] w-[20%]">#</th>
+                                <th className="text-white text-lg text-left font-normal px-[15px] py-[12px] w-[80%]">Shabad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {searchedMedia?.slice(0, 25).map((
+                                group: {
+                                    id: number; name: string; duration: string; attachment_name: string; Author: string; Melody: string;
+                                    Scripture: string; ScriptureRomanEnglish: string, Page: string, ShabadID: string
+                                }[],
+                                index: number
+                            ) => (
+                                <>
+                                    <tr key={index} className="border">
+                                        <td
+                                            className='text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top border'
+                                        >
+                                            {index + 1}
+                                        </td>
+                                        <td
+                                            className='px-[15px] py-[12px] align-top border'
+                                        >
+                                            <div className="cursor-pointer text-[#2D8DAC] text-base hover:underline text-left font-bold pb-1 leading-normal">
+                                                {group[0].ScriptureRomanEnglish}
+                                            </div>
+                                            <div className="cursor-pointer text-[#252638] text-sm hover:underline hover:text-blue-primary text-left font-normal leading-normal">
+                                                {group[0].Scripture}
+                                            </div>
+                                            <div className="text-[#707070] text-sm text-left font-normal leading-normal">
+                                                Page {group[0].Page} Shabad {group[0].ShabadID} - {group[0].Author} - {group[0].Melody}
+                                            </div>
+                                        </td>
+                                    </tr>
                                 </>
                             ))}
                         </tbody>

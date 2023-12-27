@@ -170,8 +170,9 @@ export default function CategoryMediaTable(props: { medias: { id: string; title:
                                     setMediaIndex(index);
                                     playAudio(item.attachment_name, item.title, item.id);
                                 }}
-                            >{item.title}</div>
-                            <div className="text-[13px] text-[#707070]">{item.duration}</div>
+                            >{item.title}
+                                <span className="text-[13px] text-[#707070] ml-2 inline-block">{item.duration}</span>
+                            </div>
                         </div>
                         <button
                             className=""

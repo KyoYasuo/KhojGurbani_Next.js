@@ -36,13 +36,13 @@ export default function NavBar() {
     }, []);
 
     return (
-        <div className={classNames('lg:h-16 transition-height duration-300', isOn? 'h-[432px]' : 'h-12')}>
+        <div className={classNames('transition-height duration-300', isOn? 'h-[432px]' : 'h-16')}>
 
             <nav className="bg-primary fixed w-full z-50">
 
                 <div className="mx-auto max-w-6xl px-4">
 
-                    <div className="h-12 lg:h-16 flex flex-1 items-center justify-between transition-height duration-300">
+                    <div className="h-16 flex flex-1 items-center justify-between transition-height duration-300">
 
                         <div className="flex flex-shrink-0 items-center">
                             <Link href="/Home">

@@ -181,8 +181,9 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                                     setMediaIndex(index);
                                     playAudio(item.attachment_name, item.title, item.id);
                                 }}
-                            >{item.title}</div>
-                            <div className="text-[13px] text-[#707070]">{item.duration}</div>
+                            >{item.title}
+                                <div className="text-[13px] text-[#707070] ml-2 inline-block">{item.duration}</div>
+                            </div>
                         </div>
                         <button
                             className=""

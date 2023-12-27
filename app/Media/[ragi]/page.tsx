@@ -29,7 +29,7 @@ export default async function MediaRagiSubPage({ params: { ragi } }: { params: {
                 </div>
                 <div className="absolute w-full -bottom-28 sm:-bottom-20">
                     <div className="text-blue-primary text-lg font-bold text-center">
-                        {ragiMedias.length} <span className="text-black font-normal ">results found</span>
+                        {ragiMedias.length} <span className="text-black font-normal ">Tracks</span>
                     </div>
                 </div>
             </div>

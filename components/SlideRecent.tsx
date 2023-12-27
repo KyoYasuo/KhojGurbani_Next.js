@@ -75,7 +75,7 @@ export default function SlideRecent(props: { showCount: any; }) {
                                 <div className="text-[#767373] text-sm">{item.author_name}</div>
                             </div>
                         </SwiperSlide>
-                    ))}
+                    )).reverse()}
                 </Swiper>
             </div>
             <button

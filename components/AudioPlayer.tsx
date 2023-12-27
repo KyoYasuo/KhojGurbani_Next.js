@@ -210,8 +210,8 @@ const AudioPlayer: React.FC = () => {
                         </div>
                     </div>
                     :
-                    <div className='flex justify-center items-center h-full'>
-                        <div className='transition-all text-center text-xs'>{audioTitle}</div>
+                    <div className='flex md:flex-row-reverse md:gap-2 flex-col justify-center items-center h-full'>
+                        <div className='transition-all text-center text-base'>{audioTitle}</div>
                         <button onClick={handlePlayPause}>
                             {
                                 isLoading ? (

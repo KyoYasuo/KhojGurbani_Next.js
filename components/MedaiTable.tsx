@@ -63,15 +63,18 @@ export default function MediaTable(props: {
                             >{item.title}</td>
                             <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{item.duration}</td>
                             <td className="px-[15px] py-[12px] align-top">
-                                <div className="text-blue-primary text-base text-left font-bold pb-1 leading-normal">
-                                    {item.Scripture}
-                                </div>
-                                <div className="text-[#252638] text-sm text-left font-normal leading-normal">
-                                    {item.ScriptureRomanEnglish}
-                                </div>
-                                <div className="text-[#707070] text-sm text-left font-normal leading-normal">
-                                    Page <span>{item.page}</span> Shabad <span>{item.shabad_id}</span>
-                                </div>
+                                {item.page > 0 && <>
+                                    <div className="text-blue-primary text-base text-left font-bold pb-1 leading-normal">
+                                        {item.Scripture}
+                                    </div>
+                                    <div className="text-[#252638] text-sm text-left font-normal leading-normal">
+                                        {item.ScriptureRomanEnglish}
+                                    </div>
+                                    <div className="text-[#707070] text-sm text-left font-normal leading-normal">
+                                        Page <span>{item.page}</span> Shabad <span>{item.shabad_id}</span>
+                                    </div>
+                                </>
+                                }
                             </td>
                             <td className="px-[15px] py-[12px] align-top">
                                 <button

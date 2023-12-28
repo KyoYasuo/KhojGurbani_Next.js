@@ -43,7 +43,7 @@ export default async function MediaRagiSubPage({ params: { ragi } }: { params: {
                 </div>
             </div>
             <div className="max-w-6xl px-4 mx-auto mt-[140px] sm:mt-[130px] md:mt-[140px] lg:mt-[150px]">
-                <div className="flex flex-col gap-8 sm:gap-0 sm:flex-row justify-between items-baseline my-6 ">
+                <div className="flex flex-col-reverse gap-8 sm:gap-0 sm:flex-row justify-between items-baseline my-6 ">
                     <div className="text-sm flex flex-wrap">
                         <Link href="/Media" className="hover:text-blue-primary hover:underline text-[#252638] inline">
                             Media

@@ -14,6 +14,17 @@ import { toast } from 'react-toastify';
 
 const SearchMedia = (props: { allRagis: any; }) => {
 
+    const tooltips = [
+        "You can search in both English and Punjabi language. Use this field for searches when you intend to find those sabad lines that contain an exact combination of words/letters. Example: Typing \"ਹਰਿ ਜਨ \" will find 132 results that contain this exact combination of words",
+        "You can search in both English and Punjabi language. Use this field for searches when beginning letters of a sabad line are known. Example: Typing \"jo\" or “ਜੋ” will find 801 results that starts with these letters",
+        "You can search in both English and Punjabi language. Enter the first characters of words and the words should be from the start of the Sabad line. For example search “jmtat’ for ‘Jo Mangay Thakur Apnay Te” or “ਜਮਠ” for “ਜੋ ਮਾਗਹਿ ਠਾਕੁਰ ਅਪੁਨੇ ਤੇ ਸੋਈ ਸੋਈ ਦੇਵੈ ॥“",
+        "You can search in both English and Punjabi language. Enter the first characters of words and the words can be anywhere in the Shabad line. For example search “tat’ for ‘Jo Mangay Thakur Apnay Te” or “ਮਠਅ” for “ਜੋ ਮਾਗਹਿ ਠਾਕੁਰ ਅਪੁਨੇ ਤੇ ਸੋਈ ਸੋਈ ਦੇਵੈ ॥“",
+        "You can search in both English and Punjabi language. Use this field for searches with combination of any number of whole words and they don’t need to be in exact order. Example: Typing \"har jan\" or “jan har” will both find 656 results",
+        "You can search in both English and Punjabi language. Use this filed for searches when you intend to find those sabad lines that contain any one of the typed words. Example: Typing \"har jan\" will find all lines that contain either of these words or both of these words",
+        "You can search in both English and Punjabi language. Use this field for searches with combination of any number of partial words and they don’t need to be in exact order",
+        "You can search in both English and Punjabi language. Enter the first characters of words and the words should be from the start of the Sabad line. For example search “jmtat’ for ‘Jo Mangay Thakur Apnay Te” or “ਜਮਠ” for “ਜੋ ਮਾਗਹਿ ਠਾਕੁਰ ਅਪੁਨੇ ਤੇ ਸੋਈ ਸੋਈ ਦੇਵੈ ॥“",
+    ];
+
     const searchParams = useSearchParams();
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -46,7 +57,28 @@ const SearchMedia = (props: { allRagis: any; }) => {
         return () => {
             window.removeEventListener("click", handleClickOutside);
         };
-    }, []);
+    });
+
+    useEffect(() => {
+        const handleKeyPress = async (event: KeyboardEvent) => {
+            if (event.key === 'Enter') {
+                try {
+                    setShow(false);
+                    await handleSearch();
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            }
+        };
+
+        // Add a global event listener for key press
+        document.addEventListener('keydown', handleKeyPress);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            document.removeEventListener('keydown', handleKeyPress);
+        };
+    });
 
     const onChange = (input: string) => {
         setsearch_keyword(input);
@@ -125,7 +157,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                     <div className='relative w-full' ref={divRef}>
                         <input
                             type="text"
-                            className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] w-full h-10 px-[14px] py-[7px]'
+                            className='outline-none border border-[#C5C5C5] text-[#42403F] text-base rounded-[3px] w-full h-10 px-[14px] py-[7px]'
                             onChange={(e) => { setsearch_keyword(e.target.value); keyboard.current.setInput(e.target.value) }}
                             onKeyDown={handleKeyDown}
                             value={search_keyword}
@@ -171,12 +203,15 @@ const SearchMedia = (props: { allRagis: any; }) => {
                 <div className='flex flex-col grow w-full sm:max-w-[25%]'>
                     <div className='flex justify-between'>
                         <div className='text-sm text-[#808080] mb-[7px]'>Search Options</div>
-                        <div className='w-[22px] h-[22px] bg-blue-primary rounded-full flex justify-center items-center'>
+                        <div className='w-[22px] h-[22px] bg-blue-primary rounded-full flex justify-center items-center tooltip'>
                             <svg fill="#FFFFFF" width="12px" height="12px" viewBox="-160 0 512 512"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z" />
                             </svg>
+                            <span className="tooltip-text text-sm">
+                                {tooltips[parseInt(search_option) - 1]}
+                            </span>
                         </div>
                     </div>
                     <select

@@ -4,8 +4,6 @@ import { useSearchParams, useRouter } from 'next/navigation';
 
 export default function MeidaPageNav(
     { totalPageCount, currentPage, setCurrentPage }: { totalPageCount: number, currentPage: number, setCurrentPage: (currentPage: number) => void }) {
-    const pageParams = useSearchParams();
-    const { replace } = useRouter();
 
     async function termChange(term: string | null) {
         if (term === "<") {
@@ -31,7 +29,9 @@ export default function MeidaPageNav(
 
     return (
         <>
-            <div className='flex gap-1 sm:justify-end justify-center'>
+            {totalPageCount > 1 &&
+
+                <div className='flex gap-1 sm:justify-end justify-center'>
 
                 <div className="cursor-pointer text-[#212529] text-center text-sm px-[10px] py-[7px]" onClick={(e) => handleClick(e.currentTarget.textContent)}>First</div>
                 <div className={classNameTemp} onClick={(e) => handleClick(e.currentTarget.textContent)}>&lt;</div>
@@ -46,6 +46,7 @@ export default function MeidaPageNav(
                 <div className="cursor-pointer text-[#212529] text-center text-sm px-[10px] py-[7px]" onClick={(e) => handleClick(e.currentTarget.textContent)}>Last</div>
 
             </div>
+            }
         </>
     );
 }

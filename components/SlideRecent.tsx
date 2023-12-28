@@ -61,7 +61,7 @@ export default function SlideRecent(props: { showCount: any; }) {
                         <SwiperSlide key={item.id}>
                             <div
                                 className="cursor-pointer text-[#252638] hover:text-blue-primary text-[15px]"
-                                onClick={() => playAudio(item.attachment_name, item.title, item.id)}
+                                onClick={() => playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id)}
                             >
                                 <img
                                     src={item.img}

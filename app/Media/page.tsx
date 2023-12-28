@@ -23,7 +23,7 @@ export default async function MediaPage() {
             <div className="max-w-6xl px-4 mx-auto">
                 <SearchMedia allRagis={allRagis} />
                 <div className="mt-4">
-                    <h2 className="text-[26px] font-bold">Recent played</h2>
+                    <h2 className="text-[26px] font-bold mb-[7px]">Recent played</h2>
                     <div className="block sm:hidden">
                         <SlideRecent showCount={1} />
                     </div>
@@ -35,7 +35,7 @@ export default async function MediaPage() {
                     </div>
                 </div>
                 <div className="mt-4">
-                    <h2 className="text-[26px] font-bold">Featured Tracks</h2>
+                    <h2 className="text-[26px] font-bold mb-[7px]">Featured Tracks</h2>
                     <div className="block sm:hidden">
                         <SlideTrack showCount={1} featuredTracks={featuredTracks} />
                     </div>
@@ -47,7 +47,7 @@ export default async function MediaPage() {
                     </div>
                 </div>
                 <div className="mt-4">
-                    <h2 className="text-[26px] font-bold">Featured Categories</h2>
+                    <h2 className="text-[26px] font-bold mb-[7px]">Featured Categories</h2>
                     <div className="block sm:hidden">
                         <SlideCategory showCount={1} featuredCategories={featuredCategories} />
                     </div>
@@ -59,7 +59,7 @@ export default async function MediaPage() {
                     </div>
                 </div>
                 <div className="mt-4">
-                    <h2 className="text-[26px] font-bold">Live Kirtan Radio</h2>
+                    <h2 className="text-[26px] font-bold mb-[7px]">Live Kirtan Radio</h2>
                     <div className="block sm:hidden">
                         <SlideRadio showCount={1} radios={radios} />
                     </div>
@@ -71,7 +71,7 @@ export default async function MediaPage() {
                     </div>
                 </div>
                 <div className="mt-4">
-                    <h2 className="text-[26px] font-bold">Featured Ragi</h2>
+                    <h2 className="text-[26px] font-bold mb-[7px]">Featured Ragi</h2>
                     <div className="block sm:hidden">
                         <SlideRagi showCount={1} featuredRagis={featuredRagis} />
                     </div>

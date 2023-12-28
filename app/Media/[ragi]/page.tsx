@@ -7,16 +7,30 @@ export default async function MediaRagiSubPage({ params: { ragi } }: { params: {
 
     const ragiMedias = await getRagiMedias(ragi);
 
+    function a(str: string) {
+        if (str.includes("(")) {
+            str.indexOf("(");
+            return str.substring(0, str.indexOf("("));
+        }
+        else { return str; }
+    }
+    function b(str: string) {
+        if (str.includes("(")) {
+            str.indexOf("(");
+            return str.substring(str.indexOf("("), str.length);
+        }
+    }
+
     return (
         <>
-            <div className="relative w-full bg-center bg-cover bg-[url('/Images/Home/nitnem.jpg')] mb-32 sm:mb-24 md:mb-28 lg:mb-32">
+            <div className="relative w-full bg-center bg-cover bg-[url('/Images/Home/nitnem.jpg')]">
                 <h1
-                    className="mx-auto max-w-6xl px-4 pt-6 sm:pt-12 md:pt-16 lg:pt-24 pb-20 sm:pb-20 md:pb-24 lg:pb-28 
+                    className="mx-auto max-w-6xl px-4 py-[27px] sm:py-[45px] md:py-[60px] lg:py-[76px] lg:leading-tight
                 text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-white"
-                >{ragiMedias[0].author_name}</h1>
-                <div className="absolute w-full -bottom-[80px] sm:-bottom-[90px] md:-bottom-[100px] lg:-bottom-[110px]">
-                    <div className="flex mx-auto max-w-6xl px-4 justify-center sm:justify-normal">
-                        <div className="bg-[#1F4457] p-1 rounded-full">
+                >{a(ragiMedias[0].author_name)}<br></br>{b(ragiMedias[0].author_name)}</h1>
+                <div className="absolute w-full -bottom-[130px] sm:-bottom-[120px] md:-bottom-[130px] lg:-bottom-[140px]">
+                    <div className="flex mx-auto max-w-6xl px-4 justify-center">
+                        <div className="backdrop-blur-sm bg-[#1F445720] p-2 rounded-full">
                             <Image
                                 src={ragiMedias[0].author_image}
                                 width={200}
@@ -27,22 +41,22 @@ export default async function MediaRagiSubPage({ params: { ragi } }: { params: {
                         </div>
                     </div>
                 </div>
-                <div className="absolute w-full -bottom-28 sm:-bottom-20">
-                    <div className="text-blue-primary text-lg font-bold text-center">
-                        {ragiMedias.length} <span className="text-black font-normal ">Tracks</span>
-                    </div>
-                </div>
             </div>
-            <div className="max-w-6xl px-4 mx-auto">
-                <div className="my-6 text-sm flex flex-wrap">
-                    <Link href="/Media" className="hover:text-blue-primary hover:underline text-[#252638] inline">
-                        Media
-                    </Link>
-                    <span className=" text-[#6C757D]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>
-                    <Link href="/Media/Ragis" className="hover:text-blue-primary hover:underline text-[#252638] inline">
-                        Ragi Directory
-                    </Link>
-                    <span className=" text-[#6C757D] text-[16px]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;{ragiMedias[0].author_name} </span>
+            <div className="max-w-6xl px-4 mx-auto mt-[140px] sm:mt-[130px] md:mt-[140px] lg:mt-[150px]">
+                <div className="flex flex-col gap-8 sm:gap-0 sm:flex-row justify-between items-baseline my-6 ">
+                    <div className="text-sm flex flex-wrap">
+                        <Link href="/Media" className="hover:text-blue-primary hover:underline text-[#252638] inline">
+                            Media
+                        </Link>
+                        <span className=" text-[#6C757D]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;</span>
+                        <Link href="/Media/Ragis" className="hover:text-blue-primary hover:underline text-[#252638] inline">
+                            Ragi Directory
+                        </Link>
+                        <span className=" text-[#6C757D] text-[16px]">&nbsp;&nbsp;&gt;&nbsp;&nbsp;{ragiMedias[0].author_name} </span>
+                    </div>
+                    <div className="text-base text-center sm:w-[90px] w-full">
+                        {ragiMedias.length} Tracks
+                    </div>
                 </div>
                 <MediaTable medias={ragiMedias} />
 

@@ -9,6 +9,16 @@ export default function CategoryMediaTable(props: { medias: { id: string; title:
     const { isPlaying, pauseAudio, playAudio } = useAudioPlayer();
     const [mediaIndex, setMediaIndex] = useState<number | null>(null);
 
+    function getFirstFourWords(inputString: string) {
+        const words = inputString.split(/\s+/);
+
+        if (words.length > 4) {
+            return words.slice(0, 4).join(' ') + ' ...';
+        }
+
+        return inputString;
+    }
+
     return (
         <>
             <table className="hidden md:table border-collapse rounded-t-md overflow-hidden w-full">
@@ -170,7 +180,7 @@ export default function CategoryMediaTable(props: { medias: { id: string; title:
                                     setMediaIndex(index);
                                     playAudio(item.attachment_name, item.title, item.id);
                                 }}
-                            >{item.title}
+                            >{getFirstFourWords(item.title)}
                                 <span className="text-[13px] text-[#707070] ml-2 inline-block">{item.duration}</span>
                             </div>
                         </div>

@@ -4,10 +4,25 @@
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { useState } from "react";
 
-export default function MediaTable(props: { medias: { id: string; title: string; duration: string; Scripture: string; ScriptureRomanEnglish: string; page: number; shabad_id: string; attachment_name: string; }[]; }) {
+export default function MediaTable(props: {
+    medias: {
+        id: string; title: string; duration: string; Scripture: string; ScriptureRomanEnglish: string;
+        page: number; shabad_id: string; attachment_name: string; author_name: string;
+    }[];
+}) {
 
     const { isPlaying, pauseAudio, playAudio } = useAudioPlayer();
     const [mediaIndex, setMediaIndex] = useState<number | null>(null);
+
+    function getFirstFourWords(inputString: string) {
+        const words = inputString.split(/\s+/);
+
+        if (words.length > 4) {
+            return words.slice(0, 4).join(' ') + ' ...';
+        }
+
+        return inputString;
+    }
 
     return (
         <>
@@ -24,8 +39,8 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                 <tbody>
                     {props.medias.map((
                         item: {
-                            id: string; title: string; duration: string; Scripture: string;
-                            ScriptureRomanEnglish: string; page: number; shabad_id: string; attachment_name: string;
+                            id: string; title: string; duration: string; Scripture: string; ScriptureRomanEnglish: string;
+                            page: number; shabad_id: string; attachment_name: string; author_name: string;
                         },
                         index: number
                     ) => (
@@ -38,12 +53,12 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                                         if (isPlaying) {
                                             pauseAudio();
                                         } else {
-                                            playAudio(item.attachment_name, item.title, item.id);
+                                            playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                         }
                                         return;
                                     }
                                     setMediaIndex(index);
-                                    playAudio(item.attachment_name, item.title, item.id);
+                                    playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                 }}
                             >{item.title}</td>
                             <td className="text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top">{item.duration}</td>
@@ -66,12 +81,12 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                                             if (isPlaying) {
                                                 pauseAudio();
                                             } else {
-                                                playAudio(item.attachment_name, item.title, item.id);
+                                                playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                             }
                                             return;
                                         }
                                         setMediaIndex(index);
-                                        playAudio(item.attachment_name, item.title, item.id);
+                                        playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                     }}
                                 >
                                     {
@@ -95,7 +110,7 @@ export default function MediaTable(props: { medias: { id: string; title: string;
             <div className="hidden sm:block md:hidden">
                 {props.medias.map((
                     item: {
-                        id: string; title: string; duration: string; attachment_name: string;
+                        id: string; title: string; duration: string; attachment_name: string; author_name: string;
                     },
                     index: number
                 ) => (
@@ -110,12 +125,12 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                                         if (isPlaying) {
                                             pauseAudio();
                                         } else {
-                                            playAudio(item.attachment_name, item.title, item.id);
+                                            playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                         }
                                         return;
                                     }
                                     setMediaIndex(index);
-                                    playAudio(item.attachment_name, item.title, item.id);
+                                    playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                 }}
                             >{item.title}</div>
                         </div>
@@ -160,7 +175,7 @@ export default function MediaTable(props: { medias: { id: string; title: string;
             <div className="sm:hidden">
                 {props.medias.map((
                     item: {
-                        id: string; title: string; duration: string; attachment_name: string;
+                        id: string; title: string; duration: string; attachment_name: string; author_name: string;
                     },
                     index: number
                 ) => (
@@ -174,14 +189,14 @@ export default function MediaTable(props: { medias: { id: string; title: string;
                                         if (isPlaying) {
                                             pauseAudio();
                                         } else {
-                                            playAudio(item.attachment_name, item.title, item.id);
+                                            playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                         }
                                         return;
                                     }
                                     setMediaIndex(index);
-                                    playAudio(item.attachment_name, item.title, item.id);
+                                    playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                 }}
-                            >{item.title}
+                            >{getFirstFourWords(item.title)}
                                 <div className="text-[13px] text-[#707070] ml-2 inline-block">{item.duration}</div>
                             </div>
                         </div>

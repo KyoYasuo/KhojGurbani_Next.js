@@ -59,6 +59,10 @@ const SearchMedia = (props: { allRagis: any; }) => {
         console.log(scrollPosition);
     };
 
+    useEffect(() => {
+        const element = document.documentElement || document.body;
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, [currentPage]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -456,6 +460,16 @@ const SearchMedia = (props: { allRagis: any; }) => {
                         </table>
                     </div >
                     : <></>)
+            }
+            {searchedMedia && (
+                searchedMedia?.length > 0 ?
+                    < div className='flex justify-end gap-2 sm:gap-0 items-baseline mt-8'>
+                        <div className='w-full sm:w-[40%]'>
+                            <MeidaPageNav totalPageCount={Math.ceil((searchedMedia?.length - 1) / 25)} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                        </div>
+                    </div > :
+                    <div className='text-[21px] text-blue-primary'>No Result Found</div>
+            )
             }
         </>
     );

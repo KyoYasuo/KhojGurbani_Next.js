@@ -17,7 +17,7 @@ export default async function MediaPage() {
 
     return (
         <>
-            <div className="w-full bg-top bg-cover bg-[url('/Images/Media/top.png')]">
+            <div className="w-full bg-center bg-cover bg-[url('/Images/Media/top.png')]">
                 <h1 className="mx-auto max-w-6xl px-4 py-[27px] sm:py-16 md:py-20 lg:py-[100px] text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-white">Media</h1>
             </div>
             <div className="max-w-6xl px-4 mx-auto">

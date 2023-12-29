@@ -176,7 +176,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
     return (
         <>
             <div className="flex flex-col sm:flex-row justify-between items-end md:gap-8 gap-4 mt-4">
-                <div className='flex flex-col grow w-full sm:max-w-[35%]'>
+                <div className='flex flex-col grow w-full sm:max-w-[40%]'>
                     <div className='text-sm text-[#808080] mb-[7px]'>Gurbani Search</div>
                     <div className='relative w-full' ref={divRef}>
                         <input
@@ -224,7 +224,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                         </div>
                     </div>
                 </div>
-                <div className='flex flex-col grow w-full sm:max-w-[25%]'>
+                <div className='flex flex-col grow w-full sm:max-w-[23%]'>
                     <div className='flex justify-between'>
                         <div className='text-sm text-[#808080] mb-[7px]'>Search Options</div>
                         <div className='group relative w-[22px] h-[22px] bg-blue-primary rounded-full flex justify-center items-center'>
@@ -265,7 +265,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                         <option value="8">Match any words (partial)</option>
                     </select>
                 </div>
-                <div className='flex flex-col grow w-full sm:max-w-[25%]'>
+                <div className='flex flex-col grow w-full sm:max-w-[23%]'>
                     <div className='text-sm text-[#808080] mb-[7px]'>Ragi</div>
                     <select
                         className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] h-10 px-[3.5px] py-[7px]'
@@ -281,7 +281,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                         ))}
                     </select>
                 </div>
-                <div className='flex flex-col grow w-full sm:max-w-[15%]'>
+                <div className='flex flex-col grow w-full sm:max-w-[14%]'>
                     <button
                         className='text-white text-sm rounded-[3px] bg-blue-primary h-10 px-[10.5px] py-[5.25px]'
                         onClick={() => handleSearch()}

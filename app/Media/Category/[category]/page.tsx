@@ -14,12 +14,12 @@ export default async function MediaCategoryPage({ params: { category } }: { para
 
         return (
             <>
-                <div className="w-full bg-center bg-cover bg-[url('/Images/Media/ragis.jpg')]">
+                <div className="w-full bg-center bg-cover bg-[url('/Images/Media/nitnem.jpg')]">
                     <h1 className="mx-auto max-w-6xl px-4 py-[27px] sm:py-16 md:py-20 lg:py-[100px] text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-white">{mediaCategoryInfo.name}</h1>
                 </div>
                 <div className="max-w-6xl px-4 mx-auto">
 
-                    <div className="flex flex-wrap my-6 text-sm">
+                    <div className="flex flex-wrap my-4 text-sm">
                         <Link href="/Media" className="hover:text-blue-primary hover:underline text-[#252638] inline">
                             Media
                         </Link>

@@ -19,7 +19,7 @@ export default function MediaTable(props: {
         const words = inputString.split(/\s+/);
 
         if (words.length > 4) {
-            return words.slice(0, 4).join(' ') + ' ...';
+            return words.slice(0, 4).join(' ');
         }
 
         return inputString;

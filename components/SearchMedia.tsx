@@ -26,6 +26,8 @@ const SearchMedia = (props: { allRagis: any; }) => {
         "You can search in both English and Punjabi language. Enter the first characters of words and the words should be from the start of the Sabad line. For example search “jmtat’ for ‘Jo Mangay Thakur Apnay Te” or “ਜਮਠ” for “ਜੋ ਮਾਗਹਿ ਠਾਕੁਰ ਅਪੁਨੇ ਤੇ ਸੋਈ ਸੋਈ ਦੇਵੈ ॥“",
     ];
 
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
+
     const searchParams = useSearchParams();
 
     const [scrollPosition, setScrollPosition] = useState(true);
@@ -43,6 +45,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
     const [selectedValue, setSelectedValue] = useState<string>("gurmukhi");
     const keyboard = useRef<any>();
 
+    const topRef = useRef<HTMLDivElement>(null);
     const divRef = useRef<HTMLDivElement>(null);
     const tooltipRef = useRef<HTMLSpanElement>(null);
 
@@ -56,13 +59,11 @@ const SearchMedia = (props: { allRagis: any; }) => {
         else {
             setScrollPosition(false);
         }
-        console.log(scrollPosition);
     };
 
     useEffect(() => {
-        const element = document.documentElement || document.body;
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, [currentPage]);
+        if (isPageLoaded && topRef.current) topRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, [currentPage, isPageLoaded]);
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll, { passive: true });
@@ -139,6 +140,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
     }
 
     async function handleSearch() {
+        setIsPageLoaded(true);
         if (search_keyword) {
             const params = new URLSearchParams(searchParams);
             params.set('search_keyword', search_keyword);
@@ -285,7 +287,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                         ))}
                     </select>
                 </div>
-                <div className='flex flex-col grow w-full sm:max-w-[14%]'>
+                <div ref={topRef} className='flex flex-col grow w-full sm:max-w-[14%]'>
                     <button
                         className='text-white text-sm rounded-[3px] bg-blue-primary h-10 px-[10.5px] py-[5.25px]'
                         onClick={() => handleSearch()}
@@ -438,7 +440,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                                             <td
                                                 className='text-[#707070] text-base text-left font-normal px-[15px] py-[12px] align-top border'
                                             >
-                                                {index + 1}
+                                                {(currentPage - 1) * 25 + index + 1}
                                             </td>
                                             <td
                                                 className='px-[15px] py-[12px] align-top border'

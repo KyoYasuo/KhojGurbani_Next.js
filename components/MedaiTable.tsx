@@ -3,6 +3,7 @@
 
 import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { useState } from "react";
+import ButtonPlay from "./ButtonPlay";
 
 export default function MediaTable(props: {
     medias: {
@@ -92,18 +93,7 @@ export default function MediaTable(props: {
                                         playAudio(item.attachment_name, `${item.author_name} (${item.title})`, item.id);
                                     }}
                                 >
-                                    {
-                                        mediaIndex === index ?
-                                            (
-                                                isPlaying ?
-                                                    <img src="/Images/SVG/pause.svg" alt="pause" className="cursor-pointer w-9 h-9" />
-                                                    :
-                                                    <img src="/Images/SVG/play.svg" alt="play" className="cursor-pointer w-9 h-9" />
-                                            ) :
-                                            (
-                                                <img src="/Images/SVG/preplay.svg" alt="preplay" className="cursor-pointer w-9 h-9" />
-                                            )
-                                    }
+                                    <ButtonPlay isPlaying={isPlaying} type={mediaIndex === index} width={36} height={36} />
                                 </button>
                             </td>
                         </tr>
@@ -158,18 +148,7 @@ export default function MediaTable(props: {
                                     playAudio(item.attachment_name, item.title, item.id);
                                 }}
                             >
-                                {
-                                    mediaIndex === index ?
-                                        (
-                                            isPlaying ?
-                                                <img src="/Images/SVG/pause.svg" alt="pause" className="cursor-pointer w-9 h-9" />
-                                                :
-                                                <img src="/Images/SVG/play.svg" alt="play" className="cursor-pointer w-9 h-9" />
-                                        ) :
-                                        (
-                                            <img src="/Images/SVG/preplay.svg" alt="preplay" className="cursor-pointer w-9 h-9" />
-                                        )
-                                }
+                                <ButtonPlay isPlaying={isPlaying} type={mediaIndex === index} width={36} height={36} />
                             </button>
                         </div>
                     </div>
@@ -218,18 +197,7 @@ export default function MediaTable(props: {
                                 playAudio(item.attachment_name, item.title, item.id);
                             }}
                         >
-                            {
-                                mediaIndex === index ?
-                                    (
-                                        isPlaying ?
-                                            <img src="/Images/SVG/pause.svg" alt="pause" className="cursor-pointer w-9 h-9" />
-                                            :
-                                            <img src="/Images/SVG/play.svg" alt="play" className="cursor-pointer w-9 h-9" />
-                                    ) :
-                                    (
-                                        <img src="/Images/SVG/preplay.svg" alt="preplay" className="cursor-pointer w-9 h-9" />
-                                    )
-                            }
+                            <ButtonPlay isPlaying={isPlaying} type={mediaIndex === index} width={36} height={36} />
                         </button>
                     </div>
                 ))}

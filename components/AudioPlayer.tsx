@@ -8,6 +8,7 @@ import ReactPlayer from 'react-player';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import { postTrack } from '@/lib/fetch_data';
+import ButtonPlay from './ButtonPlay';
 
 
 const AudioPlayer: React.FC = () => {
@@ -175,21 +176,16 @@ const AudioPlayer: React.FC = () => {
                 {(duration && duration != Infinity) ?
                     <div className='relative flex flex-col-reverse md:flex-row items-center h-full'>
                         <div className='absolute left-0 top-2 w-full transition-all text-center text-xs'>{audioTitle}</div>
-                        <div className='flex justify-around items-center w-64 md:w-36'>
+                        <div className='flex justify-around items-center w-64 md:w-40 mb-1 md:mb-0'>
                             <button onClick={handleBackward}>
                                 <Image src='/Images/SVG/backward-15-seconds.svg' alt='backward' width={32} height={32} />
                             </button>
                             <button onClick={handlePlayPause}>
                                 {
-                                    isLoading ? (
+                                    isLoading ?
                                         <Image src='/Images/SVG/loading.svg' alt='loading' width={64} height={64} className=' cursor-wait' />
-                                    ) : (
-                                        isPlaying ? (
-                                            <Image src='/Images/SVG/pause.svg' alt='pause' width={64} height={64} />
-                                        ) : (
-                                            <Image src='/Images/SVG/play.svg' alt='play' width={64} height={64} />
-                                        )
-                                    )
+                                        :
+                                        <ButtonPlay isPlaying={isPlaying} type={true} width={64} height={64} />
                                 }
                             </button>
                             <button onClick={handleForward}>
@@ -214,15 +210,10 @@ const AudioPlayer: React.FC = () => {
                         <div className='transition-all text-center text-base'>{audioTitle}</div>
                         <button onClick={handlePlayPause}>
                             {
-                                isLoading ? (
+                                isLoading ?
                                     <Image src='/Images/SVG/loading.svg' alt='loading' width={64} height={64} className=' cursor-wait' />
-                                ) : (
-                                    isPlaying ? (
-                                        <Image src='/Images/SVG/pause.svg' alt='pause' width={64} height={64} />
-                                    ) : (
-                                        <Image src='/Images/SVG/play.svg' alt='play' width={64} height={64} />
-                                    )
-                                )
+                                    :
+                                    <ButtonPlay isPlaying={isPlaying} type={true} width={64} height={64} />
                             }
                         </button>
                     </div>

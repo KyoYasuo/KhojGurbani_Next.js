@@ -23,7 +23,7 @@ export default async function MediaPage() {
             <div className="max-w-6xl px-4 mx-auto">
                 <SearchMedia allRagis={allRagis} />
                 <div className="mt-4">
-                    <h2 className="text-[26px] font-bold mb-[7px]">Recent played</h2>
+                    <h2 className="text-[26px] font-bold mb-[7px]">Recently played</h2>
                     <div className="block sm:hidden">
                         <SlideRecent showCount={1} />
                     </div>

@@ -11,6 +11,7 @@ import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import MeidaPageNav from './MediaPageNav';
 import { toast } from 'react-toastify';
+import ButtonPlay from './ButtonPlay';
 
 const SearchMedia = (props: { allRagis: any; }) => {
 
@@ -27,6 +28,8 @@ const SearchMedia = (props: { allRagis: any; }) => {
 
     const searchParams = useSearchParams();
 
+    const [scrollPosition, setScrollPosition] = useState(true);
+
     const [currentPage, setCurrentPage] = useState(1);
 
     const [search_keyword, setsearch_keyword] = useState('');
@@ -41,8 +44,29 @@ const SearchMedia = (props: { allRagis: any; }) => {
     const keyboard = useRef<any>();
 
     const divRef = useRef<HTMLDivElement>(null);
+    const tooltipRef = useRef<HTMLSpanElement>(null);
 
     const { replace } = useRouter();
+
+    const handleScroll = () => {
+        const position = window.scrollY;
+        if (position < 100) {
+            setScrollPosition(true);
+        }
+        else {
+            setScrollPosition(false);
+        }
+        console.log(scrollPosition);
+    };
+
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    });
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -203,13 +227,24 @@ const SearchMedia = (props: { allRagis: any; }) => {
                 <div className='flex flex-col grow w-full sm:max-w-[25%]'>
                     <div className='flex justify-between'>
                         <div className='text-sm text-[#808080] mb-[7px]'>Search Options</div>
-                        <div className='w-[22px] h-[22px] bg-blue-primary rounded-full flex justify-center items-center tooltip'>
+                        <div className='group relative w-[22px] h-[22px] bg-blue-primary rounded-full flex justify-center items-center'>
                             <svg fill="#FFFFFF" width="12px" height="12px" viewBox="-160 0 512 512"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z" />
                             </svg>
-                            <span className="tooltip-text text-sm">
+                            <span
+                                ref={tooltipRef}
+                                className={
+                                    "group-hover:animate-fadeIn group-hover:block hidden opacity-0 absolute w-[190px] sm:w-[240px] lg:w-[190px] p-[5px] bg-black/80 text-white text-sm text-center rounded-md z-10 " +
+                                    (
+                                        scrollPosition ?
+                                            "sm:bottom-[125%] bottom-1/2 translate-y-1/2 sm:translate-y-0 translate-x-[0] sm:translate-x-[50%] right-[125%] sm:right-[50%] after:absolute after:border-[5px] after:sm:border-transparent after:sm:border-t-black/80 after:border-transparent after:border-l-black/80 after:sm:left-1/2 after:translate-x-0 after:sm:translate-x-[-50%] after:sm:translate-y-0 after:sm:top-full after:top-1/2 after:left-full after:translate-y-[-50%]"
+                                            :
+                                            "top-[125%] right-0 sm:right-1/2 sm:translate-x-1/2 after:absolute after:border-[5px] after:sm:border-transparent after:sm:border-b-black/80 after:sm:bottom-full after:sm:left-1/2 after:sm:-translate-x-1/2 after:border-transparent after:border-b-black/80 after:bottom-full after:left-[92%]"
+                                    )
+                                }
+                            >
                                 {tooltips[parseInt(search_option) - 1]}
                             </span>
                         </div>
@@ -319,18 +354,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                                                         playAudio(group[0].attachment_name, `${group[0].name} (${group[0].ScriptureRomanEnglish})`, group[0].id.toString());
                                                     }}
                                                 >
-                                                    {
-                                                        mediaIndex === group[0].id ?
-                                                            (
-                                                                isPlaying ?
-                                                                    <img src="/Images/SVG/pause.svg" alt="pause" className="cursor-pointer w-9 h-9" />
-                                                                    :
-                                                                    <img src="/Images/SVG/play.svg" alt="play" className="cursor-pointer w-9 h-9" />
-                                                            ) :
-                                                            (
-                                                                <img src="/Images/SVG/preplay.svg" alt="preplay" className="cursor-pointer w-9 h-9" />
-                                                            )
-                                                    }
+                                                    <ButtonPlay isPlaying={isPlaying} type={mediaIndex === group[0].id} width={36} height={36} />
                                                 </button>
                                             </td>
                                             <td
@@ -368,26 +392,15 @@ const SearchMedia = (props: { allRagis: any; }) => {
                                                                 if (isPlaying) {
                                                                     pauseAudio();
                                                                 } else {
-                                                                    playAudio(item.attachment_name, `${group[0].name} (${group[0].ScriptureRomanEnglish})`, item.id.toString());
+                                                                    playAudio(item.attachment_name, `${item.name} (${group[0].ScriptureRomanEnglish})`, item.id.toString());
                                                                 }
                                                                 return;
                                                             }
                                                             setMediaIndex(item.id);
-                                                            playAudio(item.attachment_name, `${group[0].name} (${group[0].ScriptureRomanEnglish})`, item.id.toString());
+                                                            playAudio(item.attachment_name, `${item.name} (${group[0].ScriptureRomanEnglish})`, item.id.toString());
                                                         }}
                                                     >
-                                                        {
-                                                            mediaIndex === item.id ?
-                                                                (
-                                                                    isPlaying ?
-                                                                        <img src="/Images/SVG/pause.svg" alt="pause" className="cursor-pointer w-9 h-9" />
-                                                                        :
-                                                                        <img src="/Images/SVG/play.svg" alt="play" className="cursor-pointer w-9 h-9" />
-                                                                ) :
-                                                                (
-                                                                    <img src="/Images/SVG/preplay.svg" alt="preplay" className="cursor-pointer w-9 h-9" />
-                                                                )
-                                                        }
+                                                        <ButtonPlay isPlaying={isPlaying} type={mediaIndex === item.id} width={36} height={36} />
                                                     </button>
                                                 </td>
                                                 <td

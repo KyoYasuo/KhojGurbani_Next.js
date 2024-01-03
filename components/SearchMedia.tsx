@@ -258,7 +258,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                     <select
                         value={search_option}
                         size={0}
-                        className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] h-10 px-[3.5px] py-[7px]'
+                        className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] h-10 px-[3.5px] py-[7px] bg-white'
                         onChange={(e) => setsearch_option(e.target.value)}
                     >
                         <option value="1">With the exact phase</option>
@@ -274,7 +274,7 @@ const SearchMedia = (props: { allRagis: any; }) => {
                 <div className='flex flex-col grow w-full sm:max-w-[23%]'>
                     <div className='text-sm text-[#808080] mb-[7px]'>Ragi</div>
                     <select
-                        className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] h-10 px-[3.5px] py-[7px]'
+                        className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] h-10 px-[3.5px] py-[7px] bg-white'
                         onChange={(e) => setaudio_author_id(e.target.value)}
                     >
                         <option value="">All</option>

@@ -12,7 +12,7 @@ export default async function MediaSubCategoryPage({ params: { category, subcate
 
     return (
         <>
-            <div className="w-full bg-center bg-cover bg-[url('/Images/Media/nitnem.jpg')]">
+            <div className="w-full bg-center bg-cover bg-[url('/Images/Media/nitnem.jpg')] bg-amber-300">
                 <h1 className="mx-auto max-w-6xl px-4 py-[27px] sm:py-16 md:py-20 lg:py-[100px] text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-bold text-white">{mediaSubCategoryInfo.name}</h1>
             </div>
 

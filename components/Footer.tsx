@@ -21,7 +21,7 @@ const navigation: NavigationItem[] = [
 
 export default function Footer() {
     return (
-        <div className="w-full pt-8 pb-4 bg-primary">
+        <div className="w-full pt-8 pb-4 bg-primary text flex-shrink-0">
             <div className="mx-auto max-w-6xl px-4 md:divide-y divide-[#545454]">
                 <div className='hidden md:block'>
                     <Image

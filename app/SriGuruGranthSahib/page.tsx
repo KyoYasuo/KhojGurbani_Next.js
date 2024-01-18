@@ -1,5 +1,5 @@
-export default function Page() {
-    return (
-        <h1>SriGuruGranthSahib</h1>
-    )
+import { redirect } from 'next/navigation';
+
+export default async function Page() {
+    redirect('/SriGuruGranthSahib/1/1');
 }

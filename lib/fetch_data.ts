@@ -146,7 +146,7 @@ export async function fetchFeaturedTracks() {
 export async function fetchRecents(machine_id: string | null) {
     const res = await fetch(`${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`, { cache: 'no-store' });
     console.log("fetch: ", `${endpoint}media/recently-played?machine_id=${machine_id}&user_id=`);
-    
+
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');
     }
@@ -218,6 +218,57 @@ export async function postTrack(params: any) {
 export async function fetchSearchMedias(query: string) {
     const res = await fetch(`${endpoint}scripture/media-advance-search-web?${query}`);
     console.log("fetch: ", `${endpoint}scripture/media-advance-search-web?${query}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function postAuth(params: any) {
+    const res = await fetch(`${endpoint}user-check`, {
+        method: 'POST',
+        body: JSON.stringify(params),
+    });
+    console.log("post: ", `${endpoint}user-check`);
+    console.log(params.toString());
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+}
+
+export async function postRegister(params: any) {
+    const res = await fetch(`${endpoint}register`, {
+        method: 'POST',
+        body: JSON.stringify(params),
+    });
+    console.log("post: ", `${endpoint}register`);
+    console.log(params.toString());
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+}
+
+
+export async function fetchShabad(params: string) {
+    const res = await fetch(`${endpoint}shabad/${params}`);
+    console.log("get: ", `${endpoint}shabad/${params}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchCommentaryList(params: string) {
+    const res = await fetch(`${endpoint}commentary/list/${params}`);
+    console.log("get: ", `${endpoint}commentary/list/${params}`);
 
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');

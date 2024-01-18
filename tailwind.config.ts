@@ -16,6 +16,7 @@ const config: Config = {
       },
       boxShadow: {
         'common': '0 0 18px 0 rgba(0, 0, 0, 0.19)',
+        'double': '0 0 20px 0 rgba(0, 0, 0, 0.4)',
       },
       colors: {
         'primary': '#252638',

@@ -17,7 +17,9 @@ import {
     fetchMediaCategories,
     fetchSubCategoryMedias,
     fetchCategoryMedias,
-    fetchSearchMedias
+    fetchSearchMedias,
+    fetchShabad,
+    fetchCommentaryList
 } from "./fetch_data";
 
 export async function getTodayPodcast() {
@@ -313,6 +315,37 @@ export async function getSearchMediaResult(params: any) {
         throw new Error(error);
     }
 }
+
+export async function getShabad(params: string) {
+    try {
+        const data = await fetchShabad(params);
+        const shabadData = data.data;
+        return shabadData;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getShabadPages(params: string) {
+    try {
+        const data = await fetchShabad(params);
+        const shabadPages = data.pages;
+        return shabadPages;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getCommentaryList(params: string) {
+    try {
+        const data = await fetchCommentaryList(params);
+        const commentaryList = data.result[0];
+        return commentaryList;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
 
 export function dateTransform(value: string): string {
     const dd: string = value?.substr(8, 2);

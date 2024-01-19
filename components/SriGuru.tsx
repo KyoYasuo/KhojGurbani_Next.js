@@ -1,7 +1,6 @@
 import { getCommentaryList, getShabad, getShabadPages } from "@/lib/data";
 import clsx from 'clsx';
 import Link from "next/link";
-import { Key, ReactElement, JSXElementConstructor, ReactNode, ReactPortal, PromiseLikeOfReactNode } from "react";
 
 export default async function SriGuru(props: { route: string, item: string }) {
 
@@ -10,7 +9,6 @@ export default async function SriGuru(props: { route: string, item: string }) {
     const shabadData = await getShabad(`${route}/${item}`);
     const pages = await getShabadPages(`${route}/${item}`);
     const commentaryList = await getCommentaryList(item);
-    console.log(commentaryList);
     return (
         <div className="">
             <div className="bg-[#1B4154] flex items-center gap-6 w-full h-[70px] px-4 rounded-md">
@@ -33,7 +31,7 @@ export default async function SriGuru(props: { route: string, item: string }) {
                     ))}
                 </div>
             </div>
-            {shabadData.scriptures.map((scripture: {
+            {shabadData?.scriptures.map((scripture: {
                 id: number; Scripture: string; ScriptureOriginal: string; ScriptureRoman: string;
                 translation: {
                     KhojgurbaaniEnglish: string | null; ManmohanSinghEnglish: string | null; SantSinghKhalsaEnglish: string | null;
@@ -103,13 +101,17 @@ export default async function SriGuru(props: { route: string, item: string }) {
                     }
                 </div>
             ))}
-            <div className="">
-                <h3 className="text-[26px] text-[#252636] font-bold">Commentary</h3>
-                <div
-                    dangerouslySetInnerHTML={{ __html: commentaryList.commentary }}
-                    className=""
-                />
-            </div>
+            {commentaryList?.commentary ?
+                <div className="">
+                    <h3 className="text-[26px] text-[#252636] font-bold">Commentary</h3>
+                    <div
+                        dangerouslySetInnerHTML={{ __html: commentaryList.commentary }}
+                        className=""
+                    />
+                </div>
+                :
+                <></>
+            }
 
         </div>
     );

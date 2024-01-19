@@ -50,7 +50,7 @@ export default function LoginPage() {
                     id="email"
                     name="email"
                     placeholder="Email"
-                    onChange={(e)=> setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     className="peer w-full h-[44px] px-[15px] py-[9px] outline-none rounded-md border border-[#D1D1D1] text-[#919191]"
                 />
                 <p className="hidden peer-invalid:block text-[12px] text-[#FF0000] w-full text-left">Email must be a valid email address</p>

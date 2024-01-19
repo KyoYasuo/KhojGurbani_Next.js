@@ -7,7 +7,6 @@ import NavBar from '@/components/NavBar';
 import Footer from '@/components/Footer';
 import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
 import dynamic from 'next/dynamic'
-import { SessionProvider } from 'next-auth/react';
 
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
@@ -34,20 +33,18 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable} antialiased`}>
       <AudioPlayerProvider>
         <body className="flex flex-col min-h-screen">
-            <SessionProvider>
-              <ToastContainer />
-              <header>
-                <NavBar />
-              </header>
-              <main className="grow relative">
-                {children}
-              </main>
-              <footer>
-                <Footer />
-              </footer>
-              <AudioPlayer />
-              <SpeedInsights />
-            </SessionProvider>
+          <ToastContainer />
+          <header>
+            <NavBar />
+          </header>
+          <main className="grow">
+            {children}
+          </main>
+          <footer>
+            <Footer />
+          </footer>
+          <AudioPlayer />
+          <SpeedInsights />
         </body>
       </AudioPlayerProvider>
     </html>

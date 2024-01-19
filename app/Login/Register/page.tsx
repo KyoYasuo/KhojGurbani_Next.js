@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import Link from "next/link";
-import ReCAPTCHA from "react-google-recaptcha";
+import ReCAPTCHA from 'react-google-recaptcha';
 import { toast } from "react-toastify";
 import { postRegister } from "@/lib/fetch_data";
 
@@ -133,7 +133,7 @@ export default function SignUpPage() {
                     className="peer w-full h-[44px] px-[15px] py-[9px] outline-none rounded-md border border-[#D1D1D1] text-[#919191]"
                 />
                 <ReCAPTCHA
-                    sitekey="6LcOEVEpAAAAAM6bWj7Fh6h6AUcn0Gp4oDk2ve5I"
+                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_ID as string}
                     onChange={onChange}
                 />
                 <button

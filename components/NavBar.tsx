@@ -1,8 +1,10 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Bars3Icon } from '@heroicons/react/24/outline';
+import { useSession, signOut } from "next-auth/react"
+
 interface NavigationItem {
     name: string;
     href: string;
@@ -17,7 +19,6 @@ const navigation: NavigationItem[] = [
     { name: 'Glossary', href: '/Glossary', current: false },
     { name: 'Media', href: '/Media', current: false },
     { name: 'Gubani Search', href: '/GubaniSearch', current: false },
-    { name: 'Login', href: '/Login', current: false },
 ];
 
 function classNames(...classes: string[]): string {
@@ -26,17 +27,12 @@ function classNames(...classes: string[]): string {
 
 export default function NavBar() {
 
-    const curretPage: string = "Home";
+    const { data: session } = useSession()
     const [isOn, setIsOn] = useState(false);
-    const [selectedPage, setSelectedPage] = useState(curretPage);
-
-    useEffect(() => {
-        const currentPage = localStorage.getItem('selectedPage');
-        setSelectedPage(currentPage || '');
-    }, []);
+    const [show, setShow] = useState(false);
 
     return (
-        <div className={classNames('transition-height duration-300', isOn? 'h-[432px]' : 'h-16')}>
+        <div className={classNames('transition-height duration-300', isOn ? 'h-[432px]' : 'h-16')}>
 
             <nav className="bg-primary fixed w-full z-50">
 
@@ -62,18 +58,36 @@ export default function NavBar() {
                                 <Link
                                     key={item.name}
                                     href={`${item.href}`}
-                                    className={classNames(
-                                        selectedPage === item.name ? 'border-b-blue-primary border-b-2' : 'hover:bg-gray-700',
-                                        'flex h-16 px-4 text-white items-center text-center text-sm'
-                                    )}
-                                    onClick={() => {
-                                        setSelectedPage(item.name);
-                                        localStorage.setItem("selectedPage", item.name);
-                                    }}
+                                    className='flex h-16 px-4 text-white items-center text-center text-sm'
                                 >
                                     <span>{item.name}</span>
                                 </Link>
                             ))}
+                            {session ?
+                                <div
+                                    className='flex h-16 px-4 text-white items-center text-center text-sm cursor-pointer'
+                                    onClick={() => {
+                                        setIsOn(false);
+                                        signOut();
+                                    }}
+                                >
+                                    <img
+                                        src={session.user?.image || "/Images/logo.png"}
+                                        alt='user'
+                                        width={45}
+                                        height={45}
+                                    />
+                                </div>
+                                :
+                                <Link
+                                    href="/Login"
+                                    className={classNames(
+                                        'flex h-16 px-4 text-white items-center text-center text-sm'
+                                    )}
+                                >
+                                    <span>Login</span>
+                                </Link>
+                            }
                         </div>
 
                         <Bars3Icon className="cursor-pointer w-8 h-8 text-white border-2 border-gray-700 hover:bg-gray-700 lg:hidden"
@@ -90,21 +104,44 @@ export default function NavBar() {
                                     key={item.name}
                                     href={`${item.href}`}
                                     className={classNames(
-                                        selectedPage === item.name ? 'border-b-blue-primary border-b-2' : 'hover:bg-gray-700',
+                                        // selectedPage === item.name ? 'border-b-blue-primary border-b-2' : 'hover:bg-gray-700',
                                         'flex h-12 px-4 text-white items-center text-center'
                                     )}
                                     onClick={() => {
                                         setIsOn(false);
-                                        setSelectedPage(item.name);
-                                        localStorage.setItem("selectedPage", item.name);
+                                        // setSelectedPage(item.name);
+                                        // localStorage.setItem("selectedPage", item.name);
                                     }}
                                 >
                                     <span>{item.name}</span>
                                 </Link>
                             ))}
+                            {session ?
+                                <div
+                                    className='flex h-12 px-4 text-white items-center text-center cursor-pointer'
+                                    onClick={() => {
+                                        setIsOn(false);
+                                        signOut();
+                                    }}
+                                >
+                                    <span>Logout</span>
+                                </div>
+                                :
+                                <Link
+                                    key="Login"
+                                    href="/Login"
+                                    className='flex h-12 px-4 text-white items-center text-center'
+                                    onClick={() => {
+                                        setIsOn(false);
+                                    }}
+                                >
+                                    <span>Login</span>
+                                </Link>
+                            }
                         </div>
                     </div>
                 </div>
+
             </nav >
         </div>
     );

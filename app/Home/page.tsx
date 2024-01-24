@@ -35,7 +35,7 @@ export default async function HomePage() {
                     ))}
                 </div>
                 <div className="md:hidden mx-auto max-w-[500px]">
-                    <SlideTheme showCount={1} cat_results={cat_results}/>
+                    <SlideTheme showCount={1} cat_results={cat_results} />
                 </div>
             </div>
             <div className="w-full md:py-16 bg-left-top bg-cover md:bg-[url('/Images/Home/homebottom.png')]">

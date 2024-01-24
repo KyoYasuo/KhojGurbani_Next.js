@@ -1,6 +1,10 @@
-import { getCommentaryList, getShabad, getShabadPages } from "@/lib/data";
+import { tinos } from "@/app/font";
+import { getCommentaryList, getShabad, getShabadMedia, getShabadPages } from "@/lib/data";
 import clsx from 'clsx';
 import Link from "next/link";
+import SriGuruMedia from "./SriGuruMedia";
+
+
 
 export default async function SriGuru(props: { route: string, item: string }) {
 
@@ -9,6 +13,7 @@ export default async function SriGuru(props: { route: string, item: string }) {
     const shabadData = await getShabad(`${route}/${item}`);
     const pages = await getShabadPages(`${route}/${item}`);
     const commentaryList = await getCommentaryList(item);
+    const shabadMedia = await getShabadMedia(item);
     return (
         <div className="">
             <div className="bg-[#1B4154] flex items-center gap-6 w-full h-[70px] px-4 rounded-md">
@@ -104,15 +109,28 @@ export default async function SriGuru(props: { route: string, item: string }) {
             {commentaryList?.commentary ?
                 <div className="">
                     <h3 className="text-[26px] text-[#252636] font-bold">Commentary</h3>
-                    <div
-                        dangerouslySetInnerHTML={{ __html: commentaryList.commentary }}
-                        className=""
-                    />
+                    <div className="py-[23px] px-[15px] shadow-common">
+                        <div
+                            dangerouslySetInnerHTML={{ __html: commentaryList.commentary }}
+                            className={`${tinos.className} antialiased text-[20px] h-[260px] overflow-hidden [&_p]:text-[#5C5B5B] [&_p]:mb-[14px] mb-[14px]`}
+                        />
+                        <div className="flex justify-end">
+                            <button className="cursor-pointer flex bg-blue-primary items-center text-white px-[20px] py-[5px] text-[12px] gap-2 rounded group">
+                                <span className="">Read more</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={4} stroke="currentColor" className="w-3 h-3 group-hover:scale-105 transition-all">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 :
                 <></>
             }
 
+            <SriGuruMedia shabadMedia={shabadMedia} />
+
+            
         </div>
     );
 }

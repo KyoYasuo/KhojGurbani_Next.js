@@ -232,7 +232,6 @@ export async function postAuth(params: any) {
         body: JSON.stringify(params),
     });
     console.log("post: ", `${endpoint}user-check`);
-    console.log(params.toString());
 
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');
@@ -246,7 +245,6 @@ export async function postRegister(params: any) {
         body: JSON.stringify(params),
     });
     console.log("post: ", `${endpoint}register`);
-    console.log(params.toString());
 
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');
@@ -269,6 +267,17 @@ export async function fetchShabad(params: string) {
 export async function fetchCommentaryList(params: string) {
     const res = await fetch(`${endpoint}commentary/list/${params}`);
     console.log("get: ", `${endpoint}commentary/list/${params}`);
+
+    if (!res.ok) {
+        throw new Error('Failed to fetch podcast data');
+    }
+
+    return res.json();
+}
+
+export async function fetchShabadMedia(params: string) {
+    const res = await fetch(`${endpoint}shabad-data/get-shabad-media/${params}`);
+    console.log("get: ", `${endpoint}shabad-data/get-shabad-media/${params}`);
 
     if (!res.ok) {
         throw new Error('Failed to fetch podcast data');

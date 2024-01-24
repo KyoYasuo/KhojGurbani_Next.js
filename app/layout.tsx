@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import { Poppins } from 'next/font/google'
-import { ToastContainer, toast } from 'react-toastify';
+import { Poppins, Tinos} from 'next/font/google'
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css'
 import NavBar from '@/components/NavBar';
@@ -17,8 +17,16 @@ const AudioPlayer = dynamic(() => import('@/components/AudioPlayer'), { ssr: fal
 const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
+  display: 'swap',
   weight: '400'
 });
+
+export const tinos = Tinos({
+  subsets: ['latin'],
+  variable: '--font-tinos',
+  display: 'swap',
+  weight: '700'
+})
 
 export const metadata: Metadata = {
   title: 'Create Next App',

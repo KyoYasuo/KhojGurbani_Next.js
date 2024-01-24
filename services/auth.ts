@@ -3,8 +3,11 @@ import NextAuth from "next-auth"
 import Apple from "next-auth/providers/apple"
 import Facebook from "next-auth/providers/facebook"
 import Google from "next-auth/providers/google"
+import axios from "axios";
+import { User } from 'next-auth';
 
 import type { NextAuthConfig } from "next-auth"
+import { endpoint } from "@/environments/endpoint";
 
 export const config = {
     theme: {
@@ -16,6 +19,37 @@ export const config = {
         Google,
     ],
     callbacks: {
+        async jwt({ token, account }) {
+            if (account) {
+                token.provider = account.provider;
+                token.providerAccountId = account.providerAccountId;
+            }
+            return token;
+        },
+        async session({ session, token }: any) {
+            session.provider = token.provider;
+            session.providerAccountId = token.providerAccountId;
+            const params = {
+                name: session.user.name,
+                email: session.user.email,
+                provider: session.provider,
+                photo_url: session.user.image,
+                social_account_id: session.providerAccountId,
+            }
+            const res = await fetch(`${endpoint}login-with-social`, {
+                method: 'POST',
+                body: JSON.stringify(params),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'api-key': '64EA089F-9D9E-41F3-864A-790C2658EE98',
+                }
+            })
+            const data = await res.json();
+            session.data = data.data;
+            return session;
+        },
     },
 } satisfies NextAuthConfig
 

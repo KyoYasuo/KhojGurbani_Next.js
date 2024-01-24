@@ -19,7 +19,8 @@ import {
     fetchCategoryMedias,
     fetchSearchMedias,
     fetchShabad,
-    fetchCommentaryList
+    fetchCommentaryList,
+    fetchShabadMedia
 } from "./fetch_data";
 
 export async function getTodayPodcast() {
@@ -200,7 +201,7 @@ export async function getFeaturedTracks() {
 
 export async function getRecents(machineID: string) {
     try {
-        
+
         const data = await fetchRecents(machineID);
         // console.log(data);
         const recents = data.recently_played;
@@ -341,6 +342,15 @@ export async function getCommentaryList(params: string) {
         const data = await fetchCommentaryList(params);
         const commentaryList = data.result[0];
         return commentaryList;
+    } catch (error: any) {
+        throw new Error(error);
+    }
+}
+
+export async function getShabadMedia(params: string) {
+    try {
+        const data = await fetchShabadMedia(params);
+        return data;
     } catch (error: any) {
         throw new Error(error);
     }

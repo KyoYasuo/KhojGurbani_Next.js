@@ -43,6 +43,7 @@ export const config = {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'Access-Control-Allow-Origin': '*',
+                    'api-key': '64EA089F-9D9E-41F3-864A-790C2658EE98',
                 }
             })
             const data = await res.json();

@@ -1,6 +1,6 @@
 import Ang from "@/components/Ang";
 import SriGuru from "@/components/SriGuru";
-import { getShabadPages } from "@/lib/data";
+import { getCommentaryList, getShabad, getShabadMedia, getShabadPages } from "@/lib/data";
 import { redirect } from "next/navigation";
 
 export default async function SriGuruSubPage({ params: { slug } }: { params: { slug: string[] } }) {
@@ -8,15 +8,19 @@ export default async function SriGuruSubPage({ params: { slug } }: { params: { s
     const route = slug[0];
     const item = slug[1];
 
-    if (!slug[1]) {
-        const shabadPages = await getShabadPages(slug[0]);
-        redirect(`/SriGuruGranthSahib/${slug[0]}/${shabadPages[0]}`);
+    if (!item) {
+        const shabadPages = await getShabadPages(route);
+        redirect(`/SriGuruGranthSahib/${route}/${shabadPages[0]}`);
     }
+
+    const shabadData = await getShabad(`${route}/${item}`);
+    const pages = await getShabadPages(`${route}/${item}`);
+    const commentaryList = await getCommentaryList(item);
+    const shabadMedia = await getShabadMedia(item);
 
     return (
         <div className="mx-auto max-w-6xl px-4 flex flex-col">
-            <Ang currentPage={slug[0]} />
-            <SriGuru route={route} item={item} />
+            <SriGuru route={route} item={item} shabadData={shabadData} pages={pages} commentaryList={commentaryList} shabadMedia={shabadMedia} />
         </div>
     );
 }

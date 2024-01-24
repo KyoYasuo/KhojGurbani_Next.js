@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Poppins, Tinos} from 'next/font/google'
+import { Poppins, Tinos } from 'next/font/google'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './globals.css'

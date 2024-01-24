@@ -9,6 +9,12 @@ import { User } from 'next-auth';
 import type { NextAuthConfig } from "next-auth"
 import { endpoint } from "@/environments/endpoint";
 
+declare module "next-auth" {
+    interface Session {
+        data: any;
+    }
+}
+
 export const config = {
     theme: {
         logo: "https://next-auth.js.org/img/logo/logo-sm.png",

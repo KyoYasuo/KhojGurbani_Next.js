@@ -1,7 +1,7 @@
 import { faClose, faPrint } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export const Print = ({ printOpen, setPrintOpen, print, setPrint }: { printOpen: boolean; setPrintOpen: any; print: any; setPrint: any }) => {
+export const Print = ({ printOpen, setPrintOpen, print, setPrint, exportData }: { printOpen: boolean; setPrintOpen: any; print: any; setPrint: any, exportData: any; }) => {
 
     const handleClose = () => {
         setPrintOpen(false);
@@ -67,6 +67,7 @@ export const Print = ({ printOpen, setPrintOpen, print, setPrint }: { printOpen:
                 </div>
                 <div className="bg-white p-[14px] border-t">
                     <button className="w-full px-[10px] py-[5px] bg-blue-primary hover:bg-blue-secondary text-sm text-white rounded-sm transition-all"
+                        onClick={() => exportData()}
                     >
                         <FontAwesomeIcon icon={faPrint} className="" />
                         &nbsp;

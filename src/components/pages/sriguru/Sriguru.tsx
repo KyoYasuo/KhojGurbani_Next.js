@@ -9,8 +9,9 @@ import { Setting } from "./Setting";
 import { Print } from "./Print";
 import { saveAs } from 'file-saver';
 import { CommentaryList } from "./CommentaryList";
+import { SriGuruMedia } from "./SriGuruMedia";
 
-export const Sriguru = ({ route, item, shabadData, commentaryList }: { route: string; item: string; shabadData: any; commentaryList: any }) => {
+export const Sriguru = ({ route, item, shabadData, commentaryList, mediaData }: { route: string; item: string; shabadData: any; commentaryList: any, mediaData: any }) => {
 
     const [settingOpen, setSettingOpen] = useState<boolean>(false);
     const [setting, setSetting] = useState({
@@ -137,6 +138,7 @@ export const Sriguru = ({ route, item, shabadData, commentaryList }: { route: st
                 })
             }
             <CommentaryList commentaryList={commentaryList} />
+            <SriGuruMedia mediaData={mediaData} />
 
             <Setting settingOpen={settingOpen} setSettingOpen={setSettingOpen} setting={setting} setSetting={setSetting} />
             <Print printOpen={printOpen} setPrintOpen={setPrintOpen} print={print} setPrint={setPrint} exportData={exportData} />

@@ -15,10 +15,11 @@ export default async function SriGuruSubPage({ params: { slug } }: { params: { s
 
     const shabadData = await getData(`/shabad/${route}/${item}`);
     const commentaryList = await getData(`/commentary/list/${item}`);
+    const mediaData = await getData(`/shabad-data/get-shabad-media/${item}`);
 
     return (
         <div className="max-w-6xl px-4 mx-auto">
-            <Sriguru route={route} item={item} shabadData={shabadData} commentaryList={commentaryList} />
+            <Sriguru route={route} item={item} shabadData={shabadData} commentaryList={commentaryList} mediaData={mediaData} />
         </div>
     );
 }

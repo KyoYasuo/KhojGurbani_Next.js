@@ -1,3 +1,5 @@
+'use client'
+
 export const Setting = ({ settingOpen, setSettingOpen, setting, setSetting }: { settingOpen: boolean; setSettingOpen: any; setting: any; setSetting: any }) => {
 
     const handleClose = () => setSettingOpen(false);

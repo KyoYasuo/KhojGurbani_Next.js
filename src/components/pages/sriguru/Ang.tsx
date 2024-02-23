@@ -2,6 +2,7 @@
 
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import clsx from "clsx";
 import { useRouter } from "next/navigation";
 
 export const Ang = ({ currentPage }: { currentPage: string }) => {
@@ -15,9 +16,17 @@ export const Ang = ({ currentPage }: { currentPage: string }) => {
         i++;
     }
 
+    function nextPage() {
+        if (parseInt(currentPage) < 1430) router.push(`/sriguru/${parseInt(currentPage) + 1}`);
+    }
+
+    function prevPage() {
+        if (parseInt(currentPage) > 1) router.push(`/sriguru/${parseInt(currentPage) - 1}`);
+    }
+
     return (
-        <div className="flex items-center justify-between w-[240px]">
-            <FontAwesomeIcon icon={faAngleLeft} />
+        <div className="md:ml-4 flex items-center justify-between w-[240px]">
+            <FontAwesomeIcon onClick={prevPage} icon={faAngleLeft} size="2x" className={clsx(parseInt(currentPage) <= 1 ? "text-disable cursor-not-allowed" : "text-black cursor-pointer")} />
             <div className="text-[28px]">
                 Ang
             </div>
@@ -29,7 +38,7 @@ export const Ang = ({ currentPage }: { currentPage: string }) => {
             >
                 {page}
             </select>
-            <FontAwesomeIcon icon={faAngleRight} />
+            <FontAwesomeIcon onClick={nextPage} icon={faAngleRight} size="2x" className={clsx(parseInt(currentPage) >= 1430 ? "text-disable cursor-not-allowed" : "text-black cursor-pointer")} />
         </div>
     );
 }

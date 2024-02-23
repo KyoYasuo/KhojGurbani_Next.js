@@ -1,3 +1,5 @@
+'use client'
+
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { DownloadButton } from "@/components/ui/DownloadButton";
 import { PlayPauseButton } from "@/components/ui/PlayPauseButton";
@@ -36,9 +38,15 @@ export const SubAudios = (
                                 </span>
                             </p>
                             {item.media_approve === 0 ?
-                                <div className="flex gap-2 mt-2">
-                                    <button onClick={handleApprove} className="text-approve text-sm"><FontAwesomeIcon icon={faCheck} />Approve</button>
-                                    <button onClick={handleReject} className="text-reject text-sm"><FontAwesomeIcon icon={faXmark} />Reject</button>
+                                <div className="flex gap-4 mt-2">
+                                    <button onClick={handleApprove} className="flex gap-2 items-center text-approve text-sm">
+                                        <FontAwesomeIcon icon={faCheck} />
+                                        <span className="">Approve</span>
+                                    </button>
+                                    <button onClick={handleReject} className="flex gap-2 items-center text-reject text-sm">
+                                        <FontAwesomeIcon icon={faXmark} />
+                                        <span>Reject</span>
+                                    </button>
                                 </div>
                                 :
                                 <DeleteButton onClick={handleDelete} />

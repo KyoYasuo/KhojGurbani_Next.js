@@ -10,6 +10,8 @@ import { Print } from "./Print";
 import { saveAs } from 'file-saver';
 import { CommentaryList } from "./CommentaryList";
 import { SriGuruMedia } from "./SriGuruMedia";
+import { AddAudio } from "./AddAudio";
+import { AddVideo } from "./AddVideo";
 
 export const Sriguru = ({ route, item, shabadData, commentaryList, mediaData }: { route: string; item: string; shabadData: any; commentaryList: any, mediaData: any }) => {
 
@@ -123,25 +125,30 @@ export const Sriguru = ({ route, item, shabadData, commentaryList, mediaData }: 
         saveAs(blob, `export_${print.print_opt10}.txt`);
     }
 
+    const [audioOpen, setAudioOpen] = useState(false);
+    const [videoOpen, setVideoOpen] = useState(false);
+
     return (
         <>
-            <div className="flex justify-between">
+            <div className="flex flex-col md:flex-row items-center md:justify-between my-[21px]">
                 <Ang currentPage={route} />
                 <SettingButton setSettingOpen={setSettingOpen} setPrintOpen={setPrintOpen} />
             </div>
+
             <Pagination pages={shabadData.pages} currentRoute={route} currentItem={item} />
-            {
-                shabadData.data.scriptures.map((scripture: any) => {
-                    return (
-                        <Scripture key={scripture.id} scripture={scripture} setting={setting} />
-                    );
-                })
-            }
+
+            {shabadData.data.scriptures.map((scripture: any) => (
+                <Scripture key={scripture.id} scripture={scripture} setting={setting} />
+            ))}
+
             <CommentaryList commentaryList={commentaryList} />
-            <SriGuruMedia mediaData={mediaData} />
+
+            <SriGuruMedia mediaData={mediaData} setAudioOpen={setAudioOpen} setVideoOpen={setVideoOpen} />
 
             <Setting settingOpen={settingOpen} setSettingOpen={setSettingOpen} setting={setting} setSetting={setSetting} />
             <Print printOpen={printOpen} setPrintOpen={setPrintOpen} print={print} setPrint={setPrint} exportData={exportData} />
+            <AddAudio audioOpen={audioOpen} setAudioOpen={setAudioOpen} />
+            <AddVideo videoOpen={videoOpen} setVideoOpen={setVideoOpen} />
         </>
     );
 }

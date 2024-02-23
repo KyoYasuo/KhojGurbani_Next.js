@@ -1,10 +1,12 @@
+'use client'
+
 export const Scripture = ({ scripture, setting }: { scripture: any; setting: any; }) => {
 
     return (
         <div
             className="mt-4"
         >
-            <h3 className="text-[32px] leading-[1.5] text-[#000000]">
+            <h3 className="text-[26px] md:text-[32px] leading-[1.5] text-[#000000]">
                 {scripture.Scripture}
             </h3>
             {setting.option1 ?
@@ -15,7 +17,7 @@ export const Scripture = ({ scripture, setting }: { scripture: any; setting: any
                 <></>
             }
             {setting.option2 ?
-                <p className="text-[22px] leading-[1.3] text-[#212529]">
+                <p className="text-[18px] md:text-[20px] leading-[1.3] text-[#212529]">
                     {scripture.ScriptureRoman}
                 </p> 
                 :

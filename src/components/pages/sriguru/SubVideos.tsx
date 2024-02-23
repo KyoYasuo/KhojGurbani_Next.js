@@ -1,3 +1,5 @@
+'use client'
+
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { EffectCoverflow } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -37,7 +39,7 @@ export const SubVideos = ({ videos, handleDelete, handleApprove, handleReject }:
                 {videos.map((item: Video) => (
                     <SwiperSlide key={item.id}>
                         <div className="flex flex-col items-baseline gap-6">
-                            <iframe src={item.attachment_name} className="w-full h-[300px]"></iframe>
+                            <iframe src={item.attachment_name} className="w-full aspect-video"></iframe>
                             {item.media_approve === 0 ?
                                 <div className="flex gap-2">
                                     <button onClick={handleApprove} className="flex gap-1 items-center text-xs px-[24px] py-[8px] rounded bg-approve text-white">

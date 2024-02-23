@@ -6,7 +6,7 @@ export const DownloadButton = ({ onClick, size }: { onClick: () => void; size: n
         return (
             <button
                 onClick={onClick}
-                className="bg-grey-primary hover:bg-grey-secondary w-6 h-6 rounded-full relative">
+                className="bg-gray-primary hover:bg-gray-secondary w-6 h-6 rounded-full relative">
                 <FontAwesomeIcon icon={faDownload} className="text-blue-primary text-sm absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] transition-all" />
             </button>
         )

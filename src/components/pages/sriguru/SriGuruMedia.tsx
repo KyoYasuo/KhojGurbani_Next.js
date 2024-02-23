@@ -1,3 +1,5 @@
+'use client'
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SubAudios } from "./SubAudios";
 import { SubVideos } from "./SubVideos";
@@ -29,7 +31,7 @@ interface MediaData {
     Discussion_data: Video[];
 }
 
-export const SriGuruMedia = ({ mediaData }: { mediaData: MediaData }) => {
+export const SriGuruMedia = ({ mediaData, setAudioOpen, setVideoOpen }: { mediaData: MediaData; setAudioOpen: any; setVideoOpen: any }) => {
 
     function handlePlay() {
         console.log("play");
@@ -53,9 +55,9 @@ export const SriGuruMedia = ({ mediaData }: { mediaData: MediaData }) => {
 
     return (
         <>
-            <div className="mb-[42px]">
+            <div className="mb-[42px] mt-[30px]">
                 <h3 className="text-primary text-[26px] font-bold mb-[14px]">Audio</h3>
-                <div className="grid grid-cols-2 gap-4 mb-[21px]">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-[21px]">
                     {
                         mediaData?.Santhiya_data.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
@@ -93,14 +95,14 @@ export const SriGuruMedia = ({ mediaData }: { mediaData: MediaData }) => {
                             <></>
                     }
                 </div>
-                <button className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
+                <button onClick={() => setAudioOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
                     <FontAwesomeIcon icon={faPlus} />
                     <p>Add Audio</p>
                 </button>
             </div>
             <div className="mb-[42px]">
                 <h3 className="text-primary text-[26px] font-bold mb-[14px]">Video</h3>
-                <div className="grid grid-cols-2 gap-4 mb-[21px]">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-[21px]">
                     {
                         mediaData?.Discussion_data.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
@@ -120,9 +122,9 @@ export const SriGuruMedia = ({ mediaData }: { mediaData: MediaData }) => {
                             <></>
                     }
                 </div>
-                <button className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
+                <button onClick={() => setVideoOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
                     <FontAwesomeIcon icon={faPlus} />
-                    <p>Add Audio</p>
+                    <p>Add Video</p>
                 </button>
             </div>
         </>

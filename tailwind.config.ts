@@ -22,12 +22,13 @@ const config: Config = {
         'main': "#1B4154",
         'button': "#4F4F4F",
         'commentary': "#5C5B5B",
-        'grey-primary': "#E0E0E0",
-        'grey-secondary': "#D0D0D0",
+        'gray-primary': "#E0E0E0",
+        'gray-secondary': "#D0D0D0",
         'title': "#212529",
         'duration': "#9A9A9A",
         'approve': "#5CB85C",
         'reject': "#F0AD4E",
+        'disable': "#D3D3D3"
       },
       boxShadow: {
         'common': '0 0 18px 0 rgba(0, 0, 0, 0.19)',

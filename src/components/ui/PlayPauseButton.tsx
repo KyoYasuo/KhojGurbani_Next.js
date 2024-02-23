@@ -7,7 +7,7 @@ export const PlayPauseButton = ({ onClick, isPlaying, isSelected, size }: { onCl
         return (
             <button
                 onClick={onClick}
-                className={clsx(isSelected ? "bg-blue-primary hover:bg-blue-secondary" : "bg-grey-primary hover:bg-grey-secondary",
+                className={clsx(isSelected ? "bg-blue-primary hover:bg-blue-secondary" : "bg-gray-primary hover:bg-gray-secondary",
                     "w-6 h-6 rounded-full relative")}>
                 {
                     isPlaying ?

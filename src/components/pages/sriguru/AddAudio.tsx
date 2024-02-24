@@ -1,8 +1,16 @@
 'use client'
 
+import Link from "next/link";
 import { useState } from "react";
 
 export const AddAudio = ({ audioOpen, setAudioOpen }: { audioOpen: boolean; setAudioOpen: any; }) => {
+
+    const shabadId = [];
+    let i = 1;
+    while (i <= 3620) {
+        shabadId.push(<option key={i}>{i}</option>);
+        i++;
+    }
 
     const [formData, setFormData] = useState<FormData>();
 
@@ -28,15 +36,32 @@ export const AddAudio = ({ audioOpen, setAudioOpen }: { audioOpen: boolean; setA
                             <option value="Audio" className="">Audio</option>
                             <option value="External URL" className="">External URL</option>
                         </select>
-                        <label htmlFor="fileInput" className="mb-6">
-                            <div className="flex justify-between border border-gray-secondary rounded overflow-hidden">
+                        <label htmlFor="fileInput" className="">
+                            <div className="mb-6 flex justify-between border border-gray-secondary rounded overflow-hidden">
                                 <div className="bg-white px-[10px] py-[5px]">Choose audio file</div>
                                 <div className="bg-gray-primary px-[10px] py-[5px] border-l border-gray-secondary">Browse</div>
                             </div>
                             <input type="file" id="fileInput" name="fileInput" className="hidden" />
                         </label>
-                        <label htmlFor="duration" className="">Duration</label>
-                        <input type="text" id="duration" name="duration" className="mb-6 text-base px-[10px] py-[5px] w-full border border-gray-secondary rounded outline-none" />
+                        <div className="flex justify-between w-full">
+                            <div className="flex flex-col">
+                                <label htmlFor="duration" className="">Duration (sec)</label>
+                                <input type="text" id="duration" name="duration" className="mb-6 text-base px-[10px] py-[5px] border border-gray-secondary rounded outline-none" />
+                            </div>
+                            <div className="flex flex-col">
+                                <label htmlFor="author_id" className="">Shabad</label>
+                                <select id="author_id" name="author_id" className="w-56 text-base px-[10px] py-[5px] border border-gray-secondary rounded outline-none">
+                                    {shabadId}
+                                </select>
+                                <Link href={`/sriguru/shabad/1`} className="text-blue-primary text-sm hover:underline">Find Shabad Id</Link>
+                            </div>
+                        </div>
+                        <label htmlFor="type" className="text-base">Select Source</label>
+                        <select name="type" id="type" className="mb-6 text-base cursor-pointer px-[10px] py-[5px] w-full border border-gray-secondary rounded outline-none">
+                            <option value="S3" className="">S3</option>
+                            <option value="Audio" className="">Audio</option>
+                            <option value="External URL" className="">External URL</option>
+                        </select>
                     </form>
                 </div>
                 <div className="flex justify-end items-center bg-white p-[14px] border-t">

@@ -28,13 +28,15 @@ export const AddAudio = ({ audioOpen, setAudioOpen }: { audioOpen: boolean; setA
                             <option value="Audio" className="">Audio</option>
                             <option value="External URL" className="">External URL</option>
                         </select>
-                        <label htmlFor="fileInput" className="">
+                        <label htmlFor="fileInput" className="mb-6">
                             <div className="flex justify-between border border-gray-secondary rounded overflow-hidden">
                                 <div className="bg-white px-[10px] py-[5px]">Choose audio file</div>
                                 <div className="bg-gray-primary px-[10px] py-[5px] border-l border-gray-secondary">Browse</div>
                             </div>
-                            <input type="file" id="fileInput" name="fileInput" className="hidden" accept=".jpg, .jpeg, .png" />
+                            <input type="file" id="fileInput" name="fileInput" className="hidden" />
                         </label>
+                        <label htmlFor="duration" className="">Duration</label>
+                        <input type="text" id="duration" name="duration" className="mb-6 text-base px-[10px] py-[5px] w-full border border-gray-secondary rounded outline-none" />
                     </form>
                 </div>
                 <div className="flex justify-end items-center bg-white p-[14px] border-t">

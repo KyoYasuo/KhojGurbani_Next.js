@@ -1,5 +1,5 @@
 import PodMedia from "@/components/ui/PodMedia";
-import { getData } from "@/utils/fetch";
+import { getData } from "@/utils/fetch_server";
 import Link from "next/link";
 
 export default async function HomeSubPage({ params: { slug } }: { params: { slug: string } }) {

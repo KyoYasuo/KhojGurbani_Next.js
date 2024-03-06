@@ -4,7 +4,7 @@ import { FeaturedPodcasts } from "@/components/pages/home/FeaturedPodcasts";
 import { FeaturedThemes } from "@/components/pages/home/FeaturedThemes";
 import { Subscribe } from "@/components/pages/home/Subscribe";
 import { Welcome } from "@/components/pages/home/Welcome";
-import { getData } from "@/utils/fetch";
+import { getData } from "@/utils/fetch_server";
 
 export default async function Home() {
 

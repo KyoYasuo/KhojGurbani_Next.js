@@ -13,7 +13,7 @@ import { SriGuruMedia } from "./SriGuruMedia";
 import { AddAudio } from "./AddAudio";
 import { AddVideo } from "./AddVideo";
 
-export const Sriguru = ({ route, item, shabadData, commentaryList, mediaData }: { route: string; item: string; shabadData: any; commentaryList: any, mediaData: any }) => {
+export const Sriguru = ({ route, item, shabadData, commentaryList, shabadMedias }: { route: string; item: string; shabadData: any; commentaryList: any, shabadMedias: any }) => {
 
     const [settingOpen, setSettingOpen] = useState<boolean>(false);
     const [setting, setSetting] = useState({
@@ -128,6 +128,21 @@ export const Sriguru = ({ route, item, shabadData, commentaryList, mediaData }: 
     const [audioOpen, setAudioOpen] = useState(false);
     const [videoOpen, setVideoOpen] = useState(false);
 
+    const mediaForm = new FormData();
+    mediaForm.append('user_id', '');
+    mediaForm.append('attachment_name', '');
+    mediaForm.append('title', '');
+    mediaForm.append('author_id', '');
+    mediaForm.append('type', '');
+    mediaForm.append('youtube_url', '');
+    mediaForm.append('podbean_url', '');
+    mediaForm.append('category', '');
+    mediaForm.append('new_category', '');
+    mediaForm.append('sub_category', '');
+    mediaForm.append('tag_id', '');
+    mediaForm.append('duration', '');
+    mediaForm.append('shabad_id', '');
+
     return (
         <>
             <div className="flex flex-col md:flex-row items-center md:justify-between my-[21px]">
@@ -143,12 +158,12 @@ export const Sriguru = ({ route, item, shabadData, commentaryList, mediaData }: 
 
             <CommentaryList commentaryList={commentaryList} />
 
-            <SriGuruMedia mediaData={mediaData} setAudioOpen={setAudioOpen} setVideoOpen={setVideoOpen} />
+            <SriGuruMedia shabadMedias={shabadMedias} setAudioOpen={setAudioOpen} setVideoOpen={setVideoOpen} />
 
             <Setting settingOpen={settingOpen} setSettingOpen={setSettingOpen} setting={setting} setSetting={setSetting} />
             <Print printOpen={printOpen} setPrintOpen={setPrintOpen} print={print} setPrint={setPrint} exportData={exportData} />
-            <AddAudio audioOpen={audioOpen} setAudioOpen={setAudioOpen} />
-            <AddVideo videoOpen={videoOpen} setVideoOpen={setVideoOpen} />
+            <AddAudio audioOpen={audioOpen} setAudioOpen={setAudioOpen} mediaForm={mediaForm} />
+            <AddVideo videoOpen={videoOpen} setVideoOpen={setVideoOpen} mediaForm={mediaForm} />
         </>
     );
 }

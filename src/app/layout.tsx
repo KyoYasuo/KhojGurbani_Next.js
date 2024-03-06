@@ -10,6 +10,9 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 config.autoAddCss = false;
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const poppins = Poppins({
   weight: "400",
   subsets: ["latin"],
@@ -34,6 +37,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ToastContainer />
         <SpeedInsights />
         <Analytics />
       </body>

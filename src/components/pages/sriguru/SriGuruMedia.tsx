@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SubAudios } from "./SubAudios";
 import { SubVideos } from "./SubVideos";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { getData, postData } from "@/utils/fetch_client";
+import { toast } from "react-toastify";
+import RevalidateSriguru from "../../../actions/Sriguru/RevalidateSriguru";
 
 interface Audio {
     id: number;
@@ -22,7 +25,7 @@ interface Video {
     attachment_name: string;
 }
 
-interface MediaData {
+interface ShabadMedias {
     katha_data: Audio[];
     Santhiya_data: Audio[];
     Kirtan_data: Audio[];
@@ -31,26 +34,59 @@ interface MediaData {
     Discussion_data: Video[];
 }
 
-export const SriGuruMedia = ({ mediaData, setAudioOpen, setVideoOpen }: { mediaData: MediaData; setAudioOpen: any; setVideoOpen: any }) => {
+export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { shabadMedias: ShabadMedias; setAudioOpen: any; setVideoOpen: any }) => {
 
     function handlePlay() {
         console.log("play");
     }
 
-    function handleDownload() {
+    function handleDownload(id: number) {
         console.log("download");
     }
 
-    function handleDelete() {
-        console.log("delete");
+    function handleDelete(id: number) {
+        confirm(`Are you sure you want to delete ${id}?`) &&
+            getData(`/media/delete-media/${id}`)
+                .then((res) => {
+                    if (res.success === "200")
+                        RevalidateSriguru()
+                            .then(() => {
+                                toast.success(res.message);
+                            })
+                })
+                .catch((err) => {
+                    toast.error(err);
+                })
     }
 
-    function handleApprove() {
-        console.log("approve");
+    function handleApprove(id: number) {
+        confirm(`Are you sure you want to approve ${id}?`) &&
+            postData(`/media/update-approval-status`, { media_id: id, status: 1 })
+                .then((res) => {
+                    if (res.success === "200")
+                        RevalidateSriguru()
+                            .then(() => {
+                                toast.success(res.message);
+                            })
+                })
+                .catch((err) => {
+                    toast.error(err);
+                })
     }
 
-    function handleReject() {
-        console.log("reject");
+    function handleReject(id: number) {
+        confirm(`Are you sure you want to reject ${id}?`) &&
+            getData(`/media/delete-media/${id}`)
+                .then((res) => {
+                    if (res.success === "200")
+                        RevalidateSriguru()
+                            .then(() => {
+                                toast.success(res.message);
+                            })
+                })
+                .catch((err) => {
+                    toast.error(err);
+                })
     }
 
     return (
@@ -59,37 +95,37 @@ export const SriGuruMedia = ({ mediaData, setAudioOpen, setVideoOpen }: { mediaD
                 <h3 className="text-primary text-[26px] font-bold mb-[14px]">Audio</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-[21px]">
                     {
-                        mediaData?.Santhiya_data.length > 0 ?
+                        shabadMedias?.Santhiya_data.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
                                 <h4 className="text-[21px] text-title">Santhiya</h4>
-                                <SubAudios audios={mediaData?.Santhiya_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                                <SubAudios audios={shabadMedias?.Santhiya_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
                             </div>
                             :
                             <></>
                     }
                     {
-                        mediaData?.Kirtan_data.length > 0 ?
+                        shabadMedias?.Kirtan_data.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
                                 <h4 className="text-[21px] text-title">Kirtan</h4>
-                                <SubAudios audios={mediaData?.Kirtan_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                                <SubAudios audios={shabadMedias?.Kirtan_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
                             </div>
                             :
                             <></>
                     }
                     {
-                        mediaData?.katha_data.length > 0 ?
+                        shabadMedias?.katha_data.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
                                 <h4 className="text-[21px] text-title">Katha</h4>
-                                <SubAudios audios={mediaData?.katha_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                                <SubAudios audios={shabadMedias?.katha_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
                             </div>
                             :
                             <></>
                     }
                     {
-                        mediaData?.podcast_media.length > 0 ?
+                        shabadMedias?.podcast_media.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
                                 <h4 className="text-[21px] text-title">Podcast</h4>
-                                <SubAudios audios={mediaData?.podcast_media} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                                <SubAudios audios={shabadMedias?.podcast_media} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
                             </div>
                             :
                             <></>
@@ -104,19 +140,19 @@ export const SriGuruMedia = ({ mediaData, setAudioOpen, setVideoOpen }: { mediaD
                 <h3 className="text-primary text-[26px] font-bold mb-[14px]">Video</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-[21px]">
                     {
-                        mediaData?.Discussion_data.length > 0 ?
+                        shabadMedias?.Discussion_data.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
                                 <h4 className="text-[21px] text-title">Discussion Video</h4>
-                                <SubVideos videos={mediaData?.Discussion_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} />
+                                <SubVideos videos={shabadMedias?.Discussion_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} />
                             </div>
                             :
                             <></>
                     }
                     {
-                        mediaData?.Featured_data.length > 0 ?
+                        shabadMedias?.Featured_data.length > 0 ?
                             <div className="flex flex-col items-baseline gap-[14px]">
                                 <h4 className="text-[21px] text-title">Featured Video</h4>
-                                <SubVideos videos={mediaData?.Featured_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} />
+                                <SubVideos videos={shabadMedias?.Featured_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} />
                             </div>
                             :
                             <></>

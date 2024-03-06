@@ -18,7 +18,7 @@ interface Audio {
 
 export const SubAudios = (
     { audios, handleDelete, handlePlay, handleDownload, handleApprove, handleReject }:
-        { audios: Audio[]; handleDelete: () => void; handlePlay: () => void; handleDownload: () => void; handleApprove: () => void; handleReject: () => void; }) => {
+        { audios: Audio[]; handleDelete: (id: number) => void; handlePlay: () => void; handleDownload: (id: number) => void; handleApprove: (id: number) => void; handleReject: (id: number) => void; }) => {
 
     const [expand, setExpand] = useState(false);
 
@@ -28,7 +28,7 @@ export const SubAudios = (
                 <div key={item.id} >
                     <div className="flex gap-[7px]">
                         <PlayPauseButton onClick={handlePlay} isPlaying={false} isSelected={false} size={1} />
-                        <DownloadButton onClick={handleDownload} size={1} />
+                        <DownloadButton onClick={() => handleDownload(item.id)} size={1} />
                         <div className="flex flex-col ml-[7px] items-baseline">
                             <p className="text-sm text-title">
                                 {item.title.split(' ').slice(0, 4).join(' ')}
@@ -39,17 +39,17 @@ export const SubAudios = (
                             </p>
                             {item.media_approve === 0 ?
                                 <div className="flex gap-4 mt-2">
-                                    <button onClick={handleApprove} className="flex gap-2 items-center text-approve text-sm">
+                                    <button onClick={() => handleApprove(item.id)} className="flex gap-2 items-center text-approve text-sm">
                                         <FontAwesomeIcon icon={faCheck} />
                                         <span className="">Approve</span>
                                     </button>
-                                    <button onClick={handleReject} className="flex gap-2 items-center text-reject text-sm">
+                                    <button onClick={() => handleReject((item.id))} className="flex gap-2 items-center text-reject text-sm">
                                         <FontAwesomeIcon icon={faXmark} />
                                         <span>Reject</span>
                                     </button>
                                 </div>
                                 :
-                                <DeleteButton onClick={handleDelete} />
+                                <DeleteButton onClick={() => handleDelete(item.id)} />
                             }
                         </div>
                     </div>

@@ -17,7 +17,7 @@ interface Video {
     attachment_name: string;
 }
 
-export const SubVideos = ({ videos, handleDelete, handleApprove, handleReject }: { videos: Video[]; handleDelete: () => void; handleApprove: () => void; handleReject: () => void; }) => {
+export const SubVideos = ({ videos, handleDelete, handleApprove, handleReject }: { videos: Video[]; handleDelete: (id: number) => void; handleApprove: (id: number) => void; handleReject: (id: number) => void; }) => {
 
     return (
         <>
@@ -42,17 +42,17 @@ export const SubVideos = ({ videos, handleDelete, handleApprove, handleReject }:
                             <iframe src={item.attachment_name} className="w-full aspect-video"></iframe>
                             {item.media_approve === 0 ?
                                 <div className="flex gap-2">
-                                    <button onClick={handleApprove} className="flex gap-1 items-center text-xs px-[24px] py-[8px] rounded bg-approve text-white">
+                                    <button onClick={() => handleApprove(item.id)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] rounded bg-approve text-white">
                                         <p>Approve</p>
                                         <FontAwesomeIcon icon={faCheck} />
                                     </button>
-                                    <button onClick={handleReject} className="flex gap-1 items-center text-xs px-[24px] py-[8px] rounded bg-reject text-white">
+                                    <button onClick={() => handleReject(item.id)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] rounded bg-reject text-white">
                                         <p>Reject</p>
                                         <FontAwesomeIcon icon={faXmark} />
                                     </button>
                                 </div>
                                 :
-                                <DeleteButton onClick={handleDelete} />
+                                <DeleteButton onClick={() => handleDelete(item.id)} />
                             }
                         </div>
                     </SwiperSlide>

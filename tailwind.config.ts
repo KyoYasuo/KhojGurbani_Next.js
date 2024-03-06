@@ -24,11 +24,14 @@ const config: Config = {
         'commentary': "#5C5B5B",
         'gray-primary': "#E0E0E0",
         'gray-secondary': "#D0D0D0",
+        'gray-tertiary': "#666666",
         'title': "#212529",
         'duration': "#9A9A9A",
         'approve': "#5CB85C",
         'reject': "#F0AD4E",
-        'disable': "#D3D3D3"
+        'disable': "#D3D3D3",
+        'sky-primary': "#EBF5FF",
+        'sky-secondary': "#B8DBFF",
       },
       boxShadow: {
         'common': '0 0 18px 0 rgba(0, 0, 0, 0.19)',

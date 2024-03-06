@@ -23,7 +23,7 @@ export const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <header className="sticky z-10 top-0 w-full bg-primary">
+        <header className="sticky z-20 top-0 w-full bg-primary">
             <div className="max-w-6xl px-4 mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center">
                 <div className="flex justify-between items-center w-full lg:w-auto">
                     <Logo />

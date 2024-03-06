@@ -1,7 +1,8 @@
 'use client'
 
 import { getData } from "@/utils/fetch_client";
-import { useRef, useState } from "react";
+import Image from "next/image";
+import { use, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
 interface DicData {
@@ -20,8 +21,12 @@ export const Scripture = ({ scripture, setting }: { scripture: any; setting: any
     const [dicOpen, setDicOpen] = useState(false);
     const [dicLoading, setDicLoading] = useState(true);
 
+    const [wordPosition, setWordPosition] = useState({ x: 0, y: 0 });
+    const popupRef = useRef<HTMLDivElement>(null);
+
     function handleWordClick(event: any) {
-        const { clientX, clientY } = event;
+        const { offsetTop, offsetLeft, offsetHeight, offsetWidth } = event.target;
+        setWordPosition({ x: offsetLeft + offsetWidth / 2, y: offsetTop + offsetHeight });
         const word = event.target.innerText.trim();
         const searchParam = new URLSearchParams();
         searchParam.append('lang', 'gurmukhi');
@@ -51,37 +56,48 @@ export const Scripture = ({ scripture, setting }: { scripture: any; setting: any
         >
             <h3 className="text-[26px] md:text-[32px] leading-[1.5] text-[#000000] flex flex-wrap">
                 {scripture.Scripture.split(' ').map((word: string, index: number) =>
-                    <span key={index} className="cursor-help hover:bg-[#F4E5A8] relative" onClick={handleWordClick}>
+                    <span key={index} className="cursor-help hover:bg-[#F4E5A8]" onClick={handleWordClick}>
                         {word}&nbsp;
                     </span>
                 )}
                 {dicOpen &&
                     (dicLoading ?
-                        <div className="w-[500px] h-[300px] bg-main/90">
-                            loading...
-                        </div>
+                        <>
+                            <div style={{ left: `${wordPosition.x - 80 > 0 ? wordPosition.x - 80 : 0}px`, top: `${wordPosition.y}px` }} className={`absolute mx-4 rounded-md shadow-common z-10 p-[14px] bg-main/90`}>
+                                <Image src='/images/loading/loadingwhite.svg' width={100} height={100} alt="loading..." />
+                            </div>
+                            <div style={{ left: `${wordPosition.x}px`, top: `${wordPosition.y - 7}px` }} className="absolute -translate-x-1/2 z-10 border-transparent border-r-8 border-l-8 border-b-8 border-b-main"></div>
+                        </>
                         :
-                        <div className="top-0 left-0 translate-x-6 z-10 min-w-[400px] p-[14px] bg-main text-white flex flex-col">
-                            <h5 className="text-2xl font-bold">{dicData?.word}</h5>
-                            {dicData?.pun_mahankosh &&
-                                <div className="text-base mb-[10px]">
-                                    <p className="">Mahan Kosh Encyclopedia</p>
-                                    <p className="">{dicData?.pun_mahankosh}</p>
+                        <>
+                            <div id="popup" style={{ left: `${wordPosition.x - 330 > 0 ? wordPosition.x - 330 : 0}px`, top: `${wordPosition.y}px` }} className={`absolute mx-4 max-w-[600px] rounded-md shadow-common z-10 p-[14px] bg-main text-white flex flex-col`}>
+                                <h5 className="text-2xl font-bold">{dicData?.word}</h5>
+                                {dicData?.pun_mahankosh &&
+                                    <div className="text-base mb-[10px]">
+                                        <p className="">Mahan Kosh Encyclopedia</p>
+                                        <p className="">{dicData?.pun_mahankosh}</p>
+                                    </div>
+                                }
+                                {dicData?.pun_kosh &&
+                                    <div className="text-base mb-[10px]">
+                                        <p className="">SGGS Gurmukhi-Gurmukhi Dictionary</p>
+                                        <p className="">{dicData?.pun_kosh}</p>
+                                    </div>
+                                }
+                                {dicData?.eng_dic_sri &&
+                                    <div className="text-base mb-[10px]">
+                                        <p className="">SGGS Gurmukhi-English Dictionary</p>
+                                        <p className="">{dicData?.eng_dic_sri}</p>
+                                    </div>
+                                }
+                                <div className="flex justify-end">
+                                    <button onClick={() => setDicOpen(false)} className="px-[10px] py-[5px] hover:bg-white/20 text-sm rounded-sm transition-all text-white">Close</button>
+                                    <button className="px-[10px] py-[5px] ml-[18px] bg-blue-primary hover:bg-blue-secondary text-sm text-white rounded-sm transition-all">View</button>
+                                    <button className="px-[10px] py-[5px] ml-[18px] bg-blue-primary hover:bg-blue-secondary text-sm text-white rounded-sm transition-all">Search</button>
                                 </div>
-                            }
-                            {dicData?.pun_kosh &&
-                                <div className="text-base mb-[10px]">
-                                    <p className="">SGGS Gurmukhi-Gurmukhi Dictionary</p>
-                                    <p className="">{dicData?.pun_kosh}</p>
-                                </div>
-                            }
-                            {dicData?.eng_dic_sri &&
-                                <div className="text-base mb-[10px]">
-                                    <p className="">SGGS Gurmukhi-English Dictionary</p>
-                                    <p className="">{dicData?.eng_dic_sri}</p>
-                                </div>
-                            }
-                        </div>
+                            </div>
+                            <div style={{ left: `${wordPosition.x}px`, top: `${wordPosition.y - 7}px` }} className="absolute -translate-x-1/2 z-10 border-transparent border-r-8 border-l-8 border-b-8 border-b-main"></div>
+                        </>
                     )
                 }
             </h3>

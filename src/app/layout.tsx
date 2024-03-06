@@ -31,7 +31,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.className} antialiased flex flex-col min-h-screen`}>
+      <body className={`${poppins.className} antialiased flex flex-col min-h-screen relative`}>
         <Header />
         <main className="grow">
           {children}

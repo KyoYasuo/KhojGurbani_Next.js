@@ -34,7 +34,8 @@ const config: Config = {
         'sky-secondary': "#B8DBFF",
       },
       boxShadow: {
-        'common': '0 0 18px 0 rgba(0, 0, 0, 0.19)',
+        'common': '0 0 18px 0 rgba(0, 0, 0, 0.20)',
+        'double': '0 0 18px 0 rgba(0, 0, 0, 0.40)',
       },
       transitionProperty: {
         'height': 'height',

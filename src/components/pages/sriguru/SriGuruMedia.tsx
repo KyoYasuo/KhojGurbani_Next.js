@@ -7,6 +7,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { getData, postData } from "@/utils/fetch_client";
 import { toast } from "react-toastify";
 import RevalidateSriguru from "../../../actions/Sriguru/RevalidateSriguru";
+import { useSession } from "next-auth/react";
 
 interface Audio {
     id: number;
@@ -35,6 +36,8 @@ interface ShabadMedias {
 }
 
 export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { shabadMedias: ShabadMedias; setAudioOpen: any; setVideoOpen: any }) => {
+
+    const { data: session } = useSession();
 
     function handlePlay() {
         console.log("play");
@@ -119,10 +122,12 @@ export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { sha
                         </div>
                     }
                 </div>
-                <button onClick={() => setAudioOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
-                    <FontAwesomeIcon icon={faPlus} />
-                    <p>Add Audio</p>
-                </button>
+                {session?.data.role_id >= 2 &&
+                    <button onClick={() => setAudioOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
+                        <FontAwesomeIcon icon={faPlus} />
+                        <p>Add Audio</p>
+                    </button>
+                }
             </div>
             <div className="mb-[42px]">
                 <h3 className="text-primary text-[26px] font-bold mb-[14px]">Video</h3>
@@ -140,10 +145,12 @@ export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { sha
                         </div>
                     }
                 </div>
-                <button onClick={() => setVideoOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
-                    <FontAwesomeIcon icon={faPlus} />
-                    <p>Add Video</p>
-                </button>
+                {session?.data.role_id >= 2 &&
+                    <button onClick={() => setVideoOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
+                        <FontAwesomeIcon icon={faPlus} />
+                        <p>Add Video</p>
+                    </button>
+                }
             </div>
         </>
     );

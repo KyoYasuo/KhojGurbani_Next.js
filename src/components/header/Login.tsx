@@ -9,6 +9,7 @@ import { faCaretDown, faRightFromBracket, faUserGear } from "@fortawesome/free-s
 import { useEffect, useRef, useState } from "react";
 import { postData } from "@/utils/fetch_client";
 import { toast } from "react-toastify";
+import { signOut } from "next-auth/react";
 
 export const Login = ({ session, setIsOpen }: { session: any; setIsOpen: any; }) => {
 
@@ -33,6 +34,7 @@ export const Login = ({ session, setIsOpen }: { session: any; setIsOpen: any; })
     }, []);
 
     function handleLogout() {
+        signOut();
     }
 
     if (session) return (

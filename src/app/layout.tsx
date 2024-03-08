@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+
 import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/footer/Footer";
 
@@ -12,6 +13,8 @@ config.autoAddCss = false;
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import AuthWrapper from '@/contexts/AuthWrapper';
 
 const poppins = Poppins({
   weight: "400",
@@ -32,11 +35,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased flex flex-col min-h-screen relative`}>
-        <Header />
-        <main className="grow flex flex-col">
-          {children}
-        </main>
-        <Footer />
+        <AuthWrapper>
+          <Header />
+          <main className="grow flex flex-col">
+            {children}
+          </main>
+          <Footer />
+        </AuthWrapper>
         <ToastContainer />
         <SpeedInsights />
         <Analytics />

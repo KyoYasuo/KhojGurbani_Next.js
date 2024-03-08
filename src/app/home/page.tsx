@@ -6,7 +6,12 @@ import { Subscribe } from "@/components/pages/home/Subscribe";
 import { Welcome } from "@/components/pages/home/Welcome";
 import { getData } from "@/utils/fetch_server";
 
+import { auth, signOut } from "@/auth" // adding { auth }
+
 export default async function Home() {
+
+    const session = await auth() // calling session
+    console.log(session); // console log to read session
 
     const podcast_index = await getData("/media/podcast-index?time=1234567890");
     const podcast_listing = await getData("/featured-api/podcast-listing");

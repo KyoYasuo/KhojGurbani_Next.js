@@ -5,6 +5,7 @@ import { DownloadButton } from "@/components/ui/DownloadButton";
 import { PlayPauseButton } from "@/components/ui/PlayPauseButton";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSession } from "next-auth/react";
 import { useState } from "react";
 
 interface Audio {
@@ -19,6 +20,8 @@ interface Audio {
 export const SubAudios = (
     { audios, handleDelete, handlePlay, handleDownload, handleApprove, handleReject }:
         { audios: Audio[]; handleDelete: (id: number) => void; handlePlay: () => void; handleDownload: (id: number) => void; handleApprove: (id: number) => void; handleReject: (id: number) => void; }) => {
+
+    const { data: session } = useSession();
 
     const [expand, setExpand] = useState(false);
 
@@ -37,19 +40,21 @@ export const SubAudios = (
                                     {item.duration}
                                 </span>
                             </p>
-                            {item.media_approve === 0 ?
-                                <div className="flex gap-4 mt-2">
-                                    <button onClick={() => handleApprove(item.id)} className="flex gap-2 items-center text-approve text-sm">
-                                        <FontAwesomeIcon icon={faCheck} />
-                                        <span className="">Approve</span>
-                                    </button>
-                                    <button onClick={() => handleReject((item.id))} className="flex gap-2 items-center text-reject text-sm">
-                                        <FontAwesomeIcon icon={faXmark} />
-                                        <span>Reject</span>
-                                    </button>
-                                </div>
-                                :
-                                <DeleteButton onClick={() => handleDelete(item.id)} />
+                            {session?.data.role_id === 4 &&
+                                (item.media_approve === 0 ?
+                                    <div className="flex gap-4 mt-2">
+                                        <button onClick={() => handleApprove(item.id)} className="flex gap-2 items-center text-approve text-sm">
+                                            <FontAwesomeIcon icon={faCheck} />
+                                            <span className="">Approve</span>
+                                        </button>
+                                        <button onClick={() => handleReject((item.id))} className="flex gap-2 items-center text-reject text-sm">
+                                            <FontAwesomeIcon icon={faXmark} />
+                                            <span>Reject</span>
+                                        </button>
+                                    </div>
+                                    :
+                                    <DeleteButton onClick={() => handleDelete(item.id)} />
+                                )
                             }
                         </div>
                     </div>

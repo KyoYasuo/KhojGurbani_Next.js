@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    reactStrictMode: false,
     images: {
         remotePatterns: [
             {
@@ -13,6 +14,10 @@ const nextConfig = {
                 hostname: 'apiprod.khojgurbani.org',
                 port: '',
                 pathname: '/uploads/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'lh3.googleusercontent.com',
             },
         ],
     },

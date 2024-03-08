@@ -7,8 +7,9 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faChevronLeft, faChevronRight, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useSession } from "next-auth/react";
+import { useCallback, useRef } from "react";
 
 interface Video {
     id: number;
@@ -22,9 +23,36 @@ export const SubVideos = ({ videos, handleDelete, handleApprove, handleReject }:
 
     const { data: session } = useSession();
 
+    const swiperRef = useRef(null);
+
+    const navigateToNextSlide = useCallback(() => {
+        if (!swiperRef.current) return;
+        (swiperRef.current as any).swiper.slideNext();
+    }, []);
+
+    const navigateToPrevSlide = useCallback(() => {
+        if (!swiperRef.current) return;
+        (swiperRef.current as any).swiper.slidePrev();
+    }, []);
+
     return (
         <>
+            <button
+                onClick={navigateToPrevSlide}
+                className="absolute top-0 right-16 rounded-full w-[30px] h-[30px] bg-white hover:bg-gray-primary 
+                border border-gray-tertiary flex justify-center items-center transition-all"
+            >
+                <FontAwesomeIcon icon={faChevronLeft} className="text-gray-tertiary" />
+            </button>
+            <button
+                onClick={navigateToNextSlide}
+                className="absolute top-0 right-6 rounded-full w-[30px] h-[30px] bg-white hover:bg-gray-primary 
+                border border-gray-tertiary flex justify-center items-center transition-all"
+            >
+                <FontAwesomeIcon icon={faChevronRight} className="text-gray-tertiary" />
+            </button>
             <Swiper
+                ref={swiperRef}
                 effect={'coverflow'}
                 grabCursor={true}
                 centeredSlides={true}

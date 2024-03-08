@@ -33,7 +33,7 @@ export const Ang = ({ currentPage }: { currentPage: string }) => {
             <select
                 value={currentPage}
                 // size={0}
-                className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] h-10 px-[3.5px] py-[7px] bg-white'
+                className='outline-none border border-[#C5C5C5] text-[#42403F] text-sm rounded-[3px] bg-white'
                 onChange={(e) => router.push(`/sriguru/${e.target.value}`)}
             >
                 {page}

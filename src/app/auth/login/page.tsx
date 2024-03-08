@@ -1,24 +1,21 @@
 "use client"
 
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { googleAuthenticate } from "@/lib/action" // added import
-import { useFormState } from "react-dom"
 
 export default function Page() {
-    
-    const [errorMsgGoogle, dispatchGoogle] = useFormState(googleAuthenticate, undefined) //googleAuthenticate hook
 
     return (
         <div className="w-[500px] bg-white rounded-lg shadow-double px-[55px] py-[30px] flex flex-col items-center">
             <h2 className="text-[20px] text-[#212529] font-bold mb-[30px]">Sign In</h2>
             <div className="w-full flex flex-col gap-[15px] justify-between items-center">
                 <button
+                    onClick={() => signIn('google')}
                     className="cursor-pointer w-full flex gap-2 justify-center items-center h-[44px] rounded-md border-2 border-[#518EF8] bg-white hover:bg-[#518EF8]/10 transition-all"
                 >
                     <Image src="/images/svg/google.svg" alt="google" width={24} height={24} />
                     <span className="text-[16px] text-[#518EF8]">Sign in with Google</span>
-                    <p>{errorMsgGoogle}</p>
                 </button>
                 <button
                     className="cursor-pointer w-full flex gap-2 justify-center items-center h-[44px] rounded-md border-2 border-[#4E71A8] bg-white hover:bg-[#4E71A8]/10 transition-all"
@@ -34,7 +31,7 @@ export default function Page() {
                 </button>
             </div>
             <p className="text-[15px] text-[#8F8F8F] my-[13px]">OR</p>
-            <form className="w-full flex flex-col justify-between items-center grow" action={dispatchGoogle}>
+            <form className="w-full flex flex-col justify-between items-center grow" >
                 <input
                     type="email"
                     id="email"

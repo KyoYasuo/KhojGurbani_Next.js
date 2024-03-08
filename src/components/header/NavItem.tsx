@@ -4,11 +4,11 @@ import clsx from "clsx";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export const NavItem = ({ href, children }: { href: string; children: JSX.Element | string }) => {
+export const NavItem = ({ href, children, setIsOpen }: { href: string; children: JSX.Element | string; setIsOpen: any; }) => {
     const pathname = usePathname();
     const isActive = `/${pathname.split("/")[1]}` === href;
     return (
-        <li className={clsx(
+        <li onClick={() => setIsOpen(false)} className={clsx(
             isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:w-auto")}>
             <Link
                 href={href}

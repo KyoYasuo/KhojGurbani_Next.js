@@ -1,9 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const Logo = () => {
+export const Logo = ({ setIsOpen }: { setIsOpen: any }) => {
+
     return (
-        <Link href='/home' className="h-16 flex justify-center items-center">
+        <Link onClick={() => setIsOpen(false)} href='/home' className="h-16 flex justify-center items-center">
             <Image
                 src='/images/logo/logo.png'
                 alt="logo"

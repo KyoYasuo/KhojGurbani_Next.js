@@ -10,7 +10,7 @@ import { useEffect, useRef, useState } from "react";
 import { postData } from "@/utils/fetch_client";
 import { toast } from "react-toastify";
 
-export const Login = ({ session }: { session: any; }) => {
+export const Login = ({ session, setIsOpen }: { session: any; setIsOpen: any; }) => {
 
     const [dropOpen, setDropOpen] = useState(false);
 
@@ -60,7 +60,7 @@ export const Login = ({ session }: { session: any; }) => {
                     </li>
                 </div>
             }
-            <li className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}>
+            <li onClick={() => setIsOpen(false)} className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}>
                 <Link
                     href={'/myaccount'}
                     className='w-full hover:bg-secondary px-[15px] py-[20px] text-white text-sm'
@@ -68,7 +68,7 @@ export const Login = ({ session }: { session: any; }) => {
                     My account
                 </Link>
             </li>
-            <li className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}>
+            <li onClick={() => setIsOpen(false)} className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}>
                 <button
                     onClick={() => handleLogout()}
                     className='w-full hover:bg-secondary px-[15px] py-[20px] text-white text-sm text-left'

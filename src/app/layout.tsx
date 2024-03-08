@@ -15,6 +15,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AuthWrapper from '@/contexts/AuthWrapper';
+import AudioPlayer from '@/components/ui/AudioPlayer';
+import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
 
 const poppins = Poppins({
   weight: "400",
@@ -36,16 +38,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} antialiased flex flex-col min-h-screen relative`}>
         <AuthWrapper>
-          <Header />
-          <main className="grow flex flex-col">
-            {children}
-          </main>
-          <Footer />
+          <AudioPlayerProvider>
+            <Header />
+            <main className="grow flex flex-col">
+              {children}
+            </main>
+            <Footer />
+            <AudioPlayer />
+          </AudioPlayerProvider>
         </AuthWrapper>
         <ToastContainer />
         <SpeedInsights />
         <Analytics />
-      </body>
-    </html>
+      </body >
+    </html >
   );
 }

@@ -3,6 +3,7 @@
 import { DeleteButton } from "@/components/ui/DeleteButton";
 import { DownloadButton } from "@/components/ui/DownloadButton";
 import { PlayPauseButton } from "@/components/ui/PlayPauseButton";
+import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { faCheck, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useSession } from "next-auth/react";
@@ -25,13 +26,15 @@ export const SubAudios = (
 
     const [expand, setExpand] = useState(false);
 
+    const { playAudio,  } = useAudioPlayer();
+
     return (
         <>
             {audios.slice(0, expand ? audios.length : 3).map((item: Audio) => (
                 <div key={item.id} >
                     <div className="flex gap-[7px]">
-                        <PlayPauseButton onClick={handlePlay} isPlaying={false} isSelected={false} size={1} />
-                        <DownloadButton onClick={() => handleDownload(item.id)} size={1} />
+                        <PlayPauseButton onClick={() => playAudio(item.attachment_name, item.title, item.id.toString())} isPlaying={false} isSelected={false} size={1} />
+                        {session?.data.role_id >= 3 && <DownloadButton onClick={() => handleDownload(item.id)} size={1} />}
                         <div className="flex flex-col ml-[7px] items-baseline">
                             <p className="text-sm text-title">
                                 {item.title.split(' ').slice(0, 4).join(' ')}

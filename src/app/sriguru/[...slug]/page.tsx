@@ -25,7 +25,6 @@ export default async function SriGuruSubPage({ params: { slug } }: { params: { s
     const shabadListData = await getData("/shabad-data/list").then((data) => data.result);
 
     const mediaData = { authorListData, tagListData, resourceListData, subCategoryListData, shabadListData }
-    // console.log(audioData);
 
     return (
         <MediaDataProvider mediaData={mediaData}>

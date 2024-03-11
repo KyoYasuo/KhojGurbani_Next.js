@@ -9,6 +9,7 @@ export const Welcome = () => {
                     alt="Welcome to KhojGurbani"
                     width={536}
                     height={495}
+                    priority
                     className="float-left pt-6 pb-6 pr-6 hidden md:block xl:w-[536px] md:w-1/2"
                 />
                 <div className="">

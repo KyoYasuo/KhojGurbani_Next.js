@@ -4,7 +4,7 @@ export default function AuthLayout({
     children: React.ReactNode
 }) {
     return (
-        <div className="h-full grow bg-left-top bg-cover bg-[url('/images/auth/background.png')] flex items-center justify-center">
+        <div className="h-full w-full p-4 grow bg-left-top bg-cover bg-[url('/images/auth/background.png')] flex items-center justify-center">
             {children}
         </div>
     )

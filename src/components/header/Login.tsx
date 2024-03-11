@@ -82,11 +82,15 @@ export const Login = ({ session, setIsOpen }: { session: any; setIsOpen: any; })
     );
 
     return (
-        <li className="flex w-full lg:w-auto">
-            <Link href='/auth/login'
+        <li
+            onClick={() => setIsOpen(false)}
+            className="flex w-full lg:w-auto"
+        >
+            <Link
+                href='/auth/login'
                 className={clsx(
                     isActive ? 'border-b-4 border-blue-primary' : 'border-none',
-                    'px-[15px] py-[20px] text-white text-sm'
+                    'w-full px-[15px] py-[20px] hover:bg-secondary text-white text-sm'
                 )}
             >
                 Login

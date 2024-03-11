@@ -9,25 +9,25 @@ const protectedRoutes = [
     '/gubanisearch',
 ];
 const unprotectedRoutes = [
-    '/auth'
+    '/auth/login',
+    '/auth/register',
+    '/auth/forgotpassword',
 ];
 
 import { auth } from '@/auth';
 
-export default async function middleware(request: NextRequest) {
+export default async function middlewareHandler(request: NextRequest) {
     const session = await auth();
-    // console.log(session);
 
-    const isProtectedRoute = protectedRoutes.some((prefix) =>
-        request.nextUrl.pathname.startsWith(prefix)
+    const isProtectedRoute = protectedRoutes.some(route =>
+        request.nextUrl.pathname.startsWith(route)
     );
 
     if (!session && isProtectedRoute) {
-        const absoluteURL = new URL('/auth/login', request.nextUrl.origin);
-        return NextResponse.redirect(absoluteURL.toString());
+        return NextResponse.redirect(`${request.nextUrl.origin}/auth/login`);
     }
+
     if (session && unprotectedRoutes.includes(request.nextUrl.pathname)) {
-        const absoluteURL = new URL('/home', request.nextUrl.origin);
-        return NextResponse.redirect(absoluteURL.toString());
+        return NextResponse.redirect(`${request.nextUrl.origin}/home`);
     }
 }

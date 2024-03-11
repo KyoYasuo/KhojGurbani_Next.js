@@ -26,15 +26,15 @@ export const SubAudios = (
 
     const [expand, setExpand] = useState(false);
 
-    const { playAudio,  } = useAudioPlayer();
+    // const { playAudio,  } = useAudioPlayer();
 
     return (
         <>
             {audios.slice(0, expand ? audios.length : 3).map((item: Audio) => (
                 <div key={item.id} >
                     <div className="flex gap-[7px]">
-                        <PlayPauseButton onClick={() => playAudio(item.attachment_name, item.title, item.id.toString())} isPlaying={false} isSelected={false} size={1} />
-                        {session?.data.role_id >= 3 && <DownloadButton onClick={() => handleDownload(item.id)} size={1} />}
+                        <PlayPauseButton onClick={handlePlay} isPlaying={false} isSelected={false} size={1} />
+                        {session?.resData.user.role_id >= 3 && <DownloadButton onClick={() => handleDownload(item.id)} size={1} />}
                         <div className="flex flex-col ml-[7px] items-baseline">
                             <p className="text-sm text-title">
                                 {item.title.split(' ').slice(0, 4).join(' ')}
@@ -43,7 +43,7 @@ export const SubAudios = (
                                     {item.duration}
                                 </span>
                             </p>
-                            {session?.data.role_id === 4 &&
+                            {session?.resData.user.role_id === 4 &&
                                 (item.media_approve === 0 ?
                                     <div className="flex gap-4 mt-2">
                                         <button onClick={() => handleApprove(item.id)} className="flex gap-2 items-center text-approve text-sm">

@@ -7,14 +7,12 @@ import { useAudioPlayer } from '@/contexts/AudioPlayerContext';
 import ReactPlayer from 'react-player';
 import { toast } from 'react-toastify';
 import { PlayPauseButton } from './PlayPauseButton';
-// import { v4 as uuidv4 } from 'uuid';
-// import { postTrack } from '@/lib/fetch_data';
-// import ButtonPlay from './ButtonPlay';
+import clsx from 'clsx';
 
 const AudioPlayer: React.FC = () => {
 
     const { audioId, audioTitle, audioUrl, isPlaying, pauseAudio, playAudio } = useAudioPlayer();
-    const playerRef = useRef<ReactPlayer | null>(null);
+    const playerRef = useRef<ReactPlayer>(null);
     const sliderRef = useRef<HTMLDivElement>(null);
 
     const [isShow, setIsShow] = useState<boolean>(false);
@@ -25,29 +23,7 @@ const AudioPlayer: React.FC = () => {
     const [isDragging, setIsDragging] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    // const getMachineId = (): string => {
-    //     let machineUUIDNew: string | null = localStorage.getItem('machineUUID'); // Corrected the spelling of 'machine'
-    //     if (machineUUIDNew === null) {
-    //         machineUUIDNew = uuidv4();
-    //         localStorage.setItem('machineUUID', machineUUIDNew);
-    //     }
-    //     console.log(machineUUIDNew);
-    //     return machineUUIDNew;
-    // };
-
-    // const sendTrack = (): void => {
-    //     const machineId = getMachineId();
-    //     let param = new URLSearchParams();
-    //     param.set('machine_id', machineId); // Corrected the spelling of 'machine'
-    //     param.set('media_id', audioId);
-    //     param.set('view_date', new Date().toISOString().substring(0, 10));
-    //     param.set('user_id', ''); // Assuming you have a mechanism to obtain a user_id if needed
-    //     postTrack(param); // Assuming postTrack is a function you've defined elsewhere
-    // };
-
     useEffect(() => {
-        console.log(audioUrl, "is loading");
-        // sendTrack(); // Corrected to call the function
         if (audioUrl) setIsShow(true);
         setIsLoading(true);
         setDuration(0);
@@ -61,16 +37,13 @@ const AudioPlayer: React.FC = () => {
 
     const handleReady = () => {
         setIsLoading(false);
-        console.log("ready");
     }
 
     const handleBuffer = () => {
         setIsLoading(true)
-        console.log("buffer");
     }
 
     const handleDuration = (duration: number) => {
-        console.log("duration", duration);
         setDuration(duration);
     };
     const handleProgress = (progress: { played: number; playedSeconds: number; loaded: number; loadedSeconds: number; }) => {
@@ -140,9 +113,9 @@ const AudioPlayer: React.FC = () => {
     }
 
     return (
-        <div className={(isShow ? 'md:mt-20 mt-28 ' : 'mt-0 ') + 'transition-all'}>
+        <div className={clsx(isShow ? 'md:mt-20 mt-28' : 'mt-0', 'transition-all')}>
             <button
-                className={(isShow ? 'md:bottom-20 bottom-28 ' : 'bottom-0 ') + 'transition-all fixed right-0 h-8 w-8 z-50 bg-black bg-opacity-40 p-1'}
+                className={clsx(isShow ? 'md:bottom-20 bottom-28' : 'bottom-0', 'transition-all fixed right-0 h-8 w-8 z-50 bg-black bg-opacity-40 p-1')}
                 onClick={() => {
                     if (audioUrl) setIsShow(!isShow);
                     else toast.error("please load the audio first");
@@ -157,7 +130,7 @@ const AudioPlayer: React.FC = () => {
             </button>
 
             <div
-                className={(isShow ? 'bottom-0 ' : 'md:-bottom-20 -bottom-28 ') + 'fixed left-0 w-full h-28 md:h-20 z-50 bg-white transition-all border-t-2 border-[#607D8B]'}
+                className={clsx(isShow ? 'bottom-0 ' : 'md:-bottom-20 -bottom-28 ', 'fixed left-0 w-full h-28 md:h-20 z-50 bg-white transition-all border-t-2 border-[#607D8B]')}
             >
                 <ReactPlayer
                     ref={playerRef}
@@ -179,14 +152,6 @@ const AudioPlayer: React.FC = () => {
                             <button onClick={handleBackward}>
                                 <Image src='/images/svg/backward-15-seconds.svg' alt='backward' width={32} height={32} />
                             </button>
-                            {/* <button onClick={handlePlayPause}>
-                                {
-                                    isLoading ?
-                                        <Image src='/Images/SVG/loading.svg' alt='loading' width={64} height={64} className=' cursor-wait' />
-                                        :
-                                        <ButtonPlay isPlaying={isPlaying} type={true} width={64} height={64} />
-                                }
-                            </button> */}
                             <PlayPauseButton onClick={handlePlayPause} isPlaying={isPlaying} isSelected={true} size={2} />
                             <button onClick={handleForward}>
                                 <Image src='/images/svg/forward-15-seconds.svg' alt='forward' width={32} height={32} />
@@ -208,14 +173,6 @@ const AudioPlayer: React.FC = () => {
                     :
                     <div className='flex md:flex-row-reverse md:gap-2 flex-col justify-center items-center h-full'>
                         <div className='transition-all text-center text-base'>{audioTitle}</div>
-                        {/* <button onClick={handlePlayPause}>
-                            {
-                                isLoading ?
-                                    <Image src='/Images/SVG/loading.svg' alt='loading' width={64} height={64} className=' cursor-wait' />
-                                    :
-                                    <ButtonPlay isPlaying={isPlaying} type={true} width={64} height={64} />
-                            }
-                        </button> */}
                         <PlayPauseButton onClick={handlePlayPause} isPlaying={isPlaying} isSelected={true} size={2} />
                     </div>
                 }

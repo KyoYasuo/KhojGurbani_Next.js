@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Page() {
+export default function RegisterPage() {
 
     return (
         <div className="w-[500px] bg-white rounded-lg shadow-double px-[55px] py-[30px] flex flex-col items-center my-[50px]">

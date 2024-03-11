@@ -38,14 +38,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${poppins.className} antialiased flex flex-col min-h-screen relative`}>
         <AuthWrapper>
-          <AudioPlayerProvider>
+          {/* <AudioPlayerProvider> */}
             <Header />
             <main className="grow flex flex-col">
               {children}
             </main>
             <Footer />
-            <AudioPlayer />
-          </AudioPlayerProvider>
+            {/* <AudioPlayer />
+          </AudioPlayerProvider> */}
         </AuthWrapper>
         <ToastContainer />
         <SpeedInsights />

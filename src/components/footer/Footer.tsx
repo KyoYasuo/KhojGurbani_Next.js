@@ -79,7 +79,7 @@ export const Footer = () => {
 
                             />
                             <Image
-                                src='/images/SVG/soc_1.svg'
+                                src='/images/svg/soc_1.svg'
                                 alt=''
                                 width={25}
                                 height={25}

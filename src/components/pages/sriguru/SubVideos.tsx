@@ -71,7 +71,7 @@ export const SubVideos = ({ videos, handleDelete, handleApprove, handleReject }:
                     <SwiperSlide key={item.id}>
                         <div className="flex flex-col items-baseline gap-6">
                             <iframe src={item.attachment_name} className="w-full aspect-video"></iframe>
-                            {session?.data.role_id === 4 &&
+                            {session?.resData.user.role_id === 4 &&
                                 (
                                     item.media_approve === 0 ?
                                         <div className="flex gap-2">

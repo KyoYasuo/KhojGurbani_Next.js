@@ -122,7 +122,7 @@ export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { sha
                         </div>
                     }
                 </div>
-                {session?.data.role_id >= 2 &&
+                {session?.resData.user.role_id >= 2 &&
                     <button onClick={() => setAudioOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
                         <FontAwesomeIcon icon={faPlus} />
                         <p>Add Audio</p>
@@ -145,7 +145,7 @@ export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { sha
                         </div>
                     }
                 </div>
-                {session?.data.role_id >= 2 &&
+                {session?.resData.user.role_id >= 2 &&
                     <button onClick={() => setVideoOpen(true)} className="flex gap-1 items-center text-xs px-[24px] py-[8px] text-white bg-blue-primary hover:bg-blue-secondary rounded transition-all">
                         <FontAwesomeIcon icon={faPlus} />
                         <p>Add Video</p>

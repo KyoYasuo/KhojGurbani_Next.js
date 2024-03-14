@@ -19,21 +19,37 @@ interface Audio {
 }
 
 export const SubAudios = (
-    { audios, handleDelete, handlePlay, handleDownload, handleApprove, handleReject }:
-        { audios: Audio[]; handleDelete: (id: number) => void; handlePlay: () => void; handleDownload: (id: number) => void; handleApprove: (id: number) => void; handleReject: (id: number) => void; }) => {
+    { audios, handleDelete, handleDownload, handleApprove, handleReject }:
+        { audios: Audio[]; handleDelete: (id: number) => void; handleDownload: (id: number) => void; handleApprove: (id: number) => void; handleReject: (id: number) => void; }) => {
 
     const { data: session } = useSession();
 
     const [expand, setExpand] = useState(false);
+    const [audioDataProps, setAudioDataProps] = useAudioPlayer();
 
-    // const { playAudio,  } = useAudioPlayer();
+    const handleClick = (item: Audio) => {
+        if (item.id === audioDataProps.audioId) {
+            setAudioDataProps({
+                ...audioDataProps,
+                isPlaying: !audioDataProps.isPlaying
+            })
+        }
+        else {
+            setAudioDataProps({
+                audioId: item.id,
+                audioTitle: item.title,
+                audioUrl: item.attachment_name,
+                isPlaying: true
+            })
+        }
+    }
 
     return (
         <>
             {audios.slice(0, expand ? audios.length : 3).map((item: Audio) => (
                 <div key={item.id} >
                     <div className="flex gap-[7px]">
-                        <PlayPauseButton onClick={handlePlay} isPlaying={false} isSelected={false} size={1} />
+                        <PlayPauseButton onClick={() => handleClick(item)} isPlaying={audioDataProps.isPlaying} isSelected={item.id === audioDataProps.audioId} size={1} />
                         {session?.resData.user.role_id >= 3 && <DownloadButton onClick={() => handleDownload(item.id)} size={1} />}
                         <div className="flex flex-col ml-[7px] items-baseline">
                             <p className="text-sm text-title">

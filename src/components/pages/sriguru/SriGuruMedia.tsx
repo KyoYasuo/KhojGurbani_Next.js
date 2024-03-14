@@ -8,6 +8,7 @@ import { getData, postData } from "@/utils/fetch_client";
 import { toast } from "react-toastify";
 import RevalidateSriguru from "../../../actions/Sriguru/RevalidateSriguru";
 import { useSession } from "next-auth/react";
+import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 
 interface Audio {
     id: number;
@@ -38,10 +39,7 @@ interface ShabadMedias {
 export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { shabadMedias: ShabadMedias; setAudioOpen: any; setVideoOpen: any }) => {
 
     const { data: session } = useSession();
-
-    function handlePlay() {
-        console.log("play");
-    }
+    const [audioDataProps, setAudioDataProps] = useAudioPlayer();
 
     function handleDownload(id: number) {
         console.log("download");
@@ -100,25 +98,25 @@ export const SriGuruMedia = ({ shabadMedias, setAudioOpen, setVideoOpen }: { sha
                     {shabadMedias?.Santhiya_data.length > 0 &&
                         <div className="flex flex-col items-baseline gap-[14px]">
                             <h4 className="text-[21px] text-title">Santhiya</h4>
-                            <SubAudios audios={shabadMedias?.Santhiya_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                            <SubAudios audios={shabadMedias?.Santhiya_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handleDownload={handleDownload} />
                         </div>
                     }
                     {shabadMedias?.Kirtan_data.length > 0 &&
                         <div className="flex flex-col items-baseline gap-[14px]">
                             <h4 className="text-[21px] text-title">Kirtan</h4>
-                            <SubAudios audios={shabadMedias?.Kirtan_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                            <SubAudios audios={shabadMedias?.Kirtan_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handleDownload={handleDownload} />
                         </div>
                     }
                     {shabadMedias?.katha_data.length > 0 &&
                         <div className="flex flex-col items-baseline gap-[14px]">
                             <h4 className="text-[21px] text-title">Katha</h4>
-                            <SubAudios audios={shabadMedias?.katha_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                            <SubAudios audios={shabadMedias?.katha_data} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handleDownload={handleDownload} />
                         </div>
                     }
                     {shabadMedias?.podcast_media.length > 0 &&
                         <div className="flex flex-col items-baseline gap-[14px]">
                             <h4 className="text-[21px] text-title">Podcast</h4>
-                            <SubAudios audios={shabadMedias?.podcast_media} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handlePlay={handlePlay} handleDownload={handleDownload} />
+                            <SubAudios audios={shabadMedias?.podcast_media} handleApprove={handleApprove} handleReject={handleReject} handleDelete={handleDelete} handleDownload={handleDownload} />
                         </div>
                     }
                 </div>

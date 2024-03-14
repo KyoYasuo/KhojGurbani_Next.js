@@ -1,49 +1,39 @@
-"use client"
-import { createContext, useContext, useState, ReactNode } from 'react';
+"use client";
 
-interface AudioPlayerContextProps {
-    audioId: string;
+import React, { createContext, useState } from "react";
+
+interface AudioDataProps {
+    audioId: number;
     audioTitle: string;
     audioUrl: string;
     isPlaying: boolean;
-    playAudio: (url: string, title: string, id: string) => void;
-    pauseAudio: () => void;
 }
 
-const AudioPlayerContext = createContext<AudioPlayerContextProps | undefined>(undefined);
+const useAudioState = (initialData: AudioDataProps) => useState<AudioDataProps>(initialData);
 
-interface AudioPlayerProviderProps {
-    children: ReactNode;
-}
+export const AudioPlayerContext = createContext<ReturnType<typeof useAudioState> | null>(null);
 
-export const AudioPlayerProvider: React.FC<AudioPlayerProviderProps> = ({ children }) => {
-    const [audioId, setAudioId] = useState<string>('');
-    const [audioTitle, setAudioTitle] = useState<string>('');
-    const [audioUrl, setAudioUrl] = useState<string>('');
-    const [isPlaying, setIsPlaying] = useState<boolean>(false);
+export const useAudioPlayer = () => {
+    const audioData = React.useContext(AudioPlayerContext);
+    if (!audioData) {
+        throw new Error("useCart must be used within a CartProvider");
+    }
+    return audioData;
+};
 
-    const playAudio = (url: string, title: string, id: string) => {
-        setAudioId(id);
-        setAudioTitle(title);
-        setAudioUrl(url);
-        setIsPlaying(true);
-    };
+const AudioPlayerProvider = ({
+    children,
+}: {
+    children: React.ReactNode;
+}) => {
 
-    const pauseAudio = () => {
-        setIsPlaying(false);
-    };
+    const [audioDataProps, setAudioDataProps] = useAudioState({ audioId: 0, audioTitle: "", audioUrl: "", isPlaying: false });
 
     return (
-        <AudioPlayerContext.Provider value={{ audioId, audioTitle, audioUrl, isPlaying, playAudio, pauseAudio }}>
+        <AudioPlayerContext.Provider value={[audioDataProps, setAudioDataProps]}>
             {children}
         </AudioPlayerContext.Provider>
     );
 };
 
-export const useAudioPlayer = (): AudioPlayerContextProps => {
-    const context = useContext(AudioPlayerContext);
-    if (!context) {
-        throw new Error('useAudioPlayer must be used within an AudioPlayerProvider');
-    }
-    return context;
-};
+export default AudioPlayerProvider;

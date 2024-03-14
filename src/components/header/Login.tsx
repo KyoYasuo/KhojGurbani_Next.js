@@ -33,10 +33,6 @@ export const Login = ({ session, setIsOpen }: { session: any; setIsOpen: any; })
         };
     }, []);
 
-    function handleLogout() {
-        signOut();
-    }
-
     if (session) return (
         <div ref={listRef} className="flex flex-col lg:flex-row items-center cursor-pointer group relative">
             <div onClick={() => setDropOpen(!dropOpen)} className="hidden lg:flex gap-2 items-center">
@@ -52,17 +48,20 @@ export const Login = ({ session, setIsOpen }: { session: any; setIsOpen: any; })
                         </Link>
                     </li>
                     <li className="px-[14px] py-[7px] hover:bg-gray-primary">
-                        <button
-                            onClick={() => handleLogout()}
+                        <div
+                            onClick={() => signOut()}
                             className="flex gap-2 items-center text-sm text-primary"
                         >
                             <FontAwesomeIcon icon={faRightFromBracket} className="w-[18px]" />
                             <span>Logout</span>
-                        </button>
+                        </div>
                     </li>
                 </div>
             }
-            <li onClick={() => setIsOpen(false)} className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}>
+            <li
+                onClick={() => setIsOpen(false)}
+                className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}
+            >
                 <Link
                     href={'/myaccount'}
                     className='w-full hover:bg-secondary px-[15px] py-[20px] text-white text-sm'
@@ -70,13 +69,16 @@ export const Login = ({ session, setIsOpen }: { session: any; setIsOpen: any; })
                     My account
                 </Link>
             </li>
-            <li onClick={() => setIsOpen(false)} className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}>
-                <button
-                    onClick={() => handleLogout()}
+            <li
+                onClick={() => setIsOpen(false)}
+                className={clsx(isActive ? 'border-b-4 border-blue-primary' : 'border-none', "flex w-full lg:hidden")}
+            >
+                <div
+                    onClick={() => signOut()}
                     className='w-full hover:bg-secondary px-[15px] py-[20px] text-white text-sm text-left'
                 >
                     Logout
-                </button>
+                </div>
             </li>
         </div>
     );

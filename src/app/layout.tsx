@@ -15,8 +15,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AuthWrapper from '@/contexts/AuthWrapper';
-import AudioPlayer from '@/components/ui/AudioPlayer';
-import { AudioPlayerProvider } from '@/contexts/AudioPlayerContext';
+import AudioPlayerProvider from '@/contexts/AudioPlayerContext';
+import { AudioPlayer } from '@/components/ui/AudioPlayer';
 
 const poppins = Poppins({
   weight: "400",
@@ -29,6 +29,24 @@ export const metadata: Metadata = {
   description: "Managed by TcaT",
 };
 
+
+const Provider = ({ children }: { children: React.ReactNode }) => {
+
+  return (
+    <>
+      <AuthWrapper>
+        <AudioPlayerProvider>
+          {children}
+          <AudioPlayer />
+        </AudioPlayerProvider>
+      </AuthWrapper>
+      <ToastContainer />
+      <SpeedInsights />
+      <Analytics />
+    </>
+  )
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,19 +55,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased flex flex-col min-h-screen relative`}>
-        <AuthWrapper>
-          {/* <AudioPlayerProvider> */}
-            <Header />
-            <main className="grow flex flex-col">
-              {children}
-            </main>
-            <Footer />
-            {/* <AudioPlayer />
-          </AudioPlayerProvider> */}
-        </AuthWrapper>
-        <ToastContainer />
-        <SpeedInsights />
-        <Analytics />
+        <Provider>
+          <Header />
+          <main className="grow flex flex-col">
+            {children}
+          </main>
+          <Footer />
+        </Provider>
       </body >
     </html >
   );

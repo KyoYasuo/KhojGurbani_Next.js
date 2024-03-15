@@ -3,61 +3,72 @@
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
+import { useCallback, useEffect, useRef, useState } from "react"
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react"
 import 'swiper/css';
 import { date_transform } from "@/utils/date_transform"
+import { useAudioPlayer } from "@/contexts/AudioPlayerContext"
 
-export const Archive = ({ archive }: { archive: any }) => {
+interface ArchiveProps {
+    id: number,
+    title: string,
+    attachment_name: string,
+    thumbnail: string,
+    created_at: string
+}
 
-    const swiperRef = useRef(null);
+export const Archive = ({ archive }: { archive: ArchiveProps[] }) => {
 
-    const [screenWidth, setScreenWidth] = useState(0);
-    const [slidesPerView, setSlidesPerView] = useState(3);
+    const [, setAudioDataProps] = useAudioPlayer();
 
-    useEffect(() => {
-        const handleResize = () => {
-            setScreenWidth(window.innerWidth);
-        };
+    const swiperRef = useRef<SwiperRef>(null);
 
-        window.addEventListener('resize', handleResize);
-
-        handleResize();
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
+    const navigateToNextSlide = useCallback(() => {
+        if (!swiperRef.current) return;
+        swiperRef.current.swiper.slideNext();
     }, []);
 
+    const navigateToPrevSlide = useCallback(() => {
+        if (!swiperRef.current) return;
+        swiperRef.current.swiper.slidePrev();
+    }, []);
 
-    useEffect(() => {
-        if (screenWidth >= 1024) {
-            setSlidesPerView(4);
-        } else if (screenWidth >= 768) {
-            setSlidesPerView(3);
-        } else if (screenWidth >= 640) {
-            setSlidesPerView(2);
-        } else {
-            setSlidesPerView(1);
-        }
-    }, [screenWidth]);
+    const handleClick = (item: ArchiveProps) => {
+        setAudioDataProps({
+            audioId: item.id,
+            audioTitle: item.title,
+            audioUrl: item.attachment_name,
+            isPlaying: true
+        })
+    }
 
     return (
-        <div className="max-w-6xl px-4 mx-auto">
-            <h2 className="text-2xl font-bold mb-4 text-primary">Featured Podcasts</h2>
+        <div className="max-w-6xl px-4 py-[15px] mx-auto w-full">
+            <h2 className="text-[26px] lg:bg-white font-bold mb-4 text-primary">Archive</h2>
             <div className="w-full relative">
-                <button className="absolute transition-all z-10 left-4 xl:-left-12 top-1/2 -translate-y-1/2 bg-button rounded-full w-8 h-8 flex justify-center items-center">
+                <button onClick={navigateToPrevSlide} className="absolute transition-all z-10 left-4 xl:-left-12 top-1/2 -translate-y-1/2 bg-button rounded-full w-8 h-8 flex justify-center items-center">
                     <FontAwesomeIcon icon={faChevronLeft} className="text-white" />
                 </button>
                 <Swiper
                     ref={swiperRef}
                     spaceBetween={10}
-                    slidesPerView={slidesPerView}
+                    slidesPerView={1}
+                    breakpoints={{
+                        1024: {
+                            slidesPerView: 4,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                        },
+                        640: {
+                            slidesPerView: 2,
+                        }
+                    }}
                 >
-                    {archive.map((item: { id: number; thumbnail: string; title: string; created_at: string; }) => {
+                    {archive.map((item: ArchiveProps) => {
                         return (
-                            <SwiperSlide key={item.id} className="group cursor-pointer">
-                                <Image src={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail} width={345} height={232} alt="archive" className="aspect-[370/218]" />
+                            <SwiperSlide key={item.id} onClick={() => handleClick(item)} className="group cursor-pointer">
+                                <Image src={"https://apiprod.khojgurbani.org/uploads/thumbnail/" + item.thumbnail} width={345} height={232} alt="archive" className="aspect-[370/218] md:aspect-auto w-full" />
                                 <div className="flex justify-between items-baseline mt-[10px]">
                                     <p className="text-primary text-sm font-bold group-hover:text-blue-primary">{item.title}</p>
                                     <p className="text-line-primary text-xs font-bold">{date_transform(item.created_at)}</p>
@@ -66,7 +77,7 @@ export const Archive = ({ archive }: { archive: any }) => {
                         )
                     })}
                 </Swiper>
-                <button className="absolute transition-all z-10 right-4 xl:-right-12 top-1/2 -translate-y-1/2 bg-button rounded-full w-8 h-8 flex justify-center items-center">
+                <button onClick={navigateToNextSlide} className="absolute transition-all z-10 right-4 xl:-right-12 top-1/2 -translate-y-1/2 bg-button rounded-full w-8 h-8 flex justify-center items-center">
                     <FontAwesomeIcon icon={faChevronRight} className="text-white" />
                 </button>
             </div>

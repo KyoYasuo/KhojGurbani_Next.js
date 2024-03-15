@@ -23,13 +23,13 @@ export default async function Home() {
     const archive = archive_latest.result;
 
     return (
-        <>
+        <div className="flex flex-col w-full">
             <Banner podcast_index={podcast_index.result[0]} />
             <Welcome />
             <FeaturedThemes cat_result={cat_result} />
             <FeaturedPodcasts featured_podcasts={featured_podcasts} />
             <Archive archive={archive} />
             <Subscribe />
-        </>
+        </div>
     )
 }

@@ -1,13 +1,25 @@
 'use client'
 
+import { useAudioPlayer } from "@/contexts/AudioPlayerContext";
 import { date_transform } from "@/utils/date_transform";
 import Image from "next/image";
 import Highlighter from "react-highlight-words";
 
-export default function PodMedia(props: { id: string; imgURL: string; title: string; description: string; query: string; media: string; created_at: string; }) {
+export default function PodMedia(props: { id: number; imgURL: string; title: string; description: string; query: string; media: string; created_at: string; }) {
+
+    const [, setAudioDataProps] = useAudioPlayer();
+
+    const handleClick = () => {
+        setAudioDataProps({
+            audioId: props.id,
+            audioTitle: props.title,
+            audioUrl: props.media,
+            isPlaying: true
+        })
+    }
 
     return (
-        <div className="flex flex-col sm:flex-row cursor-pointer">
+        <div onClick={handleClick} className="flex flex-col sm:flex-row cursor-pointer">
 
             <div className="w-full sm:w-80 shrink-0" >
 
@@ -21,7 +33,7 @@ export default function PodMedia(props: { id: string; imgURL: string; title: str
 
             </div>
 
-            <div className="flex flex-col px-4 pt-2 sm:pt-0">
+            <div className="flex flex-col px-4">
                 <div className="">
                     <h3 className="text-2xl text-blue-primary inline">
                         <Highlighter

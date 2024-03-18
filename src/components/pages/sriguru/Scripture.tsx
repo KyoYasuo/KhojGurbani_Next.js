@@ -2,6 +2,7 @@
 
 import { getData } from "@/utils/fetch_client";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { use, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -22,7 +23,8 @@ export const Scripture = ({ scripture, setting }: { scripture: any; setting: any
     const [dicLoading, setDicLoading] = useState(true);
 
     const [wordPosition, setWordPosition] = useState({ x: 0, y: 0 });
-    const popupRef = useRef<HTMLDivElement>(null);
+
+    const router = useRouter();
 
     function handleWordClick(event: any) {
         const { offsetTop, offsetLeft, offsetHeight, offsetWidth } = event.target;
@@ -54,7 +56,7 @@ export const Scripture = ({ scripture, setting }: { scripture: any; setting: any
         <div
             className="mt-4"
         >
-            <h3 className="text-[26px] md:text-[32px] leading-[1.5] text-[#000000] flex flex-wrap">
+            <h3 className="text-[26px] md:text-[32px] leading-[1.5] text-black font-bold sm:font-normal flex flex-wrap">
                 {scripture.Scripture.split(' ').map((word: string, index: number) =>
                     <span key={index} className="cursor-help hover:bg-[#F4E5A8]" onClick={handleWordClick}>
                         {word}&nbsp;
@@ -92,7 +94,7 @@ export const Scripture = ({ scripture, setting }: { scripture: any; setting: any
                                 }
                                 <div className="flex justify-end">
                                     <button onClick={() => setDicOpen(false)} className="px-[10px] py-[5px] hover:bg-white/20 text-sm rounded-sm transition-all text-white">Close</button>
-                                    <button className="px-[10px] py-[5px] ml-[18px] bg-blue-primary hover:bg-blue-secondary text-sm text-white rounded-sm transition-all">View</button>
+                                    <button onClick={() => router.push(`/dictionary?lang=gurmukhi&value=${dicData?.word}`)} className="px-[10px] py-[5px] ml-[18px] bg-blue-primary hover:bg-blue-secondary text-sm text-white rounded-sm transition-all">View</button>
                                     <button className="px-[10px] py-[5px] ml-[18px] bg-blue-primary hover:bg-blue-secondary text-sm text-white rounded-sm transition-all">Search</button>
                                 </div>
                             </div>

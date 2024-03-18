@@ -14,7 +14,7 @@ export const CommentaryList = ({ commentaryList }: { commentaryList: any }) => {
     if (commentaryList.result[0]) {
         return (
             <div className="mt-[35px]">
-                <h3 className="text-[26px] text-primary font-bold">Commentary</h3>
+                <h3 className="text-[26px] text-primary font-bold mb-[16px]">Commentary</h3>
                 <div className="h-[335px] py-[23px] px-[15px] shadow-common flex flex-col">
                     <div
                         dangerouslySetInnerHTML={{ __html: commentaryList.result[0]?.commentary }}

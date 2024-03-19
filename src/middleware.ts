@@ -3,7 +3,6 @@ import type { NextRequest } from "next/server";
 
 const protectedRoutes = [
     '/commentary',
-    '/dictionary',
     '/glossary',
     '/media',
     '/gubanisearch',
